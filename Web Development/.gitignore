@@ -1,0 +1,17 @@
+# Dependencies
+/node_modules
+package-lock.json
+
+# Distribution
+dist/
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Miscellaneous
+.env
+.env.*

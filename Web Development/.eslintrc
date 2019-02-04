@@ -1,0 +1,163 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/warnings",
+    "plugin:import/errors",
+    "plugin:vue/base"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "rules": {
+    "arrow-body-style": [
+      2,
+      "always"
+    ],
+    "block-scoped-var": 1,
+    "brace-style": [
+      2,
+      "1tbs",
+      {
+        "allowSingleLine": false
+      }
+    ],
+    "camelcase": 0,
+    "comma-dangle": 0,
+    "comma-style": [
+      2,
+      "last"
+    ],
+    "complexity": [
+      1,
+      10
+    ],
+    "computed-property-spacing": [
+      2,
+      "never"
+    ],
+    "consistent-return": 1,
+    "eqeqeq": [
+      2,
+      "always"
+    ],
+    "func-names": 2,
+    "global-require": 1,
+    "guard-for-in": 2,
+    "import/no-extraneous-dependencies": [
+      0,
+      {
+        "devDependencies": true,
+        "optionalDependencies": true,
+        "peerDependencies": true
+      }
+    ],
+    "import/order": [
+      0,
+      {
+        "devDependencies": true,
+        "optionalDependencies": true,
+        "peerDependencies": true
+      }
+    ],
+    "indent": [
+      0,
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "keyword-spacing": 1,
+    "linebreak-style": 0,
+    "max-len": [
+      0,
+      120,
+      4
+    ],
+    "max-nested-callbacks": [
+      1,
+      5
+    ],
+    "max-params": [
+      1,
+      5
+    ],
+    "no-bitwise": 2,
+    "no-caller": 2,
+    "no-console": 1,
+    "no-dupe-args": 2,
+    "no-dupe-keys": 2,
+    "no-duplicate-case": 2,
+    "no-eq-null": 2,
+    "no-floating-decimal": 2,
+    "no-irregular-whitespace": 2,
+    "no-lonely-if": 2,
+    "no-multi-spaces": 0,
+    "no-multiple-empty-lines": [
+      1,
+      {
+        "max": 3
+      }
+    ],
+    "no-nested-ternary": 2,
+    "no-regex-spaces": 2,
+    "no-return-assign": 2,
+    "no-self-compare": 2,
+    "no-throw-literal": 2,
+    "no-underscore-dangle": 0,
+    "no-void": 2,
+    "no-with": 2,
+    "object-curly-spacing": [
+      2,
+      "never"
+    ],
+    "object-shorthand": [
+      2,
+      "methods"
+    ],
+    "operator-assignment": [
+      2,
+      "always"
+    ],
+    "operator-linebreak": [
+      2,
+      "after"
+    ],
+    "padded-blocks": 0,
+    "prefer-const": 2,
+    "prefer-destructuring": 0,
+    "quotes": [
+      2,
+      "single",
+      "avoid-escape"
+    ],
+    "radix": 2,
+    "space-before-blocks": [
+      2,
+      "always"
+    ],
+    "space-before-function-paren": [
+      2,
+      "never"
+    ],
+    "space-in-parens": [
+      2,
+      "never"
+    ],
+    "spaced-comment": [
+      2,
+      "always"
+    ],
+    "use-isnan": 2,
+    "valid-typeof": 2,
+    "vars-on-top": 1,
+    "wrap-iife": [
+      2,
+      "outside"
+    ]
+  }
+}
