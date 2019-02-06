@@ -126,27 +126,27 @@ Function Shutdown_Abort {
 
 # One folder up
 Function .. {
-  Set-Location ..
+  Set-Location ".."
 }
 
 # Two folders up
 Function ... {
-  Set-Location ../..
+  Set-Location "..\.."
 }
 
 # Three folders up
 Function .... {
-  Set-Location ../../..
+  Set-Location "..\..\.."
 }
 
 # Change directory to Home
-Function ~ {
-  Set-Location ~
+Function Dir_Home {
+  Set-Location "$HOME"
 }
 
 # Change directory to Desktop
 Function Dir_Desktop {
-  Set-Location "~\Desktop"
+  Set-Location "$HOME\Desktop"
 }
 
 # Change directory to Dropbox
@@ -175,7 +175,7 @@ Function Dir_Print {
 # Add and commit files with message
 Function Git_AddAndCommit([String]$Message) {
   git add .
-  git commit -m $Message
+  git commit --message "$Message"
 }
 
 # Amend to the last commit without editing the message
@@ -186,22 +186,22 @@ Function Git_AddAndCommit_Amend {
 
 # Push files to remote Repository
 Function Git_Push([String]$Branch) {
-  git push origin $Branch
+  git push origin "$Branch"
 }
 
 # Pull files from remote Repository
 Function Git_Pull([String]$Branch) {
-  git pull origin $Branch
+  git pull origin "$Branch"
 }
 
 # Add remote Repository
 Function Git_Remote([String]$URL) {
-  git remote --verbose add origin $URL
+  git remote --verbose add origin "$URL"
 }
 
 # Clone Repository into directory
 Function Git_Clone([String]$URL) {
-  git clone $URL
+  git clone "$URL"
 }
 
 <#  Node Package Manager (NPM)
@@ -209,12 +209,12 @@ Function Git_Clone([String]$URL) {
 
 # Install Package in dependencies
 Function NPM_Install_Dependencies([String]$Package) {
-  npm install --save-prod $Package
+  npm install --save-prod "$Package"
 }
 
 # Install Package in devDependencies
 Function NPM_Install_DevDependencies([String]$Package) {
-  npm install --save-dev $Package
+  npm install --save-dev "$Package"
 }
 
 # Outdated Packages
@@ -248,6 +248,16 @@ Function Webpack_Production {
 <#  SSH
     ==================================================  #>
 
+# Generate SSH Key
+Function SSH_GenerateKey([String]$EMail, [String]$Name) {
+  ssh-keygen -t rsa -b 4096 -C "$EMail" -f "$HOME\.ssh\$Name"
+}
+
+# Add SSH Key
+Function SSH_AddKey([String]$Name) {
+  ssh-add "$HOME\.ssh\$Name"
+}
+
 # RaspberryPi 0 W
 Function SSH_RasPi0 {
   ssh RasPi0 -l pi
@@ -268,6 +278,7 @@ Set-Alias "SA" "Shutdown_Abort"
 <#  Directory
     ==================================================  #>
 
+Set-Alias "DH" "Dir_Home"
 Set-Alias "DDT" "Dir_Desktop"
 Set-Alias "DDB" "Dir_Dropbox"
 Set-Alias "DDL" "Dir_Downloads"
@@ -302,6 +313,8 @@ Set-Alias "WP" "Webpack_Production"
 <#  SSH
     ==================================================  #>
 
+Set-Alias "SSHG" "SSH_GenerateKey"
+Set-Alias "SSHA" "SSH_AddKey"
 Set-Alias "RPI0" "SSH_RasPi0"
 
 <#  ========================================================================

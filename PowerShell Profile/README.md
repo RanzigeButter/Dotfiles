@@ -170,7 +170,7 @@ List of all contained functions.
 - `..` = One folder up
 - `...` = Two folders up
 - `....` = Three folders up
-- `~` = Change directory to Home
+- `Dir_Home` = Change directory to Home
 - `Dir_Desktop` = Change directory to Desktop
 - `Dir_Dropbox` = Change directory to Dropbox
 - `Dir_Downloads` = Change directory to Downloads
@@ -207,8 +207,10 @@ List of all contained functions.
 
 #### SSH
 
-[OpenSSH](https://www.openssh.com) must be installed!
+[OpenSSH](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview) must be installed!
 
+- `SSH_GenerateKey` = Generate SSH Key (Insert the desired E-Mail first and then the desired Name after the command.)
+- `SSH_AddKey` = Add SSH Key (Insert the desired SSK Key Name after the command.)
 - `SSH_RasPi0` = SSH to RaspberryPi 0 W
 
 
@@ -228,6 +230,7 @@ List of all contained aliases.
 
 #### Directory
 
+- `DH` = `Dir_Home`
 - `DDT` = `Dir_Desktop`
 - `DDB` = `Dir_Dropbox`
 - `DDL` = `Dir_Downloads`
@@ -264,8 +267,10 @@ List of all contained aliases.
 
 #### SSH
 
-[OpenSSH](https://www.openssh.com) must be installed!
+[OpenSSH](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview) must be installed!
 
+- `SSHG` = `SSH_GenerateKey`
+- `SSHA` = `SSH_AddKey`
 - `RPI0` = `SSH_RasPi0`
 
 
