@@ -245,8 +245,8 @@ List of all contained aliases.
 - `GACA` = `Git_AddAndCommit_Amend`
 - `GSH` = `Git_Push`
 - `GLL` = `Git_Pull`
-- `GR` = `Git_Remote`
-- `GG` = `Git_Clone`
+- `GRE` = `Git_Remote`
+- `GCL` = `Git_Clone`
 
 #### Node Package Manager (NPM)
 

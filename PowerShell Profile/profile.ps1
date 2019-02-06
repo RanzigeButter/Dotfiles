@@ -175,7 +175,7 @@ Function Dir_Print {
 # Add and commit files with message
 Function Git_AddAndCommit([String]$Message) {
   git add .
-  git commit --message "$Message"
+  git commit -m $Message
 }
 
 # Amend to the last commit without editing the message
@@ -186,22 +186,22 @@ Function Git_AddAndCommit_Amend {
 
 # Push files to remote Repository
 Function Git_Push([String]$Branch) {
-  git push origin "$Branch"
+  git push origin $Branch
 }
 
 # Pull files from remote Repository
 Function Git_Pull([String]$Branch) {
-  git pull origin "$Branch"
+  git pull origin $Branch
 }
 
 # Add remote Repository
 Function Git_Remote([String]$URL) {
-  git remote --verbose add origin "$URL"
+  git remote --verbose add origin $URL
 }
 
 # Clone Repository into directory
 Function Git_Clone([String]$URL) {
-  git clone "$URL"
+  git clone $URL
 }
 
 <#  Node Package Manager (NPM)
@@ -209,12 +209,12 @@ Function Git_Clone([String]$URL) {
 
 # Install Package in dependencies
 Function NPM_Install_Dependencies([String]$Package) {
-  npm install --save-prod "$Package"
+  npm install --save-prod $Package
 }
 
 # Install Package in devDependencies
 Function NPM_Install_DevDependencies([String]$Package) {
-  npm install --save-dev "$Package"
+  npm install --save-dev $Package
 }
 
 # Outdated Packages
@@ -292,8 +292,8 @@ Set-Alias "GAC" "Git_AddAndCommit"
 Set-Alias "GACA" "Git_AddAndCommit_Amend"
 Set-Alias "GSH" "Git_Push"
 Set-Alias "GLL" "Git_Pull"
-Set-Alias "GR" "Git_Remote"
-Set-Alias "GG" "Git_Clone"
+Set-Alias "GRE" "Git_Remote"
+Set-Alias "GCL" "Git_Clone"
 
 <#  Node Package Manager (NPM)
     ==================================================  #>
