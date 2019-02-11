@@ -17,26 +17,26 @@ Remove-Item "HKCU:\Console\*" -Recurse -ErrorAction SilentlyContinue
     ==================================================  #>
 
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable00 -Value 0x0018120f -ErrorAction SilentlyContinue # Black (Hex #0f1218 / RGB 15,18,24)
-Set-ItemProperty -Path HKCU:\Console -Name ColorTable01 -Value 0x00b27900 -ErrorAction SilentlyContinue # DarkBlue (Hex #0079b2 / RGB 0,121,178)
-Set-ItemProperty -Path HKCU:\Console -Name ColorTable02 -Value 0x000ea113 -ErrorAction SilentlyContinue # DarkGreen (Hex #13a10e / RGB 19,161,14)
-Set-ItemProperty -Path HKCU:\Console -Name ColorTable03 -Value 0x008b8b00 -ErrorAction SilentlyContinue # DarkCyan (Hex #008b8b / RGB 0,139,139)
-Set-ItemProperty -Path HKCU:\Console -Name ColorTable04 -Value 0x001f0fc5 -ErrorAction SilentlyContinue # DarkRed (Hex #c50f1f / RGB 197,15,31)
-Set-ItemProperty -Path HKCU:\Console -Name ColorTable05 -Value 0x00981788 -ErrorAction SilentlyContinue # DarkMagenta (Hex #881798 / RGB 136,23,152)
-Set-ItemProperty -Path HKCU:\Console -Name ColorTable06 -Value 0x00009cc1 -ErrorAction SilentlyContinue # DarkYellow (Hex #c19c00 / RGB 193,156,0)
+Set-ItemProperty -Path HKCU:\Console -Name ColorTable01 -Value 0x00b47800 -ErrorAction SilentlyContinue # DarkBlue (Hex #0078b4 / RGB 0,120,180)
+Set-ItemProperty -Path HKCU:\Console -Name ColorTable02 -Value 0x0032a514 -ErrorAction SilentlyContinue # DarkGreen (Hex #14a532 / RGB 20,165,50)
+Set-ItemProperty -Path HKCU:\Console -Name ColorTable03 -Value 0x008c8c00 -ErrorAction SilentlyContinue # DarkCyan (Hex #008c8c / RGB 0,140,140)
+Set-ItemProperty -Path HKCU:\Console -Name ColorTable04 -Value 0x003719f5 -ErrorAction SilentlyContinue # DarkRed (Hex #f51937 / RGB 245,25,55)
+Set-ItemProperty -Path HKCU:\Console -Name ColorTable05 -Value 0x00d246af -ErrorAction SilentlyContinue # DarkMagenta (Hex #af46d2 / RGB 175,70,210)
+Set-ItemProperty -Path HKCU:\Console -Name ColorTable06 -Value 0x0064b4f5 -ErrorAction SilentlyContinue # DarkYellow (Hex #f5b464 / RGB 245,180,100)
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable07 -Value 0x00cccccc -ErrorAction SilentlyContinue # Gray (Hex #cccccc / RGB 204,204,204)
-Set-ItemProperty -Path HKCU:\Console -Name ColorTable08 -Value 0x00767676 -ErrorAction SilentlyContinue # DarkGray (Hex #767676 / RGB 118,118,118)
-Set-ItemProperty -Path HKCU:\Console -Name ColorTable09 -Value 0x00dd963a -ErrorAction SilentlyContinue # Blue (Hex #3a96dd / RGB 58,150,221)
-Set-ItemProperty -Path HKCU:\Console -Name ColorTable10 -Value 0x005da33d -ErrorAction SilentlyContinue # Green (Hex #3da35d / RGB 61,163,93)
-Set-ItemProperty -Path HKCU:\Console -Name ColorTable11 -Value 0x00d0c088 -ErrorAction SilentlyContinue # Cyan (Hex #88c0d0 / RGB 136,192,208)
-Set-ItemProperty -Path HKCU:\Console -Name ColorTable12 -Value 0x005648e7 -ErrorAction SilentlyContinue # Red (Hex #e74856 / RGB 231,72,86)
-Set-ItemProperty -Path HKCU:\Console -Name ColorTable13 -Value 0x009e00b4 -ErrorAction SilentlyContinue # Magenta (Hex #b4009e / RGB 180,0,158)
-Set-ItemProperty -Path HKCU:\Console -Name ColorTable14 -Value 0x008bcbeb -ErrorAction SilentlyContinue # Yellow (Hex #ebcb8b / RGB 235,203,139)
+Set-ItemProperty -Path HKCU:\Console -Name ColorTable08 -Value 0x00888888 -ErrorAction SilentlyContinue # DarkGray (Hex #888888 / RGB 136,136,136)
+Set-ItemProperty -Path HKCU:\Console -Name ColorTable09 -Value 0x00dc963c -ErrorAction SilentlyContinue # Blue (Hex #3c96dc / RGB 60,150,220)
+Set-ItemProperty -Path HKCU:\Console -Name ColorTable10 -Value 0x005fb432 -ErrorAction SilentlyContinue # Green (Hex #32b45f / RGB 50,180,95)
+Set-ItemProperty -Path HKCU:\Console -Name ColorTable11 -Value 0x00C8e119 -ErrorAction SilentlyContinue # Cyan (Hex #19e1C8 / RGB 25,225,200)
+Set-ItemProperty -Path HKCU:\Console -Name ColorTable12 -Value 0x005546e6 -ErrorAction SilentlyContinue # Red (Hex #e64655 / RGB 230,70,85)
+Set-ItemProperty -Path HKCU:\Console -Name ColorTable13 -Value 0x00dc73c8 -ErrorAction SilentlyContinue # Magenta (Hex #c873dc / RGB 200,115,220)
+Set-ItemProperty -Path HKCU:\Console -Name ColorTable14 -Value 0x008cc8eb -ErrorAction SilentlyContinue # Yellow (Hex #ebc88c / RGB 235,200,140)
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable15 -Value 0x00f8f8f8 -ErrorAction SilentlyContinue # White (Hex #f8f8f8 / RGB 248,248,248)
 
 <#  Font
     ==================================================  #>
 
-Set-ItemProperty -Path HKCU:\Console -Name FaceName -Value Consolas -ErrorAction SilentlyContinue # Font (Consolas)
+Set-ItemProperty -Path HKCU:\Console -Name FaceName -Value "Source Code Pro" -ErrorAction SilentlyContinue # Font (Source Code Pro)
 Set-ItemProperty -Path HKCU:\Console -Name FontSize -Value 0x00120000 -ErrorAction SilentlyContinue # Font Size (18)
 Set-ItemProperty -Path HKCU:\Console -Name FontWeight -Value 0x00000190 -ErrorAction SilentlyContinue # Font Weight (400)
 
@@ -61,7 +61,7 @@ Function Check_Administrator {
 }
 
 # Set Title
-$Host.UI.RawUI.WindowTitle = "PowerShell - $ENV:USERNAME - Administrator: $((Check_Administrator)) - $((Get-Date).ToLongDateString())"
+$Host.UI.RawUI.WindowTitle = "PowerShell - Administrator: $((Check_Administrator)) - $((Get-Date).ToLongDateString())"
 
 <#  User Interface
     ==================================================  #>
@@ -86,10 +86,10 @@ $Host.PrivateData.ProgressBackgroundColor = "Black"
     ==================================================  #>
 
 Function Prompt {
-  $UserComputer = Write-Host "${env:USERNAME}@${env:COMPUTERNAME}" -NoNewline -ForegroundColor Green
-  $Seperator = Write-Host ":" -NoNewline
+  $UserComputer = Write-Host "${env:UserName}@$(HostName)" -NoNewline -ForegroundColor Green
+  $Separator = Write-Host " - " -NoNewline
   $Location = Write-Host "$(Get-Location)" -NoNewline -ForegroundColor Blue
-  $UserComputer + $Seperator + $Location + "> "
+  $UserComputer + $Separator + $Location + "> "
 }
 
 <#  ========================================================================
@@ -260,12 +260,12 @@ Function Webpack_Production {
 
 # Generate SSH Key
 Function SSH_GenerateKey([String]$EMail, [String]$Name) {
-  ssh-keygen -t rsa -b 4096 -C "$EMail" -f "$HOME\.ssh\$Name"
+  ssh-keygen -t rsa -b 4096 -C $EMail -f $HOME\.ssh\$Name
 }
 
 # Add SSH Key
 Function SSH_AddKey([String]$Name) {
-  ssh-add "$HOME\.ssh\$Name"
+  ssh-add $HOME\.ssh\$Name
 }
 
 # RaspberryPi 0 W

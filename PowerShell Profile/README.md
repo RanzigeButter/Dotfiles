@@ -86,27 +86,27 @@ First, all other settings stored in the Registry are deleted to ensure that all 
 
 ````plaintext
   Black (Hex #0f1218 / RGB 15,18,24)
-  DarkBlue (Hex #0079b2 / RGB 0,121,178)
-  DarkGreen (Hex #13a10e / RGB 19,161,14)
-  DarkCyan (Hex #008b8b / RGB 0,139,139)
-  DarkRed (Hex #c50f1f / RGB 197,15,31)
-  DarkMagenta (Hex #881798 / RGB 136,23,152)
-  DarkYellow (Hex #c19c00 / RGB 193,156,0)
+  DarkBlue (Hex #0078b4 / RGB 0,120,180)
+  DarkGreen (Hex #14a532 / RGB 20,165,50)
+  DarkCyan (Hex #008c8c / RGB 0,140,140)
+  DarkRed (Hex #f51937 / RGB 245,25,55)
+  DarkMagenta (Hex #af46d2 / RGB 175,70,210)
+  DarkYellow (Hex #f5b464 / RGB 245,180,100)
   Gray (Hex #cccccc / RGB 204,204,204)
-  DarkGray (Hex #767676 / RGB 118,118,118)
-  Blue (Hex #3a96dd / RGB 58,150,221)
-  Green (Hex #3da35d / RGB 61,163,93)
-  Cyan (Hex #88c0d0 / RGB 136,192,208)
-  Red (Hex #e74856 / RGB 231,72,86)
-  Magenta (Hex #b4009e / RGB 180,0,158)
-  Yellow (Hex #ebcb8b / RGB 235,203,139)
+  DarkGray (Hex #888888 / RGB 136,136,136)
+  Blue (Hex #3c96dc / RGB 60,150,220)
+  Green (Hex #32b45f / RGB 50,180,95)
+  Cyan (Hex #19e1C8 / RGB 25,225,200)
+  Red (Hex #e64655 / RGB 230,70,85)
+  Magenta (Hex #c873dc / RGB 200,115,220)
+  Yellow (Hex #ebc88c / RGB 235,200,140)
   White (Hex #f8f8f8 / RGB 248,248,248)
 ````
 
 #### Font
 
 ````plaintext
-  Font = Consolas
+  Font = Source Code Pro
   Font Size = 18
   Font Weight = 400
 ````
@@ -125,7 +125,7 @@ First, all other settings stored in the Registry are deleted to ensure that all 
 
 #### Window Title
 
-The window title contains the following information: The name of the program and the current user, whether the application is running as an administrator or not, and the date of the current day.
+The window title contains the following information: The name of the program, whether the application is running as an administrator or not and the date of the current day.
 
 #### User Interface
 
@@ -151,7 +151,7 @@ This determines which colors are to be used for what.
 
 #### Promt
 
-Changes Promt to "USERNAME@COMPUTERNAME:Location> ".
+Changes Promt to "UserName@HostName - Location>".
 
 
 ---
