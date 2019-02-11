@@ -16,6 +16,7 @@ My custom PowerShell Profile.
     - [Miscellaneous](#miscellaneous)
     - [Window Title](#window-title)
     - [User Interface](#user-interface)
+    - [Promt](#promt)
   - [**Functions**](#functions)
     - [General](#general)
     - [Directory](#directory)
@@ -85,16 +86,16 @@ First, all other settings stored in the Registry are deleted to ensure that all 
 
 ````plaintext
   Black (Hex #0f1218 / RGB 15,18,24)
-  DarkBlue (Hex #0037da / RGB 0,55,218)
+  DarkBlue (Hex #0079b2 / RGB 0,121,178)
   DarkGreen (Hex #13a10e / RGB 19,161,14)
-  DarkCyan (Hex #3a96dd / RGB 58,150,221)
+  DarkCyan (Hex #008b8b / RGB 0,139,139)
   DarkRed (Hex #c50f1f / RGB 197,15,31)
   DarkMagenta (Hex #881798 / RGB 136,23,152)
   DarkYellow (Hex #c19c00 / RGB 193,156,0)
   Gray (Hex #cccccc / RGB 204,204,204)
   DarkGray (Hex #767676 / RGB 118,118,118)
-  Blue (Hex #3b78ff / RGB 59,120,255)
-  Green (Hex #a3be8c / RGB 163,190,140)
+  Blue (Hex #3a96dd / RGB 58,150,221)
+  Green (Hex #3da35d / RGB 61,163,93)
   Cyan (Hex #88c0d0 / RGB 136,192,208)
   Red (Hex #e74856 / RGB 231,72,86)
   Magenta (Hex #b4009e / RGB 180,0,158)
@@ -147,6 +148,10 @@ This determines which colors are to be used for what.
   $Host.PrivateData.ProgressForegroundColor = "Yellow"
   $Host.PrivateData.ProgressBackgroundColor = "Black"
 ````
+
+#### Promt
+
+Changes Promt to "USERNAME@COMPUTERNAME:Location> ".
 
 
 ---

@@ -17,16 +17,16 @@ Remove-Item "HKCU:\Console\*" -Recurse -ErrorAction SilentlyContinue
     ==================================================  #>
 
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable00 -Value 0x0018120f -ErrorAction SilentlyContinue # Black (Hex #0f1218 / RGB 15,18,24)
-Set-ItemProperty -Path HKCU:\Console -Name ColorTable01 -Value 0x00da3700 -ErrorAction SilentlyContinue # DarkBlue (Hex #0037da / RGB 0,55,218)
+Set-ItemProperty -Path HKCU:\Console -Name ColorTable01 -Value 0x00b27900 -ErrorAction SilentlyContinue # DarkBlue (Hex #0079b2 / RGB 0,121,178)
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable02 -Value 0x000ea113 -ErrorAction SilentlyContinue # DarkGreen (Hex #13a10e / RGB 19,161,14)
-Set-ItemProperty -Path HKCU:\Console -Name ColorTable03 -Value 0x00dd963a -ErrorAction SilentlyContinue # DarkCyan (Hex #3a96dd / RGB 58,150,221)
+Set-ItemProperty -Path HKCU:\Console -Name ColorTable03 -Value 0x008b8b00 -ErrorAction SilentlyContinue # DarkCyan (Hex #008b8b / RGB 0,139,139)
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable04 -Value 0x001f0fc5 -ErrorAction SilentlyContinue # DarkRed (Hex #c50f1f / RGB 197,15,31)
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable05 -Value 0x00981788 -ErrorAction SilentlyContinue # DarkMagenta (Hex #881798 / RGB 136,23,152)
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable06 -Value 0x00009cc1 -ErrorAction SilentlyContinue # DarkYellow (Hex #c19c00 / RGB 193,156,0)
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable07 -Value 0x00cccccc -ErrorAction SilentlyContinue # Gray (Hex #cccccc / RGB 204,204,204)
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable08 -Value 0x00767676 -ErrorAction SilentlyContinue # DarkGray (Hex #767676 / RGB 118,118,118)
-Set-ItemProperty -Path HKCU:\Console -Name ColorTable09 -Value 0x00ff783b -ErrorAction SilentlyContinue # Blue (Hex #3b78ff / RGB 59,120,255)
-Set-ItemProperty -Path HKCU:\Console -Name ColorTable10 -Value 0x008cbea3 -ErrorAction SilentlyContinue # Green (Hex #a3be8c / RGB 163,190,140)
+Set-ItemProperty -Path HKCU:\Console -Name ColorTable09 -Value 0x00dd963a -ErrorAction SilentlyContinue # Blue (Hex #3a96dd / RGB 58,150,221)
+Set-ItemProperty -Path HKCU:\Console -Name ColorTable10 -Value 0x005da33d -ErrorAction SilentlyContinue # Green (Hex #3da35d / RGB 61,163,93)
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable11 -Value 0x00d0c088 -ErrorAction SilentlyContinue # Cyan (Hex #88c0d0 / RGB 136,192,208)
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable12 -Value 0x005648e7 -ErrorAction SilentlyContinue # Red (Hex #e74856 / RGB 231,72,86)
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable13 -Value 0x009e00b4 -ErrorAction SilentlyContinue # Magenta (Hex #b4009e / RGB 180,0,158)
@@ -81,6 +81,16 @@ $Host.PrivateData.VerboseForegroundColor = "Yellow"
 $Host.PrivateData.VerboseBackgroundColor = "Black"
 $Host.PrivateData.ProgressForegroundColor = "Yellow"
 $Host.PrivateData.ProgressBackgroundColor = "Black"
+
+<#  Promt
+    ==================================================  #>
+
+Function Prompt {
+  $UserComputer = Write-Host "${env:USERNAME}@${env:COMPUTERNAME}" -NoNewline -ForegroundColor Green
+  $Seperator = Write-Host ":" -NoNewline
+  $Location = Write-Host "$(Get-Location)" -NoNewline -ForegroundColor Blue
+  $UserComputer + $Seperator + $Location + "> "
+}
 
 <#  ========================================================================
     # Functions
