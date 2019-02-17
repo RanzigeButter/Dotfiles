@@ -94,7 +94,7 @@ First, all other settings stored in the Registry are deleted to ensure that all 
   DarkYellow (Hex #f5b464 / RGB 245,180,100)
   Gray (Hex #cccccc / RGB 204,204,204)
   DarkGray (Hex #888888 / RGB 136,136,136)
-  Blue (Hex #3c96dc / RGB 60,150,220)
+  Blue (Hex #3296fa / RGB 50,150,250)
   Green (Hex #32b45f / RGB 50,180,95)
   Cyan (Hex #19e1C8 / RGB 25,225,200)
   Red (Hex #e64655 / RGB 230,70,85)
@@ -151,7 +151,7 @@ This determines which colors are to be used for what.
 
 #### Promt
 
-Changes Promt to "UserName@HostName - Location>".
+Changes Promt to "UserName@HostName - CurrentLocation>".
 
 
 ---
@@ -190,7 +190,6 @@ List of all contained functions.
 - `Git_AddAndCommit_Amend` = Amend to the last commit without editing the message
 - `Git_Push` = Push files to remote Repository (Insert the desired Branch after the command.)
 - `Git_Pull` = Pull files from remote Repository (Insert the desired Branch after the command.)
-- `Git_Remote` = Add remote Repository (Insert the desired URL after the command.)
 - `Git_Clone` = Clone Repository into directory (Insert the desired URL after the command.)
 
 #### Node Package Manager (NPM)
@@ -250,7 +249,6 @@ List of all contained aliases.
 - `GACA` = `Git_AddAndCommit_Amend`
 - `GSH` = `Git_Push`
 - `GLL` = `Git_Pull`
-- `GRE` = `Git_Remote`
 - `GCL` = `Git_Clone`
 
 #### Node Package Manager (NPM)

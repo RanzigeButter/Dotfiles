@@ -25,7 +25,7 @@ Set-ItemProperty -Path HKCU:\Console -Name ColorTable05 -Value 0x00d246af -Error
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable06 -Value 0x0064b4f5 -ErrorAction SilentlyContinue # DarkYellow (Hex #f5b464 / RGB 245,180,100)
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable07 -Value 0x00cccccc -ErrorAction SilentlyContinue # Gray (Hex #cccccc / RGB 204,204,204)
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable08 -Value 0x00888888 -ErrorAction SilentlyContinue # DarkGray (Hex #888888 / RGB 136,136,136)
-Set-ItemProperty -Path HKCU:\Console -Name ColorTable09 -Value 0x00dc963c -ErrorAction SilentlyContinue # Blue (Hex #3c96dc / RGB 60,150,220)
+Set-ItemProperty -Path HKCU:\Console -Name ColorTable09 -Value 0x00fa9632 -ErrorAction SilentlyContinue # Blue (Hex #3296fa / RGB 50,150,250)
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable10 -Value 0x005fb432 -ErrorAction SilentlyContinue # Green (Hex #32b45f / RGB 50,180,95)
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable11 -Value 0x00C8e119 -ErrorAction SilentlyContinue # Cyan (Hex #19e1C8 / RGB 25,225,200)
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable12 -Value 0x005546e6 -ErrorAction SilentlyContinue # Red (Hex #e64655 / RGB 230,70,85)
@@ -45,8 +45,6 @@ Set-ItemProperty -Path HKCU:\Console -Name FontWeight -Value 0x00000190 -ErrorAc
 
 Set-ItemProperty -Path HKCU:\Console -Name WindowAlpha -Value 0x000000f4 -ErrorAction SilentlyContinue # Window Opacity (95%)
 Set-ItemProperty -Path HKCU:\Console -Name LineWrap -Value 0x00000001 -ErrorAction SilentlyContinue # Break long lines into multiple rows (Yes)
-Set-ItemProperty -Path HKCU:\Console -Name HistoryBufferSize -Value 0x00000032 -ErrorAction SilentlyContinue # History Buffer Size (50)
-Set-ItemProperty -Path HKCU:\Console -Name NumberOfHistoryBuffers -Value 0x00000003 -ErrorAction SilentlyContinue # Number of History Buffers (3)
 Set-ItemProperty -Path HKCU:\Console -Name HistoryNoDup -Value 0x00000001 -ErrorAction SilentlyContinue # Retain duplicate History Entries (No)
 Set-ItemProperty -Path HKCU:\Console -Name QuickEdit -Value 0x00000001 -ErrorAction SilentlyContinue # Quick Edit (Yes)
 Set-ItemProperty -Path HKCU:\Console -Name InsertMode -Value 0x00000001 -ErrorAction SilentlyContinue # Insert Mode (Yes)
@@ -55,13 +53,13 @@ Set-ItemProperty -Path HKCU:\Console -Name InsertMode -Value 0x00000001 -ErrorAc
     ==================================================  #>
 
 # Check Administrator
-Function Check_Administrator {
-  $user = [Security.Principal.WindowsIdentity]::GetCurrent();
-  (New-Object Security.Principal.WindowsPrincipal $user).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
+Function CheckAdministrator {
+  $User = [Security.Principal.WindowsIdentity]::GetCurrent();
+  (New-Object Security.Principal.WindowsPrincipal $User).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
 }
 
 # Set Title
-$Host.UI.RawUI.WindowTitle = "PowerShell - Administrator: $((Check_Administrator)) - $((Get-Date).ToLongDateString())"
+$Host.UI.RawUI.WindowTitle = "PowerShell - Administrator: $((CheckAdministrator)) - $((Get-Date).ToLongDateString())"
 
 <#  User Interface
     ==================================================  #>
@@ -88,8 +86,10 @@ $Host.PrivateData.ProgressBackgroundColor = "Black"
 Function Prompt {
   $UserComputer = Write-Host "${env:UserName}@$(HostName)" -NoNewline -ForegroundColor Green
   $Separator = Write-Host " - " -NoNewline
-  $Location = Write-Host "$(Get-Location)" -NoNewline -ForegroundColor Blue
-  $UserComputer + $Separator + $Location + "> "
+  $CurrentLocation = Write-Host "$(Get-Location)" -NoNewline -ForegroundColor Blue
+  $Ending = Write-Host ">" -NoNewline
+
+  "$($UserComputer)$($Separator)$($CurrentLocation)$($Ending) "
 }
 
 <#  ========================================================================
@@ -204,11 +204,6 @@ Function Git_Pull([String]$Branch) {
   git pull origin $Branch
 }
 
-# Add remote Repository
-Function Git_Remote([String]$URL) {
-  git remote --verbose add origin $URL
-}
-
 # Clone Repository into directory
 Function Git_Clone([String]$URL) {
   git clone $URL
@@ -302,7 +297,6 @@ Set-Alias "GAC" "Git_AddAndCommit"
 Set-Alias "GACA" "Git_AddAndCommit_Amend"
 Set-Alias "GSH" "Git_Push"
 Set-Alias "GLL" "Git_Pull"
-Set-Alias "GRE" "Git_Remote"
 Set-Alias "GCL" "Git_Clone"
 
 <#  Node Package Manager (NPM)
