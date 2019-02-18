@@ -1,5 +1,7 @@
 {
-  // General
+  //  ======================================================================  //
+  //  # General
+  //  ======================================================================  //
   "window.title": "${rootName}${separator}${activeEditorShort}${dirty}",
   "window.newWindowDimensions": "maximized",
   "workbench.colorTheme": "One Dark Pro Vivid",
@@ -10,7 +12,9 @@
   "workbench.statusBar.feedback.visible": false,
   "workbench.startupEditor": "newUntitledFile",
   "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-  // Microsoft Online Service
+  //  ======================================================================  //
+  //  # Microsoft Online Service
+  //  ======================================================================  //
   "telemetry.enableTelemetry": false,
   "telemetry.enableCrashReporter": false,
   "update.enableWindowsBackgroundUpdates": false,
@@ -19,7 +23,9 @@
   "extensions.showRecommendationsOnlyOnDemand": true,
   "workbench.enableExperiments": false,
   "workbench.settings.enableNaturalLanguageSearch": false,
-  // Editor
+  //  ======================================================================  //
+  //  # Editor
+  //  ======================================================================  //
   "workbench.editor.openPositioning": "last",
   "workbench.editor.highlightModifiedTabs": true,
   "editor.smoothScrolling": true,
@@ -54,7 +60,9 @@
       }
     ]
   },
-  // Formatting
+  //  ======================================================================  //
+  //  # Formatting
+  //  ======================================================================  //
   "editor.formatOnSave": true,
   "eslint.autoFixOnSave": true,
   "editor.tabSize": 2,
@@ -62,7 +70,9 @@
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
-  // Markdown
+  //  ======================================================================  //
+  //  # Markdown
+  //  ======================================================================  //
   "markdown.preview.scrollEditorWithPreview": false,
   "markdown.preview.scrollPreviewWithEditor": false,
   "markdownlint.config": {
@@ -77,18 +87,26 @@
   },
   "markdown.extension.italic.indicator": "_",
   "markdown.extension.toc.githubCompatibility": true,
-  // LaTeX
+  //  ======================================================================  //
+  //  # LaTeX
+  //  ======================================================================  //
   "latex-workshop.message.update.show": false,
   "latex-workshop.view.pdf.viewer": "tab",
-  // Stylelint (Disable built in linting)
+  //  ======================================================================  //
+  //  # Stylelint (Disable built in linting)
+  //  ======================================================================  //
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
-  // Custom Files Associations
+  //  ======================================================================  //
+  //  # Custom Files Associations
+  //  ======================================================================  //
   "files.associations": {
     ".stylelintrc": "json"
   },
-  // Hide Files and Folders from the Tree View
+  //  ======================================================================  //
+  //  # Hide Files/Folders from the Tree View
+  //  ======================================================================  //
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
