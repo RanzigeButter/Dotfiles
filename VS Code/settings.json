@@ -5,7 +5,7 @@
   "window.title": "${rootName}${separator}${activeEditorShort}${dirty}",
   "window.newWindowDimensions": "maximized",
   "workbench.colorTheme": "One Dark Pro Vivid",
-  "workbench.iconTheme": "file-icons",
+  "workbench.iconTheme": "vscode-icons",
   "editor.fontFamily": "Operator Mono",
   "workbench.settings.editor": "json",
   "workbench.settings.useSplitJSON": true,
@@ -61,6 +61,23 @@
     ]
   },
   //  ======================================================================  //
+  //  # VS Icons
+  //  ======================================================================  //
+  "vsicons.dontShowNewVersionMessage": true,
+  "vsicons.presets.foldersAllDefaultIcon": true,
+  "vsicons.presets.jsOfficial": true,
+  "vsicons.presets.tsOfficial": true,
+  "vsicons.associations.files": [
+    {
+      "icon": "webpack",
+      "extensions": [
+        "webpack.config.settings.js"
+      ],
+      "filename": true,
+      "format": "svg"
+    }
+  ],
+  //  ======================================================================  //
   //  # Formatting
   //  ======================================================================  //
   "editor.formatOnSave": true,
@@ -75,6 +92,8 @@
   //  ======================================================================  //
   "markdown.preview.scrollEditorWithPreview": false,
   "markdown.preview.scrollPreviewWithEditor": false,
+  "markdown.extension.toc.githubCompatibility": true,
+  "markdown.extension.italic.indicator": "_",
   "markdownlint.config": {
     "MD012": {
       "maximum": 2
@@ -85,13 +104,13 @@
     },
     "MD033": false
   },
-  "markdown.extension.italic.indicator": "_",
-  "markdown.extension.toc.githubCompatibility": true,
   //  ======================================================================  //
   //  # LaTeX
   //  ======================================================================  //
   "latex-workshop.message.update.show": false,
   "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.latex.autoClean.run": "onBuilt",
+  "latex-workshop.latex.clean.subfolder.enabled": true,
   //  ======================================================================  //
   //  # Stylelint (Disable built in linting)
   //  ======================================================================  //

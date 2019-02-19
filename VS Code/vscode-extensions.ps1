@@ -1,5 +1,3 @@
-# Script for installing VS Code Extensions.
-
 Write-Output ""
 Write-Output " __     ______     ____          _        _____      _                 _                  "
 Write-Output " \ \   / / ___|   / ___|___   __| | ___  | ____|_  _| |_ ___ _ __  ___(_) ___  _ __  ___  "
@@ -15,7 +13,7 @@ Write-Output ""
 $extensions = @(
   # Design
   "zhuangtongfa.material-theme"
-  "file-icons.file-icons"
+  "robertohuertasm.vscode-icons"
   # Languages
   "yzhang.markdown-all-in-one"
   "james-yu.latex-workshop"
@@ -39,7 +37,8 @@ $extensions = @(
 # ==============================================================================
 
 foreach ($extension in $extensions) {
-  Write-Host "Installing" $extension"..."
+  Write-Output ""
+  Write-Output ">>> Installing" $extension"..."
   code --install-extension $extension
   Write-Output "=================================================="
   Start-Sleep 1
