@@ -43,7 +43,8 @@ const loadingJavascript = () => {
             {
               targets: {
                 browsers: settings.browserslist.legacy,
-              }
+              },
+              useBuiltIns: 'usage'
             }
           ]
         ],
