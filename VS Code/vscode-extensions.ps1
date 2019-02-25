@@ -19,7 +19,6 @@ $extensions = @(
   "james-yu.latex-workshop"
   "ms-vscode.powershell"
   "mikestead.dotenv"
-  "mrmlnc.vscode-apache"
   "whatwedo.twig"
   # Linter
   "editorconfig.editorconfig"

@@ -69,6 +69,13 @@
   "vsicons.presets.tsOfficial": true,
   "vsicons.associations.files": [
     {
+      "icon": "nginx",
+      "extensions": [
+        "conf"
+      ],
+      "format": "svg"
+    },
+    {
       "icon": "webpack",
       "extensions": [
         "webpack.config.settings.js"
@@ -117,12 +124,6 @@
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
-  //  ======================================================================  //
-  //  # Custom Files Associations
-  //  ======================================================================  //
-  "files.associations": {
-    ".stylelintrc": "json"
-  },
   //  ======================================================================  //
   //  # Hide Files/Folders from the Tree View
   //  ======================================================================  //
