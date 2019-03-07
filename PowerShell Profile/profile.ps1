@@ -171,7 +171,7 @@ Function Dir_Downloads {
 
 # Change directory to Homepage
 Function Dir_Homepage {
-  Set-Location "F:\Web\Projekte\Homepage"
+  Set-Location "Z:\Development\Web\Homepage"
 }
 
 # Prints the directory contents
@@ -263,9 +263,14 @@ Function SSH_AddKey([String]$Name) {
   ssh-add $HOME\.ssh\$Name
 }
 
+# List SSH Keys
+Function SSH_ListKeys {
+  ssh-add -l
+}
+
 # RaspberryPi 0 W
 Function SSH_RasPi0 {
-  ssh RasPi0 -l pi
+  ssh RasPi0 -p 42 -l pi
 }
 
 <#  ========================================================================
@@ -319,6 +324,7 @@ Set-Alias "WP" "Webpack_Production"
 
 Set-Alias "SSHG" "SSH_GenerateKey"
 Set-Alias "SSHA" "SSH_AddKey"
+Set-Alias "SSHL" "SSH_ListKeys"
 Set-Alias "RPI0" "SSH_RasPi0"
 
 <#  ========================================================================

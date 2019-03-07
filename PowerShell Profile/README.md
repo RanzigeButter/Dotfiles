@@ -215,6 +215,7 @@ List of all contained functions.
 
 - `SSH_GenerateKey` = Generate SSH Key (Insert the desired E-Mail first and then the desired Name after the command.)
 - `SSH_AddKey` = Add SSH Key (Insert the desired SSK Key Name after the command.)
+- `SSH_ListKeys` = List added SSH Keys
 - `SSH_RasPi0` = SSH to RaspberryPi 0 W
 
 
@@ -274,6 +275,7 @@ List of all contained aliases.
 
 - `SSHG` = `SSH_GenerateKey`
 - `SSHA` = `SSH_AddKey`
+- `SSHL` = `SSH_ListKeys`
 - `RPI0` = `SSH_RasPi0`
 
 
