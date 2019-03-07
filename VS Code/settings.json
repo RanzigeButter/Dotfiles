@@ -61,6 +61,16 @@
     ]
   },
   //  ======================================================================  //
+  //  # Formatting
+  //  ======================================================================  //
+  "editor.formatOnSave": true,
+  "eslint.autoFixOnSave": true,
+  "editor.tabSize": 2,
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  //  ======================================================================  //
   //  # VS Icons
   //  ======================================================================  //
   "vsicons.dontShowNewVersionMessage": true,
@@ -84,16 +94,6 @@
       "format": "svg"
     }
   ],
-  //  ======================================================================  //
-  //  # Formatting
-  //  ======================================================================  //
-  "editor.formatOnSave": true,
-  "eslint.autoFixOnSave": true,
-  "editor.tabSize": 2,
-  "files.eol": "\n",
-  "files.trimTrailingWhitespace": true,
-  "files.insertFinalNewline": true,
-  "files.trimFinalNewlines": true,
   //  ======================================================================  //
   //  # Markdown
   //  ======================================================================  //
