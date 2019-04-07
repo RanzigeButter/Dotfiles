@@ -119,20 +119,19 @@
   "latex-workshop.latex.autoClean.run": "onBuilt",
   "latex-workshop.latex.clean.subfolder.enabled": true,
   //  ======================================================================  //
-  //  # Stylelint (Disable built in linting)
+  //  # Miscellaneous
   //  ======================================================================  //
+  //  Disable built in linting
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
-  //  ======================================================================  //
-  //  # Hide Files/Folders from the Tree View
-  //  ======================================================================  //
+  //  Hide Files/Folders from the Tree View
   "files.exclude": {
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/CVS": true,
     "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.hg": true,
+    "**/.svn": true,
+    "**/CVS": true,
     "**/node_modules": true
   }
 }

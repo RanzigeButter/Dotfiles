@@ -28,6 +28,7 @@ $extensions = @(
   # Other
   "mkxml.vscode-filesize"
   "cssho.vscode-svgviewer"
+  "bierner.emojisense"
   "pnp.polacode"
 )
 
@@ -38,7 +39,7 @@ $extensions = @(
 foreach ($extension in $extensions) {
   Write-Output ""
   Write-Output ">>> Installing" $extension"..."
-  code --install-extension $extension
+  code.cmd --install-extension $extension
   Write-Output "=================================================="
   Start-Sleep 1
 }
