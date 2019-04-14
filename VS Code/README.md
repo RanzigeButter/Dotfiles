@@ -1,8 +1,35 @@
 # VS Code
 
-VS Code Settings, Script for installing Extensions and custom Icons.
+VS Code settings, script for installing extensions and custom icons.
 
 ## Installation
+
+Executing the PowerShell script will install the following extensions:
+
+```plaintext
+  # Appearance
+  "zhuangtongfa.material-theme"
+  "vscode-icons-team.vscode-icons"
+  # Formatting
+  "editorconfig.editorconfig"
+  "esbenp.prettier-vscode"
+  # Languages
+  "yzhang.markdown-all-in-one"
+  "james-yu.latex-workshop"
+  "ms-vscode.powershell"
+  "mikestead.dotenv"
+  "ecmel.vscode-html-css"
+  "whatwedo.twig"
+  # Linter
+  "davidanson.vscode-markdownlint"
+  "shinnn.stylelint"
+  "dbaeumer.vscode-eslint"
+  # Miscellaneous
+  "mkxml.vscode-filesize"
+  "cssho.vscode-svgviewer"
+  "bierner.emojisense"
+  "pnp.polacode"
+```
 
 Copy the settings.json file into the following directory:
 
@@ -13,28 +40,5 @@ Copy the settings.json file into the following directory:
 Copy the Icons into the following directory:
 
 ```plaintext
-  C:\Users\USERNAME\.vscode\extensions\robertohuertasm.vscode-icons-X.X.X\icons
-```
-
-Install Extensions:
-
-```plaintext
-  # Design
-  "zhuangtongfa.material-theme"
-  "robertohuertasm.vscode-icons"
-  # Languages
-  "yzhang.markdown-all-in-one"
-  "james-yu.latex-workshop"
-  "ms-vscode.powershell"
-  "mikestead.dotenv"
-  "whatwedo.twig"
-  # Linter
-  "editorconfig.editorconfig"
-  "davidanson.vscode-markdownlint"
-  "shinnn.stylelint"
-  "dbaeumer.vscode-eslint"
-  # Other
-  "mkxml.vscode-filesize"
-  "cssho.vscode-svgviewer"
-  "pnp.polacode"
+  C:\Users\USERNAME\.vscode\extensions\vscode-icons-team.vscode-icons-X.X.X\icons
 ```

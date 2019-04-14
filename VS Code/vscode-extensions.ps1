@@ -11,21 +11,24 @@ Write-Output ""
 # ==============================================================================
 
 $extensions = @(
-  # Design
+  # Appearance
   "zhuangtongfa.material-theme"
-  "robertohuertasm.vscode-icons"
+  "vscode-icons-team.vscode-icons"
+  # Formatting
+  "editorconfig.editorconfig"
+  "esbenp.prettier-vscode"
   # Languages
   "yzhang.markdown-all-in-one"
   "james-yu.latex-workshop"
   "ms-vscode.powershell"
   "mikestead.dotenv"
+  "ecmel.vscode-html-css"
   "whatwedo.twig"
   # Linter
-  "editorconfig.editorconfig"
   "davidanson.vscode-markdownlint"
   "shinnn.stylelint"
   "dbaeumer.vscode-eslint"
-  # Other
+  # Miscellaneous
   "mkxml.vscode-filesize"
   "cssho.vscode-svgviewer"
   "bierner.emojisense"
@@ -38,7 +41,7 @@ $extensions = @(
 
 foreach ($extension in $extensions) {
   Write-Output ""
-  Write-Output ">>> Installing" $extension"..."
+  Write-Output ">>> Installing $extension..."
   code.cmd --install-extension $extension
   Write-Output "=================================================="
   Start-Sleep 1

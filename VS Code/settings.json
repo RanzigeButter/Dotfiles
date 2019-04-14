@@ -1,20 +1,14 @@
 {
-  //  ======================================================================  //
-  //  # General
-  //  ======================================================================  //
+  // ======================================================================== //
+  // # General
+  // ======================================================================== //
   "window.title": "${rootName}${separator}${activeEditorShort}${dirty}",
   "window.newWindowDimensions": "maximized",
-  "workbench.colorTheme": "One Dark Pro Vivid",
-  "workbench.iconTheme": "vscode-icons",
-  "editor.fontFamily": "Operator Mono",
+  "workbench.startupEditor": "newUntitledFile",
   "workbench.settings.editor": "json",
   "workbench.settings.useSplitJSON": true,
   "workbench.statusBar.feedback.visible": false,
-  "workbench.startupEditor": "newUntitledFile",
-  "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-  //  ======================================================================  //
-  //  # Microsoft Online Service
-  //  ======================================================================  //
+  // Microsoft Online Services
   "telemetry.enableTelemetry": false,
   "telemetry.enableCrashReporter": false,
   "update.enableWindowsBackgroundUpdates": false,
@@ -23,9 +17,33 @@
   "extensions.showRecommendationsOnlyOnDemand": true,
   "workbench.enableExperiments": false,
   "workbench.settings.enableNaturalLanguageSearch": false,
-  //  ======================================================================  //
-  //  # Editor
-  //  ======================================================================  //
+  // ======================================================================== //
+  // # Appearance
+  // ======================================================================== //
+  "workbench.colorTheme": "One Dark Pro Vivid",
+  "workbench.iconTheme": "vscode-icons",
+  "editor.fontFamily": "Operator Mono",
+  // VS Icons
+  "vsicons.dontShowNewVersionMessage": true,
+  "vsicons.presets.foldersAllDefaultIcon": true,
+  "vsicons.presets.jsOfficial": true,
+  "vsicons.presets.tsOfficial": true,
+  "vsicons.associations.files": [
+    {
+      "icon": "nginx",
+      "extensions": ["conf"],
+      "format": "svg"
+    },
+    {
+      "icon": "webpack",
+      "extensions": ["webpack.config.settings.js"],
+      "filename": true,
+      "format": "svg"
+    }
+  ],
+  // ======================================================================== //
+  // # Editor
+  // ======================================================================== //
   "workbench.editor.openPositioning": "last",
   "workbench.editor.highlightModifiedTabs": true,
   "editor.smoothScrolling": true,
@@ -41,18 +59,16 @@
   "editor.codeLens": false,
   "editor.links": false,
   "editor.renderWhitespace": "boundary",
-  "editor.rulers": [
-    80
-  ],
+  "editor.rulers": [80],
   "editor.tokenColorCustomizations": {
     "textMateRules": [
       {
         "scope": [
-          "comment", // Comments
-          "entity.other.attribute-name", // Attributes
+          "comment", // comments
+          "entity.other.attribute-name", // attributes
           "keyword.control", // @media, @include, etc.
           "storage.type", // const, let, etc.
-          "support.function" // Functions
+          "support.function" // functions
         ],
         "settings": {
           "fontStyle": "italic"
@@ -60,43 +76,24 @@
       }
     ]
   },
-  //  ======================================================================  //
-  //  # Formatting
-  //  ======================================================================  //
+  // ======================================================================== //
+  // # Formatting
+  // ======================================================================== //
   "editor.formatOnSave": true,
   "eslint.autoFixOnSave": true,
+  "json.format.enable": false,
   "editor.tabSize": 2,
   "files.eol": "\n",
   "files.trimTrailingWhitespace": true,
-  "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
-  //  ======================================================================  //
-  //  # VS Icons
-  //  ======================================================================  //
-  "vsicons.dontShowNewVersionMessage": true,
-  "vsicons.presets.foldersAllDefaultIcon": true,
-  "vsicons.presets.jsOfficial": true,
-  "vsicons.presets.tsOfficial": true,
-  "vsicons.associations.files": [
-    {
-      "icon": "nginx",
-      "extensions": [
-        "conf"
-      ],
-      "format": "svg"
-    },
-    {
-      "icon": "webpack",
-      "extensions": [
-        "webpack.config.settings.js"
-      ],
-      "filename": true,
-      "format": "svg"
-    }
-  ],
-  //  ======================================================================  //
-  //  # Markdown
-  //  ======================================================================  //
+  "files.insertFinalNewline": true,
+  // Prettier
+  "prettier.stylelintIntegration": true,
+  "prettier.disableLanguages": ["markdown", "html", "javascript", "vue"],
+  // ======================================================================== //
+  // # Languages
+  // ======================================================================== //
+  // Markdown
   "markdown.preview.scrollEditorWithPreview": false,
   "markdown.preview.scrollPreviewWithEditor": false,
   "markdown.extension.toc.githubCompatibility": true,
@@ -111,21 +108,19 @@
     },
     "MD033": false
   },
-  //  ======================================================================  //
-  //  # LaTeX
-  //  ======================================================================  //
+  // LaTeX
   "latex-workshop.message.update.show": false,
   "latex-workshop.view.pdf.viewer": "tab",
   "latex-workshop.latex.autoClean.run": "onBuilt",
   "latex-workshop.latex.clean.subfolder.enabled": true,
-  //  ======================================================================  //
-  //  # Miscellaneous
-  //  ======================================================================  //
-  //  Disable built in linting
+  // ======================================================================== //
+  // # Miscellaneous
+  // ======================================================================== //
+  // disable built-in stylesheet linting
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
-  //  Hide Files/Folders from the Tree View
+  // hide files/folders from the tree view
   "files.exclude": {
     "**/.DS_Store": true,
     "**/.git": true,
