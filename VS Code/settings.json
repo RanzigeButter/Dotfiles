@@ -122,11 +122,8 @@
   "scss.validate": false,
   // hide files/folders from the tree view
   "files.exclude": {
-    "**/.DS_Store": true,
+    "**/node_modules": true,
     "**/.git": true,
-    "**/.hg": true,
-    "**/.svn": true,
-    "**/CVS": true,
-    "**/node_modules": true
+    "**/.DS_Store": true
   }
 }

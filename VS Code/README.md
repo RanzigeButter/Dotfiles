@@ -19,7 +19,7 @@ Executing the PowerShell script will install the following extensions:
   "ms-vscode.powershell"
   "mikestead.dotenv"
   "ecmel.vscode-html-css"
-  "whatwedo.twig"
+  "mblode.twig-language-2"
   # Linter
   "davidanson.vscode-markdownlint"
   "shinnn.stylelint"
@@ -29,6 +29,7 @@ Executing the PowerShell script will install the following extensions:
   "cssho.vscode-svgviewer"
   "bierner.emojisense"
   "pnp.polacode"
+  "liximomo.sftp"
 ```
 
 Copy the settings.json file into the following directory:
@@ -37,7 +38,7 @@ Copy the settings.json file into the following directory:
   C:\Users\USERNAME\AppData\Roaming\Code\User
 ```
 
-Copy the Icons into the following directory:
+Copy the icons into the following directory:
 
 ```plaintext
   C:\Users\USERNAME\.vscode\extensions\vscode-icons-team.vscode-icons-X.X.X\icons

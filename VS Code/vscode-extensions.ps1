@@ -23,7 +23,7 @@ $extensions = @(
   "ms-vscode.powershell"
   "mikestead.dotenv"
   "ecmel.vscode-html-css"
-  "whatwedo.twig"
+  "mblode.twig-language-2"
   # Linter
   "davidanson.vscode-markdownlint"
   "shinnn.stylelint"
@@ -33,6 +33,7 @@ $extensions = @(
   "cssho.vscode-svgviewer"
   "bierner.emojisense"
   "pnp.polacode"
+  "liximomo.sftp"
 )
 
 # ==============================================================================
