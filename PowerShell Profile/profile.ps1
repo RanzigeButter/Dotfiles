@@ -64,8 +64,6 @@ $Host.UI.RawUI.WindowTitle = "PowerShell - Administrator: $((CheckAdministrator)
 <#  User Interface
     ==================================================  #>
 
-$Host.UI.RawUI.BufferSize = new-object System.Management.Automation.Host.Size(125, 3000)
-$Host.UI.RawUI.WindowSize = new-object System.Management.Automation.Host.Size(125, 50)
 $Host.UI.RawUI.CursorSize = "25"
 $Host.UI.RawUI.ForegroundColor = "White"
 $Host.UI.RawUI.BackgroundColor = "Black"
@@ -269,8 +267,8 @@ Function SSH_ListKeys {
 }
 
 # RaspberryPi 0 W
-Function SSH_RasPi0 {
-  ssh RasPi0 -p 42 -l pi
+Function SSH_RasPi0W {
+  ssh 192.168.1.54 -p 42 -l pi
 }
 
 <#  ========================================================================
@@ -325,7 +323,7 @@ Set-Alias "WP" "Webpack_Production"
 Set-Alias "SSHG" "SSH_GenerateKey"
 Set-Alias "SSHA" "SSH_AddKey"
 Set-Alias "SSHL" "SSH_ListKeys"
-Set-Alias "RPI0" "SSH_RasPi0"
+Set-Alias "RPI0" "SSH_RasPi0W"
 
 <#  ========================================================================
     # Clear Host

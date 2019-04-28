@@ -132,8 +132,6 @@ The window title contains the following information: The name of the program, wh
 This determines which colors are to be used for what.
 
 ````PowerShell
-  $Host.UI.RawUI.BufferSize = new-object System.Management.Automation.Host.Size(125, 3000)
-  $Host.UI.RawUI.WindowSize = new-object System.Management.Automation.Host.Size(125, 50)
   $Host.UI.RawUI.CursorSize = "25"
   $Host.UI.RawUI.ForegroundColor = "White"
   $Host.UI.RawUI.BackgroundColor = "Black"
@@ -216,7 +214,7 @@ List of all contained functions.
 - `SSH_GenerateKey` = Generate SSH Key (Insert the desired E-Mail first and then the desired Name after the command.)
 - `SSH_AddKey` = Add SSH Key (Insert the desired SSK Key Name after the command.)
 - `SSH_ListKeys` = List added SSH Keys
-- `SSH_RasPi0` = SSH to RaspberryPi 0 W
+- `SSH_RasPi0W` = SSH to RaspberryPi 0 W
 
 
 ---
@@ -276,7 +274,7 @@ List of all contained aliases.
 - `SSHG` = `SSH_GenerateKey`
 - `SSHA` = `SSH_AddKey`
 - `SSHL` = `SSH_ListKeys`
-- `RPI0` = `SSH_RasPi0`
+- `RPI0` = `SSH_RasPi0W`
 
 
 ---
