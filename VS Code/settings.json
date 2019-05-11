@@ -22,7 +22,8 @@
   // ======================================================================== //
   "workbench.colorTheme": "One Dark Pro Vivid",
   "workbench.iconTheme": "vscode-icons",
-  "editor.fontFamily": "Operator Mono",
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
   // VS Icons
   "vsicons.dontShowNewVersionMessage": true,
   "vsicons.presets.foldersAllDefaultIcon": true,
@@ -62,22 +63,6 @@
   "editor.links": false,
   "editor.renderWhitespace": "boundary",
   "editor.rulers": [80],
-  "editor.tokenColorCustomizations": {
-    "textMateRules": [
-      {
-        "scope": [
-          "comment", // comments
-          "entity.other.attribute-name", // attributes
-          "keyword.control", // @media, @include, etc.
-          "storage.type", // const, let, etc.
-          "support.function" // functions
-        ],
-        "settings": {
-          "fontStyle": "italic"
-        }
-      }
-    ]
-  },
   // ======================================================================== //
   // # Formatting
   // ======================================================================== //
