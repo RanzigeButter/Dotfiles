@@ -167,9 +167,9 @@ Function Dir_Downloads {
   Set-Location "F:\Downloads"
 }
 
-# Change directory to Homepage
-Function Dir_Homepage {
-  Set-Location "Z:\Development\Web\Homepage"
+# Change directory to Development
+Function Dir_Development {
+  Set-Location "Z:\Development"
 }
 
 # Prints the directory contents
@@ -288,9 +288,9 @@ Set-Alias "SA" "Shutdown_Abort"
 
 Set-Alias "DH" "Dir_Home"
 Set-Alias "DDT" "Dir_Desktop"
-Set-Alias "DDB" "Dir_Dropbox"
 Set-Alias "DDL" "Dir_Downloads"
-Set-Alias "DHP" "Dir_Homepage"
+Set-Alias "DDB" "Dir_Dropbox"
+Set-Alias "DD" "Dir_Development"
 Set-Alias "DP" "Dir_Print"
 
 <#  Git
@@ -323,7 +323,7 @@ Set-Alias "WP" "Webpack_Production"
 Set-Alias "SSHG" "SSH_GenerateKey"
 Set-Alias "SSHA" "SSH_AddKey"
 Set-Alias "SSHL" "SSH_ListKeys"
-Set-Alias "RPI0" "SSH_RasPi0W"
+Set-Alias "RPI0W" "SSH_RasPi0W"
 
 <#  ========================================================================
     # Clear Host

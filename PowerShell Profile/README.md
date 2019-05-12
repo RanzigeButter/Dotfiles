@@ -175,9 +175,9 @@ List of all contained functions.
 - `....` = Three folders up
 - `Dir_Home` = Change directory to Home
 - `Dir_Desktop` = Change directory to Desktop
-- `Dir_Dropbox` = Change directory to Dropbox
 - `Dir_Downloads` = Change directory to Downloads
-- `Dir_Homepage` = Change directory to Homepage
+- `Dir_Dropbox` = Change directory to Dropbox
+- `Dir_Development` = Change directory to Development
 - `Dir_Print` = Prints the directory contents into a .csv file (The file is located in the corresponding directory.)
 
 #### Git
@@ -237,7 +237,7 @@ List of all contained aliases.
 - `DDT` = `Dir_Desktop`
 - `DDB` = `Dir_Dropbox`
 - `DDL` = `Dir_Downloads`
-- `DHP` = `Dir_Homepage`
+- `DD` = `Dir_Development`
 - `DP` = `Dir_Print`
 
 #### Git
