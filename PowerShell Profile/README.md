@@ -235,8 +235,8 @@ List of all contained aliases.
 
 - `DH` = `Dir_Home`
 - `DDT` = `Dir_Desktop`
-- `DDB` = `Dir_Dropbox`
 - `DDL` = `Dir_Downloads`
+- `DDB` = `Dir_Dropbox`
 - `DD` = `Dir_Development`
 - `DP` = `Dir_Print`
 

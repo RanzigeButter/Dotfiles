@@ -157,14 +157,14 @@ Function Dir_Desktop {
   Set-Location "$HOME\Desktop"
 }
 
-# Change directory to Dropbox
-Function Dir_Dropbox {
-  Set-Location "F:\Dropbox"
-}
-
 # Change directory to Downloads
 Function Dir_Downloads {
   Set-Location "F:\Downloads"
+}
+
+# Change directory to Dropbox
+Function Dir_Dropbox {
+  Set-Location "F:\Dropbox"
 }
 
 # Change directory to Development
