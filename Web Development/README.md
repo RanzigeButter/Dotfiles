@@ -1,3 +1,3 @@
 # Web Development
 
-Files for Web Development.
+Files for web development.

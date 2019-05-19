@@ -4,7 +4,15 @@ VS Code settings, script for installing extensions and custom icons.
 
 ## Installation
 
-Executing the PowerShell script will install the following extensions:
+Copy the settings.json file into the following directory:
+
+```plaintext
+  C:\Users\USERNAME\AppData\Roaming\Code\User
+```
+
+Download and install the font [Fira Code](https://github.com/tonsky/FiraCode).
+
+Execute the PowerShell script to install the following extensions:
 
 ```plaintext
   # Appearance
@@ -30,12 +38,6 @@ Executing the PowerShell script will install the following extensions:
   "bierner.emojisense"
   "pnp.polacode"
   "liximomo.sftp"
-```
-
-Copy the settings.json file into the following directory:
-
-```plaintext
-  C:\Users\USERNAME\AppData\Roaming\Code\User
 ```
 
 Copy the icons into the following directory:

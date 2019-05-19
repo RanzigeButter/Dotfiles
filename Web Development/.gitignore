@@ -1,17 +1,21 @@
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+
 # Dependencies
-/node_modules
-package-lock.json
+node_modules/
 
 # Distribution
 dist/
 
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+# Dotenv
+*.env
+*.env.*
 
 # Miscellaneous
-.env
-.env.*
+.idea/*
+.DS_Store
+Thumbs.db
