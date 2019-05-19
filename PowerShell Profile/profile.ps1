@@ -9,12 +9,12 @@
     ========================================================================  #>
 
 <#  Remove other Settings
-    ==================================================  #>
+    ========================================================================  #>
 
 Remove-Item "HKCU:\Console\*" -Recurse -ErrorAction SilentlyContinue
 
 <#  Colors
-    ==================================================  #>
+    ========================================================================  #>
 
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable00 -Value 0x0018120f -ErrorAction SilentlyContinue # Black (Hex #0f1218 / RGB 15,18,24)
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable01 -Value 0x00b47800 -ErrorAction SilentlyContinue # DarkBlue (Hex #0078b4 / RGB 0,120,180)
@@ -34,14 +34,14 @@ Set-ItemProperty -Path HKCU:\Console -Name ColorTable14 -Value 0x008cc8eb -Error
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable15 -Value 0x00f8f8f8 -ErrorAction SilentlyContinue # White (Hex #f8f8f8 / RGB 248,248,248)
 
 <#  Font
-    ==================================================  #>
+    ========================================================================  #>
 
-Set-ItemProperty -Path HKCU:\Console -Name FaceName -Value "Source Code Pro" -ErrorAction SilentlyContinue # Font (Source Code Pro)
+Set-ItemProperty -Path HKCU:\Console -Name FaceName -Value "Consolas" -ErrorAction SilentlyContinue # Font (Consolas)
 Set-ItemProperty -Path HKCU:\Console -Name FontSize -Value 0x00120000 -ErrorAction SilentlyContinue # Font Size (18)
 Set-ItemProperty -Path HKCU:\Console -Name FontWeight -Value 0x00000190 -ErrorAction SilentlyContinue # Font Weight (400)
 
 <#  Miscellaneous
-    ==================================================  #>
+    ========================================================================  #>
 
 Set-ItemProperty -Path HKCU:\Console -Name WindowAlpha -Value 0x000000f4 -ErrorAction SilentlyContinue # Window Opacity (95%)
 Set-ItemProperty -Path HKCU:\Console -Name LineWrap -Value 0x00000001 -ErrorAction SilentlyContinue # Break long lines into multiple rows (Yes)
@@ -50,7 +50,7 @@ Set-ItemProperty -Path HKCU:\Console -Name QuickEdit -Value 0x00000001 -ErrorAct
 Set-ItemProperty -Path HKCU:\Console -Name InsertMode -Value 0x00000001 -ErrorAction SilentlyContinue # Insert Mode (Yes)
 
 <#  Window Title
-    ==================================================  #>
+    ========================================================================  #>
 
 # Check Administrator
 Function CheckAdministrator {
@@ -62,7 +62,7 @@ Function CheckAdministrator {
 $Host.UI.RawUI.WindowTitle = "PowerShell - Administrator: $((CheckAdministrator)) - $((Get-Date).ToLongDateString())"
 
 <#  User Interface
-    ==================================================  #>
+    ========================================================================  #>
 
 $Host.UI.RawUI.CursorSize = "25"
 $Host.UI.RawUI.ForegroundColor = "White"
@@ -79,7 +79,7 @@ $Host.PrivateData.ProgressForegroundColor = "Yellow"
 $Host.PrivateData.ProgressBackgroundColor = "Black"
 
 <#  Promt
-    ==================================================  #>
+    ========================================================================  #>
 
 Function Prompt {
   $UserComputer = Write-Host "${env:UserName}@$(HostName)" -NoNewline -ForegroundColor Green
@@ -95,7 +95,7 @@ Function Prompt {
     ========================================================================  #>
 
 <#  General
-    ==================================================  #>
+    ========================================================================  #>
 
 # Clear PowerShell
 Function C {
@@ -114,7 +114,7 @@ Function Open_PowerShell {
 
 # Open new PowerShell Window as Admin
 Function Open_PowerShell_Admin {
-  Start-Process PowerShell -Verb RunAs
+  Start-Process PowerShell -verb RunAs
 }
 
 # Shutdown with timer
@@ -130,7 +130,7 @@ Function Shutdown_Abort {
 }
 
 <#  Directory
-    ==================================================  #>
+    ========================================================================  #>
 
 # One folder up
 Function .. {
@@ -159,26 +159,44 @@ Function Dir_Desktop {
 
 # Change directory to Downloads
 Function Dir_Downloads {
-  Set-Location "F:\Downloads"
+  Set-Location "$HOME\Downloads"
 }
 
 # Change directory to Dropbox
 Function Dir_Dropbox {
-  Set-Location "F:\Dropbox"
+  Set-Location "$HOME\Dropbox"
 }
 
 # Change directory to Development
 Function Dir_Development {
-  Set-Location "Z:\Development"
+  Set-Location "$HOME\Documents\Development"
 }
 
 # Prints the directory contents
 Function Dir_Print {
-  Get-ChildItem -Force -Name | Out-File "dir_content.csv"
+  Get-ChildItem -force -name -exclude "dir_content.csv" | Out-File "dir_content.csv"
+}
+
+<#  Visual Studio Code
+    ========================================================================  #>
+
+# Open current folder in a new VS Code window
+Function VSCode_New {
+  code -n .
+}
+
+# Open current folder in an already opened VS Code window
+Function VSCode_Reuse {
+  code -r .
+}
+
+# Compare two files with each other in a new VS Code window
+Function VSCode_Compare([String]$FileOne, [String]$FileTwo) {
+  code -n -d $FileOne $FileTwo
 }
 
 <#  Git
-    ==================================================  #>
+    ========================================================================  #>
 
 # Add and commit files with message
 Function Git_AddAndCommit([String]$Message) {
@@ -208,7 +226,7 @@ Function Git_Clone([String]$URL) {
 }
 
 <#  Node Package Manager (NPM)
-    ==================================================  #>
+    ========================================================================  #>
 
 # Install Package in dependencies
 Function NPM_Install_Dependencies([String]$Package) {
@@ -236,7 +254,7 @@ Function NPM_Audit {
 }
 
 <#  Webpack
-    ==================================================  #>
+    ========================================================================  #>
 
 # Development
 Function Webpack_Development {
@@ -249,7 +267,7 @@ Function Webpack_Production {
 }
 
 <#  SSH
-    ==================================================  #>
+    ========================================================================  #>
 
 # Generate SSH Key
 Function SSH_GenerateKey([String]$EMail, [String]$Name) {
@@ -261,12 +279,17 @@ Function SSH_AddKey([String]$Name) {
   ssh-add $HOME\.ssh\$Name
 }
 
-# List SSH Keys
+# List all SSH Keys
 Function SSH_ListKeys {
   ssh-add -l
 }
 
-# RaspberryPi 0 W
+# Delete all SSH Keys
+Function SSH_DeleteKeys {
+  ssh-add -D
+}
+
+# SSH to RaspberryPi 0 W
 Function SSH_RasPi0W {
   ssh 192.168.1.54 -p 42 -l pi
 }
@@ -276,7 +299,7 @@ Function SSH_RasPi0W {
     ========================================================================  #>
 
 <#  General
-    ==================================================  #>
+    ========================================================================  #>
 
 Set-Alias "OP" "Open_PowerShell"
 Set-Alias "OPA" "Open_PowerShell_Admin"
@@ -284,7 +307,7 @@ Set-Alias "ST" "Shutdown_Timer"
 Set-Alias "SA" "Shutdown_Abort"
 
 <#  Directory
-    ==================================================  #>
+    ========================================================================  #>
 
 Set-Alias "DH" "Dir_Home"
 Set-Alias "DDT" "Dir_Desktop"
@@ -293,8 +316,15 @@ Set-Alias "DDB" "Dir_Dropbox"
 Set-Alias "DD" "Dir_Development"
 Set-Alias "DP" "Dir_Print"
 
+<#  Visual Studio Code
+    ========================================================================  #>
+
+Set-Alias "CN" "VSCode_New"
+Set-Alias "CR" "VSCode_Reuse"
+Set-Alias "CC" "VSCode_Compare"
+
 <#  Git
-    ==================================================  #>
+    ========================================================================  #>
 
 Set-Alias "GAC" "Git_AddAndCommit"
 Set-Alias "GACA" "Git_AddAndCommit_Amend"
@@ -303,7 +333,7 @@ Set-Alias "GLL" "Git_Pull"
 Set-Alias "GCL" "Git_Clone"
 
 <#  Node Package Manager (NPM)
-    ==================================================  #>
+    ========================================================================  #>
 
 Set-Alias "ND" "NPM_Install_Dependencies"
 Set-Alias "NDD" "NPM_Install_DevDependencies"
@@ -312,17 +342,18 @@ Set-Alias "NU" "NPM_Update"
 Set-Alias "NA" "NPM_Audit"
 
 <#  Webpack
-    ==================================================  #>
+    ========================================================================  #>
 
 Set-Alias "WD" "Webpack_Development"
 Set-Alias "WP" "Webpack_Production"
 
 <#  SSH
-    ==================================================  #>
+    ========================================================================  #>
 
 Set-Alias "SSHG" "SSH_GenerateKey"
 Set-Alias "SSHA" "SSH_AddKey"
 Set-Alias "SSHL" "SSH_ListKeys"
+Set-Alias "SSHD" "SSH_DeleteKeys"
 Set-Alias "RPI0W" "SSH_RasPi0W"
 
 <#  ========================================================================

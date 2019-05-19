@@ -20,6 +20,7 @@ My custom PowerShell Profile.
   - [**Functions**](#functions)
     - [General](#general)
     - [Directory](#directory)
+    - [Visual Studio Code](#visual-studio-code)
     - [Git](#git)
     - [Node Package Manager (NPM)](#node-package-manager-npm)
     - [Webpack](#webpack)
@@ -27,6 +28,7 @@ My custom PowerShell Profile.
   - [**Aliases**](#aliases)
     - [General](#general-1)
     - [Directory](#directory-1)
+    - [Visual Studio Code](#visual-studio-code-1)
     - [Git](#git-1)
     - [Node Package Manager (NPM)](#node-package-manager-npm-1)
     - [Webpack](#webpack-1)
@@ -106,7 +108,7 @@ First, all other settings stored in the Registry are deleted to ensure that all 
 #### Font
 
 ````plaintext
-  Font = Source Code Pro
+  Font = Consolas
   Font Size = 18
   Font Weight = 400
 ````
@@ -178,7 +180,15 @@ List of all contained functions.
 - `Dir_Downloads` = Change directory to Downloads
 - `Dir_Dropbox` = Change directory to Dropbox
 - `Dir_Development` = Change directory to Development
-- `Dir_Print` = Prints the directory contents into a .csv file (The file is located in the corresponding directory.)
+- `Dir_Print` = Prints the directory contents into a .csv file (The file will be located in the corresponding directory.)
+
+#### Visual Studio Code
+
+[Visual Studio Code](https://code.visualstudio.com/) must be installed!
+
+- `VSCode_New` = Open current folder in a new VS Code window
+- `VSCode_Reuse` = Open current folder in an already opened VS Code window
+- `VSCode_Compare` = Compare two files with each other in a new VS Code window (Insert the desired files after the command.)
 
 #### Git
 
@@ -213,7 +223,8 @@ List of all contained functions.
 
 - `SSH_GenerateKey` = Generate SSH Key (Insert the desired E-Mail first and then the desired Name after the command.)
 - `SSH_AddKey` = Add SSH Key (Insert the desired SSK Key Name after the command.)
-- `SSH_ListKeys` = List added SSH Keys
+- `SSH_ListKeys` = List all added SSH Keys
+- `SSH_DeleteKeys` = Delete all added SSH Keys
 - `SSH_RasPi0W` = SSH to RaspberryPi 0 W
 
 
@@ -239,6 +250,14 @@ List of all contained aliases.
 - `DDB` = `Dir_Dropbox`
 - `DD` = `Dir_Development`
 - `DP` = `Dir_Print`
+
+#### Visual Studio Code
+
+[Visual Studio Code](https://code.visualstudio.com/) must be installed!
+
+- `CN` = `VSCode_New`
+- `CR` = `VSCode_Reuse`
+- `CC` = `VSCode_Compare`
 
 #### Git
 
@@ -274,6 +293,7 @@ List of all contained aliases.
 - `SSHG` = `SSH_GenerateKey`
 - `SSHA` = `SSH_AddKey`
 - `SSHL` = `SSH_ListKeys`
+- `SSHD` = `SSH_DeleteKeys`
 - `RPI0` = `SSH_RasPi0W`
 
 
