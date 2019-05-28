@@ -37,14 +37,14 @@ My custom PowerShell Profile.
 
 ## **Installation**
 
-Before the installation we have to set our PowerShell execution policy to make use of Scripts.
-To do this, enter the following command into your PowerShell:
+Before the installation we have to set our PowerShell execution policy to make use of scripts.
+To do this, open your PowerShell as an administrator and enter the following command:
 
 ````PowerShell
   Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force
 ````
 
-Now there are four ways to install this profile:
+Now there are four ways to install the profile:
 
 ### For current User and Shell
 
@@ -69,6 +69,10 @@ Now there are four ways to install this profile:
 ````plaintext
   C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1
 ````
+
+
+---
+
 
 ## **Content**
 
@@ -165,8 +169,8 @@ List of all contained functions.
 
 - `C` = Clear PowerShell
 - `X` = Close PowerShell
-- `Open_PowerShell` = Open new PowerShell Window
-- `Open_PowerShell_Admin` = Open new PowerShell Window as Admin
+- `Open_PowerShell` = Open new PowerShell window
+- `Open_PowerShell_Admin` = Open new PowerShell window as admin
 - `Shutdown_Timer` = Shutdown with timer (Insert the desired time in minutes after the command.)
 - `Shutdown_Abort` = Abort Shutdown
 
@@ -196,35 +200,36 @@ List of all contained functions.
 
 - `Git_AddAndCommit` = Add and commit files with message (Insert the desired message after the command.)
 - `Git_AddAndCommit_Amend` = Amend to the last commit without editing the message
-- `Git_Push` = Push files to remote Repository (Insert the desired Branch after the command.)
-- `Git_Pull` = Pull files from remote Repository (Insert the desired Branch after the command.)
-- `Git_Clone` = Clone Repository into directory (Insert the desired URL after the command.)
+- `Git_Push` = Push files to remote repository (Insert the desired branch after the command.)
+- `Git_Pull` = Pull files from remote repository (Insert the desired branch after the command.)
+- `Git_Clone` = Clone repository into directory (Insert the desired repository after the command.)
+- `Git_Log` = Shows the commit history
 
 #### Node Package Manager (NPM)
 
 [NodeJS/NPM](https://nodejs.org) must be installed!
 
-- `NPM_Install_Dependencies` = Install Package in dependencies (Insert the desired Package after the command.)
-- `NPM_Install_DevDependencies` = Install Package in devDependencies (Insert the desired Package after the command.)
-- `NPM_Outdated` = Outdated Packages
-- `NPM_Update` = Update Packages
-- `NPM_Audit` = Audit Packages
+- `NPM_Install_Dependencies` = Install package in dependencies (Insert the desired package after the command.)
+- `NPM_Install_DevDependencies` = Install package in devDependencies (Insert the desired package after the command.)
+- `NPM_Outdated` = Outdated packages
+- `NPM_Update` = Update packages
+- `NPM_Audit` = Audit packages
 
 #### Webpack
 
 [Webpack](https://webpack.js.org) configuration must be provided!
 
-- `Webpack_Development` = Development
-- `Webpack_Production` = Production
+- `Webpack_Development` = Run Webpack in development mode
+- `Webpack_Production` = Run Webpack in production mode
 
 #### SSH
 
 [OpenSSH](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview) must be installed!
 
-- `SSH_GenerateKey` = Generate SSH Key (Insert the desired E-Mail first and then the desired Name after the command.)
-- `SSH_AddKey` = Add SSH Key (Insert the desired SSK Key Name after the command.)
-- `SSH_ListKeys` = List all added SSH Keys
-- `SSH_DeleteKeys` = Delete all added SSH Keys
+- `SSH_GenerateKey` = Generate SSH key (Insert the desired E-Mail first and then the desired name after the command.)
+- `SSH_AddKey` = Add SSH key (Insert the desired SSK key name after the command.)
+- `SSH_ListKeys` = List all added SSH keys
+- `SSH_DeleteKeys` = Delete all added SSH keys
 - `SSH_RasPi0W` = SSH to RaspberryPi 0 W
 
 
@@ -268,6 +273,7 @@ List of all contained aliases.
 - `GSH` = `Git_Push`
 - `GLL` = `Git_Pull`
 - `GCL` = `Git_Clone`
+- `GLOG` = `Git_Log`
 
 #### Node Package Manager (NPM)
 

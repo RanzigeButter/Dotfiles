@@ -99,6 +99,8 @@
   "latex-workshop.view.pdf.viewer": "tab",
   "latex-workshop.latex.autoClean.run": "onBuilt",
   "latex-workshop.latex.clean.subfolder.enabled": true,
+  // Twig
+  "twig-language-2.formatting": false,
   // ======================================================================== //
   // # Miscellaneous
   // ======================================================================== //

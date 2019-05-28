@@ -107,12 +107,12 @@ Function X {
   exit
 }
 
-# Open new PowerShell Window
+# Open new PowerShell window
 Function Open_PowerShell {
   Start-Process PowerShell
 }
 
-# Open new PowerShell Window as Admin
+# Open new PowerShell window as admin
 Function Open_PowerShell_Admin {
   Start-Process PowerShell -verb RunAs
 }
@@ -210,45 +210,50 @@ Function Git_AddAndCommit_Amend {
   git commit --amend --no-edit
 }
 
-# Push files to remote Repository
+# Push files to remote repository
 Function Git_Push([String]$Branch) {
   git push origin $Branch
 }
 
-# Pull files from remote Repository
+# Pull files from remote repository
 Function Git_Pull([String]$Branch) {
-  git pull origin $Branch
+  git pull --rebase origin $Branch
 }
 
-# Clone Repository into directory
-Function Git_Clone([String]$URL) {
-  git clone $URL
+# Clone repository into directory
+Function Git_Clone([String]$Repository) {
+  git clone $Repository
+}
+
+# Shows the commit history
+Function Git_Log {
+  git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 }
 
 <#  Node Package Manager (NPM)
     ========================================================================  #>
 
-# Install Package in dependencies
+# Install package in dependencies
 Function NPM_Install_Dependencies([String]$Package) {
   npm install --save-prod $Package
 }
 
-# Install Package in devDependencies
+# Install package in devDependencies
 Function NPM_Install_DevDependencies([String]$Package) {
   npm install --save-dev $Package
 }
 
-# Outdated Packages
+# Outdated packages
 Function NPM_Outdated {
   npm outdated
 }
 
-# Update Packages
+# Update packages
 Function NPM_Update {
   npm update
 }
 
-# Audit Packages
+# Audit packages
 Function NPM_Audit {
   npm audit fix
 }
@@ -256,12 +261,12 @@ Function NPM_Audit {
 <#  Webpack
     ========================================================================  #>
 
-# Development
+# Run Webpack in development mode
 Function Webpack_Development {
   npm run dev
 }
 
-# Production
+# Run Webpack in production mode
 Function Webpack_Production {
   npm run prod
 }
@@ -269,22 +274,22 @@ Function Webpack_Production {
 <#  SSH
     ========================================================================  #>
 
-# Generate SSH Key
+# Generate SSH key
 Function SSH_GenerateKey([String]$EMail, [String]$Name) {
   ssh-keygen -t rsa -b 4096 -C $EMail -f $HOME\.ssh\$Name
 }
 
-# Add SSH Key
+# Add SSH key
 Function SSH_AddKey([String]$Name) {
   ssh-add $HOME\.ssh\$Name
 }
 
-# List all SSH Keys
+# List all SSH keys
 Function SSH_ListKeys {
   ssh-add -l
 }
 
-# Delete all SSH Keys
+# Delete all SSH keys
 Function SSH_DeleteKeys {
   ssh-add -D
 }
@@ -331,6 +336,7 @@ Set-Alias "GACA" "Git_AddAndCommit_Amend"
 Set-Alias "GSH" "Git_Push"
 Set-Alias "GLL" "Git_Pull"
 Set-Alias "GCL" "Git_Clone"
+Set-Alias "GLOG" "Git_Log"
 
 <#  Node Package Manager (NPM)
     ========================================================================  #>
