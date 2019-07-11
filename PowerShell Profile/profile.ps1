@@ -167,9 +167,9 @@ Function Dir_Dropbox {
   Set-Location "$HOME\Dropbox"
 }
 
-# Change directory to Development
-Function Dir_Development {
-  Set-Location "$HOME\Documents\Development"
+# Change directory to Projects
+Function Dir_Projects {
+  Set-Location "$HOME\Documents\Projects"
 }
 
 # Prints the directory contents
@@ -318,8 +318,8 @@ Set-Alias "DH" "Dir_Home"
 Set-Alias "DDT" "Dir_Desktop"
 Set-Alias "DDL" "Dir_Downloads"
 Set-Alias "DDB" "Dir_Dropbox"
-Set-Alias "DD" "Dir_Development"
-Set-Alias "DP" "Dir_Print"
+Set-Alias "DP" "Dir_Projects"
+Set-Alias "DPRINT" "Dir_Print"
 
 <#  Visual Studio Code
     ========================================================================  #>

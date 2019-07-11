@@ -183,7 +183,7 @@ List of all contained functions.
 - `Dir_Desktop` = Change directory to Desktop
 - `Dir_Downloads` = Change directory to Downloads
 - `Dir_Dropbox` = Change directory to Dropbox
-- `Dir_Development` = Change directory to Development
+- `Dir_Projects` = Change directory to Projects
 - `Dir_Print` = Prints the directory contents into a .csv file (The file will be located in the corresponding directory.)
 
 #### Visual Studio Code
@@ -253,8 +253,8 @@ List of all contained aliases.
 - `DDT` = `Dir_Desktop`
 - `DDL` = `Dir_Downloads`
 - `DDB` = `Dir_Dropbox`
-- `DD` = `Dir_Development`
-- `DP` = `Dir_Print`
+- `DP` = `Dir_Projects`
+- `DPRINT` = `Dir_Print`
 
 #### Visual Studio Code
 

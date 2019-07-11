@@ -7,7 +7,6 @@
   "workbench.startupEditor": "newUntitledFile",
   "workbench.settings.editor": "json",
   "workbench.settings.useSplitJSON": true,
-  "workbench.statusBar.feedback.visible": false,
   "terminal.integrated.shell.windows": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
   // Microsoft Online Services
   "telemetry.enableTelemetry": false,
@@ -102,6 +101,8 @@
   "latex-workshop.latex.clean.subfolder.enabled": true,
   // Twig
   "twig-language-2.formatting": false,
+  // PHP
+  "php.validate.executablePath": "C:\\Program Files\\PHP-7.3.7\\php.exe",
   // ======================================================================== //
   // # Miscellaneous
   // ======================================================================== //
