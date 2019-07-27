@@ -27,6 +27,7 @@ Execute the PowerShell script to install the following extensions:
   "ms-vscode.powershell"
   "mikestead.dotenv"
   "ecmel.vscode-html-css"
+  "bmewburn.vscode-intelephense-client"
   "mblode.twig-language-2"
   # Linter
   "davidanson.vscode-markdownlint"
