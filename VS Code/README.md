@@ -4,12 +4,6 @@ VS Code settings, script for installing extensions and custom icons.
 
 ## Installation
 
-Copy the settings.json file into the following directory:
-
-```plaintext
-  C:\Users\USERNAME\AppData\Roaming\Code\User
-```
-
 Download and install the font [Fira Code](https://github.com/tonsky/FiraCode).
 
 Execute the PowerShell script to install the following extensions:
@@ -41,8 +35,16 @@ Execute the PowerShell script to install the following extensions:
   "liximomo.sftp"
 ```
 
-Copy the icons into the following directory:
+Copy the vsicons-custom-icons folder into the following directory:
 
 ```plaintext
-  C:\Users\USERNAME\.vscode\extensions\vscode-icons-team.vscode-icons-X.X.X\icons
+  C:\Users\USERNAME\AppData\Roaming\Code\User\vsicons-custom-icons
+```
+
+Then in VS Code press `F1`, type `icons` and select `Apply Icons Customization`.
+
+Copy the settings.json file into the following directory:
+
+```plaintext
+  C:\Users\USERNAME\AppData\Roaming\Code\User
 ```
