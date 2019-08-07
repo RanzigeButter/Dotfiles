@@ -67,6 +67,18 @@
   // ======================================================================== //
   "editor.formatOnSave": true,
   "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
+  ],
   "json.format.enable": false,
   "editor.tabSize": 2,
   "files.eol": "\n",
@@ -75,7 +87,13 @@
   "files.insertFinalNewline": true,
   // Prettier
   "prettier.stylelintIntegration": true,
-  "prettier.disableLanguages": ["markdown", "html", "javascript", "vue"],
+  "prettier.disableLanguages": [
+    "markdown",
+    "html",
+    "javascript",
+    "typescript",
+    "vue"
+  ],
   // ======================================================================== //
   // # Languages
   // ======================================================================== //
@@ -104,6 +122,8 @@
   "php.validate.executablePath": "C:\\Program Files\\PHP-7.3.7\\php.exe",
   // Twig
   "twig-language-2.formatting": false,
+  // JavaScript
+  "javascript.updateImportsOnFileMove.enabled": "always",
   // ======================================================================== //
   // # Miscellaneous
   // ======================================================================== //
