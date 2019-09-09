@@ -8,6 +8,7 @@
   "workbench.settings.editor": "json",
   "workbench.settings.useSplitJSON": true,
   "terminal.integrated.shell.windows": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+  "terminal.integrated.rendererType": "dom",
   // Microsoft Online Services
   "telemetry.enableTelemetry": false,
   "telemetry.enableCrashReporter": false,
@@ -86,12 +87,15 @@
   "files.trimFinalNewlines": true,
   "files.insertFinalNewline": true,
   // Prettier
-  "prettier.stylelintIntegration": true,
+  "prettier.singleQuote": true,
+  "prettier.jsxSingleQuote": true,
   "prettier.disableLanguages": [
     "markdown",
     "html",
     "javascript",
+    "javascriptreact",
     "typescript",
+    "typescriptreact",
     "vue"
   ],
   // ======================================================================== //
@@ -124,6 +128,9 @@
   "twig-language-2.formatting": false,
   // JavaScript
   "javascript.updateImportsOnFileMove.enabled": "always",
+  // TypeScript
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.format.enable": false,
   // ======================================================================== //
   // # Miscellaneous
   // ======================================================================== //
