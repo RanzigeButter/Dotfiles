@@ -10,7 +10,7 @@ Execute the PowerShell script to install the following extensions:
 
 ```plaintext
   # Appearance
-  "zhuangtongfa.material-theme"
+  "jolaleye.horizon-theme-vscode"
   "vscode-icons-team.vscode-icons"
   # Formatting
   "editorconfig.editorconfig"

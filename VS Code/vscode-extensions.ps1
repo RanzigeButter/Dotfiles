@@ -12,7 +12,7 @@ Write-Output ""
 
 $extensions = @(
   # Appearance
-  "zhuangtongfa.material-theme"
+  "jolaleye.horizon-theme-vscode"
   "vscode-icons-team.vscode-icons"
   # Formatting
   "editorconfig.editorconfig"

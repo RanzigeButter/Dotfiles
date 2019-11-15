@@ -21,7 +21,7 @@
   // ======================================================================== //
   // # Appearance
   // ======================================================================== //
-  "workbench.colorTheme": "One Dark Pro Vivid",
+  "workbench.colorTheme": "Horizon",
   "workbench.iconTheme": "vscode-icons",
   "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": true,
@@ -63,6 +63,7 @@
   "editor.links": false,
   "editor.renderWhitespace": "boundary",
   "editor.rulers": [80],
+  "files.trimFinalNewlines": true,
   // ======================================================================== //
   // # Formatting
   // ======================================================================== //
@@ -81,22 +82,13 @@
     }
   ],
   "json.format.enable": false,
-  "editor.tabSize": 2,
-  "files.eol": "\n",
-  "files.trimTrailingWhitespace": true,
-  "files.trimFinalNewlines": true,
-  "files.insertFinalNewline": true,
-  // Prettier
-  "prettier.singleQuote": true,
-  "prettier.jsxSingleQuote": true,
   "prettier.disableLanguages": [
     "markdown",
     "html",
     "javascript",
     "javascriptreact",
     "typescript",
-    "typescriptreact",
-    "vue"
+    "typescriptreact"
   ],
   // ======================================================================== //
   // # Languages
@@ -122,10 +114,12 @@
   "latex-workshop.latex.autoClean.run": "onBuilt",
   "latex-workshop.latex.clean.subfolder.enabled": true,
   // PHP
+  "php.validate.executablePath": "C:\\Program Files\\PHP-7.3.11\\php.exe",
   "php.suggest.basic": false,
-  "php.validate.executablePath": "C:\\Program Files\\PHP-7.3.7\\php.exe",
-  // Twig
-  "twig-language-2.formatting": false,
+  // Stylesheets
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
   // JavaScript
   "javascript.updateImportsOnFileMove.enabled": "always",
   // TypeScript
@@ -134,10 +128,6 @@
   // ======================================================================== //
   // # Miscellaneous
   // ======================================================================== //
-  // disable built-in stylesheet linting
-  "css.validate": false,
-  "less.validate": false,
-  "scss.validate": false,
   // hide files/folders from the tree view
   "files.exclude": {
     "**/node_modules": true,

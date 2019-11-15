@@ -5,7 +5,7 @@
 # |_|   \___/ \_/\_/ \___|_|  |____/|_| |_|\___|_|_| |_|   |_|  \___/|_| |_|_|\___|
 
 <#  ========================================================================
-    # Settings
+    # General
     ========================================================================  #>
 
 <#  Remove other Settings
@@ -33,21 +33,10 @@ Set-ItemProperty -Path HKCU:\Console -Name ColorTable13 -Value 0x00dc73c8 -Error
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable14 -Value 0x008cc8eb -ErrorAction SilentlyContinue # Yellow (Hex #ebc88c / RGB 235,200,140)
 Set-ItemProperty -Path HKCU:\Console -Name ColorTable15 -Value 0x00f8f8f8 -ErrorAction SilentlyContinue # White (Hex #f8f8f8 / RGB 248,248,248)
 
-<#  Font
+<#  Window Opacity
     ========================================================================  #>
 
-Set-ItemProperty -Path HKCU:\Console -Name FaceName -Value "Consolas" -ErrorAction SilentlyContinue # Font (Consolas)
-Set-ItemProperty -Path HKCU:\Console -Name FontSize -Value 0x00120000 -ErrorAction SilentlyContinue # Font Size (18)
-Set-ItemProperty -Path HKCU:\Console -Name FontWeight -Value 0x00000190 -ErrorAction SilentlyContinue # Font Weight (400)
-
-<#  Miscellaneous
-    ========================================================================  #>
-
-Set-ItemProperty -Path HKCU:\Console -Name WindowAlpha -Value 0x000000f4 -ErrorAction SilentlyContinue # Window Opacity (95%)
-Set-ItemProperty -Path HKCU:\Console -Name LineWrap -Value 0x00000001 -ErrorAction SilentlyContinue # Break long lines into multiple rows (Yes)
-Set-ItemProperty -Path HKCU:\Console -Name HistoryNoDup -Value 0x00000001 -ErrorAction SilentlyContinue # Retain duplicate History Entries (No)
-Set-ItemProperty -Path HKCU:\Console -Name QuickEdit -Value 0x00000001 -ErrorAction SilentlyContinue # Quick Edit (Yes)
-Set-ItemProperty -Path HKCU:\Console -Name InsertMode -Value 0x00000001 -ErrorAction SilentlyContinue # Insert Mode (Yes)
+Set-ItemProperty -Path HKCU:\Console -Name WindowAlpha -Value 0x000000f4 -ErrorAction SilentlyContinue # (95%)
 
 <#  Window Title
     ========================================================================  #>
@@ -60,23 +49,6 @@ Function CheckAdministrator {
 
 # Set Title
 $Host.UI.RawUI.WindowTitle = "PowerShell - Administrator: $((CheckAdministrator)) - $((Get-Date).ToLongDateString())"
-
-<#  User Interface
-    ========================================================================  #>
-
-$Host.UI.RawUI.CursorSize = "25"
-$Host.UI.RawUI.ForegroundColor = "White"
-$Host.UI.RawUI.BackgroundColor = "Black"
-$Host.PrivateData.ErrorForegroundColor = "Red"
-$Host.PrivateData.ErrorBackgroundColor = "Black"
-$Host.PrivateData.WarningForegroundColor = "Yellow"
-$Host.PrivateData.WarningBackgroundColor = "Black"
-$Host.PrivateData.DebugForegroundColor = "Yellow"
-$Host.PrivateData.DebugBackgroundColor = "Black"
-$Host.PrivateData.VerboseForegroundColor = "Yellow"
-$Host.PrivateData.VerboseBackgroundColor = "Black"
-$Host.PrivateData.ProgressForegroundColor = "Yellow"
-$Host.PrivateData.ProgressBackgroundColor = "Black"
 
 <#  Promt
     ========================================================================  #>
@@ -129,8 +101,13 @@ Function Shutdown_Abort {
   shutdown -a
 }
 
-<#  Directory
+<#  File System
     ========================================================================  #>
+
+# Create new empty file
+Function Touch([String]$File) {
+  New-Item -ItemType file $File
+}
 
 # One folder up
 Function .. {
@@ -294,9 +271,9 @@ Function SSH_DeleteKeys {
   ssh-add -D
 }
 
-# SSH to RaspberryPi 0 W
-Function SSH_RasPi0W {
-  ssh 192.168.1.54 -p 42 -l pi
+# SSH to RanzigeButter
+Function SSH_RanzigeButter {
+  ssh 167.71.34.72 -p XX -l XXX
 }
 
 <#  ========================================================================
@@ -311,9 +288,10 @@ Set-Alias "OPA" "Open_PowerShell_Admin"
 Set-Alias "ST" "Shutdown_Timer"
 Set-Alias "SA" "Shutdown_Abort"
 
-<#  Directory
+<#  File System
     ========================================================================  #>
 
+Set-Alias "T" "Touch"
 Set-Alias "DH" "Dir_Home"
 Set-Alias "DDT" "Dir_Desktop"
 Set-Alias "DDL" "Dir_Downloads"
@@ -360,7 +338,7 @@ Set-Alias "SSHG" "SSH_GenerateKey"
 Set-Alias "SSHA" "SSH_AddKey"
 Set-Alias "SSHL" "SSH_ListKeys"
 Set-Alias "SSHD" "SSH_DeleteKeys"
-Set-Alias "RPI0W" "SSH_RasPi0W"
+Set-Alias "RB" "SSH_RanzigeButter"
 
 <#  ========================================================================
     # Clear Host

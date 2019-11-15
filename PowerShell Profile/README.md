@@ -10,16 +10,14 @@ My custom PowerShell Profile.
   - [For all Users and current Shell](#for-all-users-and-current-shell)
   - [For all Users and Hosts](#for-all-users-and-hosts)
 - [**Content**](#content)
-  - [**Settings**](#settings)
+  - [**General**](#general)
     - [Colors](#colors)
-    - [Font](#font)
-    - [Miscellaneous](#miscellaneous)
+    - [Window Opacity](#window-opacity)
     - [Window Title](#window-title)
-    - [User Interface](#user-interface)
     - [Promt](#promt)
   - [**Functions**](#functions)
     - [General](#general)
-    - [Directory](#directory)
+    - [File System](#file-system)
     - [Visual Studio Code](#visual-studio-code)
     - [Git](#git)
     - [Node Package Manager (NPM)](#node-package-manager-npm)
@@ -27,7 +25,7 @@ My custom PowerShell Profile.
     - [SSH](#ssh)
   - [**Aliases**](#aliases)
     - [General](#general-1)
-    - [Directory](#directory-1)
+    - [File System](#file-system-1)
     - [Visual Studio Code](#visual-studio-code-1)
     - [Git](#git-1)
     - [Node Package Manager (NPM)](#node-package-manager-npm-1)
@@ -84,7 +82,7 @@ Summary of all the things this profile contains.
 ---
 
 
-### **Settings**
+### **General**
 
 First, all other settings stored in the Registry are deleted to ensure that all windows look the same.
 
@@ -109,49 +107,15 @@ First, all other settings stored in the Registry are deleted to ensure that all 
   White (Hex #f8f8f8 / RGB 248,248,248)
 ````
 
-#### Font
-
-````plaintext
-  Font = Consolas
-  Font Size = 18
-  Font Weight = 400
-````
-
-#### Miscellaneous
+#### Window Opacity
 
 ````plaintext
   Window Opacity = 95%
-  Break long lines into multiple rows = Yes
-  History Buffer Size = 50
-  Number of History Buffers = 3
-  Retain duplicate History Entries = No
-  Quick Edit = Yes
-  Insert Mode = Yes
 ````
 
 #### Window Title
 
 The window title contains the following information: The name of the program, whether the application is running as an administrator or not and the date of the current day.
-
-#### User Interface
-
-This determines which colors are to be used for what.
-
-````PowerShell
-  $Host.UI.RawUI.CursorSize = "25"
-  $Host.UI.RawUI.ForegroundColor = "White"
-  $Host.UI.RawUI.BackgroundColor = "Black"
-  $Host.PrivateData.ErrorForegroundColor = "Red"
-  $Host.PrivateData.ErrorBackgroundColor = "Black"
-  $Host.PrivateData.WarningForegroundColor = "Yellow"
-  $Host.PrivateData.WarningBackgroundColor = "Black"
-  $Host.PrivateData.DebugForegroundColor = "Yellow"
-  $Host.PrivateData.DebugBackgroundColor = "Black"
-  $Host.PrivateData.VerboseForegroundColor = "Yellow"
-  $Host.PrivateData.VerboseBackgroundColor = "Black"
-  $Host.PrivateData.ProgressForegroundColor = "Yellow"
-  $Host.PrivateData.ProgressBackgroundColor = "Black"
-````
 
 #### Promt
 
@@ -174,8 +138,9 @@ List of all contained functions.
 - `Shutdown_Timer` = Shutdown with timer (Insert the desired time in minutes after the command.)
 - `Shutdown_Abort` = Abort Shutdown
 
-#### Directory
+#### File System
 
+- `Touch` = Create new empty file
 - `..` = One folder up
 - `...` = Two folders up
 - `....` = Three folders up
@@ -230,7 +195,7 @@ List of all contained functions.
 - `SSH_AddKey` = Add SSH key (Insert the desired SSK key name after the command.)
 - `SSH_ListKeys` = List all added SSH keys
 - `SSH_DeleteKeys` = Delete all added SSH keys
-- `SSH_RasPi0W` = SSH to RaspberryPi 0 W
+- `SSH_RanzigeButter` = SSH to RanzigeButter
 
 
 ---
@@ -247,8 +212,9 @@ List of all contained aliases.
 - `ST` = `Shutdown_Timer`
 - `SA` = `Shutdown_Abort`
 
-#### Directory
+#### File System
 
+- `T` = `Touch`
 - `DH` = `Dir_Home`
 - `DDT` = `Dir_Desktop`
 - `DDL` = `Dir_Downloads`
@@ -300,7 +266,7 @@ List of all contained aliases.
 - `SSHA` = `SSH_AddKey`
 - `SSHL` = `SSH_ListKeys`
 - `SSHD` = `SSH_DeleteKeys`
-- `RPI0` = `SSH_RasPi0W`
+- `RB` = `SSH_RanzigeButter`
 
 
 ---
