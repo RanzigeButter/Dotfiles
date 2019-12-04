@@ -84,8 +84,6 @@ Summary of all the things this profile contains.
 
 ### **General**
 
-First, all other settings stored in the Registry are deleted to ensure that all windows look the same.
-
 #### Colors
 
 ````plaintext

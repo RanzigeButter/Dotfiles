@@ -4,7 +4,7 @@
 
 # Configs and Dotfiles
 
-This repository contains most of my configs and dotfiles.
+This repository contains my configs and dotfiles.
 
 ## License
 
