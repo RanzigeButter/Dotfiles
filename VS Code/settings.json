@@ -68,20 +68,11 @@
   // # Formatting
   // ======================================================================== //
   "editor.formatOnSave": true,
-  "eslint.autoFixOnSave": true,
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    {
-      "language": "typescript",
-      "autoFix": true
-    },
-    {
-      "language": "typescriptreact",
-      "autoFix": true
-    }
-  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
   "json.format.enable": false,
+  "twig-language-2.formatting": false,
   "prettier.disableLanguages": [
     "markdown",
     "html",
@@ -113,8 +104,6 @@
   "latex-workshop.view.pdf.viewer": "tab",
   "latex-workshop.latex.autoClean.run": "onBuilt",
   "latex-workshop.latex.clean.subfolder.enabled": true,
-  // Twig
-  "twig-language-2.formatting": false,
   // PHP
   "php.validate.executablePath": "C:\\Program Files\\PHP-7.4.0\\php.exe",
   "php.suggest.basic": false,
@@ -127,7 +116,6 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
   // TypeScript
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "typescript.format.enable": false,
   // ======================================================================== //
   // # Miscellaneous
   // ======================================================================== //
