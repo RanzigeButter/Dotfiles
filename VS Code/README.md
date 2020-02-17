@@ -48,3 +48,7 @@ Copy the settings.json file into the following directory:
 ```plaintext
   C:\Users\USERNAME\AppData\Roaming\Code\User
 ```
+
+## Extras
+
+Additional sample configuration files, such as for plugins, are located in the .vscode folder.

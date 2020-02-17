@@ -134,8 +134,6 @@
   // PHP
   "php.validate.executablePath": "C:\\Program Files\\PHP-7.4.0\\php.exe",
   "php.suggest.basic": false,
-  "intelephense.diagnostics.undefinedSymbols": false,
-  "intelephense.diagnostics.undefinedFunctions": false,
   // Stylesheets
   "css.validate": false,
   "less.validate": false,
