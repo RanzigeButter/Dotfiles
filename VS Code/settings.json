@@ -8,7 +8,7 @@
   "workbench.settings.editor": "json",
   "workbench.settings.useSplitJSON": true,
   "terminal.integrated.shell.windows": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-  "terminal.integrated.rendererType": "dom",
+  "terminal.integrated.rendererType": "canvas",
   // Microsoft Online Services
   "telemetry.enableTelemetry": false,
   "telemetry.enableCrashReporter": false,

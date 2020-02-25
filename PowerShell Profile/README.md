@@ -214,7 +214,7 @@ List of all contained aliases.
 
 - `T` = `Touch`
 - `DH` = `Dir_Home`
-- `DDT` = `Dir_Desktop`
+- `DD` = `Dir_Desktop`
 - `DDL` = `Dir_Downloads`
 - `DDB` = `Dir_Dropbox`
 - `DP` = `Dir_Projects`

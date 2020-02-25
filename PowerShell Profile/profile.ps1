@@ -268,7 +268,7 @@ Function SSH_DeleteKeys {
 
 # SSH to RanzigeButter
 Function SSH_RanzigeButter {
-  ssh 167.71.34.72 -p XX -l XXX
+  ssh ranzigebutter
 }
 
 <#  ========================================================================
@@ -288,7 +288,7 @@ Set-Alias "SA" "Shutdown_Abort"
 
 Set-Alias "T" "Touch"
 Set-Alias "DH" "Dir_Home"
-Set-Alias "DDT" "Dir_Desktop"
+Set-Alias "DD" "Dir_Desktop"
 Set-Alias "DDL" "Dir_Downloads"
 Set-Alias "DDB" "Dir_Dropbox"
 Set-Alias "DP" "Dir_Projects"
