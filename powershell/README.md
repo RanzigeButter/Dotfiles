@@ -35,14 +35,14 @@ My custom PowerShell Profile.
 
 ## **Installation**
 
-Before the installation we have to set our PowerShell execution policy to make use of scripts.
+Before installation, we have to set our PowerShell execution policy to allow the use of scripts.
 To do this, open your PowerShell as an administrator and enter the following command:
 
 ````PowerShell
-  Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force
+  Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force
 ````
 
-Now there are four ways to install the profile:
+There are four ways to install the profile:
 
 ### For current User and Shell
 
@@ -84,40 +84,17 @@ Summary of all the things this profile contains.
 
 ### **General**
 
-#### Colors
-
-````plaintext
-  Black (Hex #0f1218 / RGB 15,18,24)
-  DarkBlue (Hex #0078b4 / RGB 0,120,180)
-  DarkGreen (Hex #14a532 / RGB 20,165,50)
-  DarkCyan (Hex #008c8c / RGB 0,140,140)
-  DarkRed (Hex #f51937 / RGB 245,25,55)
-  DarkMagenta (Hex #af46d2 / RGB 175,70,210)
-  DarkYellow (Hex #f5b464 / RGB 245,180,100)
-  Gray (Hex #cccccc / RGB 204,204,204)
-  DarkGray (Hex #888888 / RGB 136,136,136)
-  Blue (Hex #3296fa / RGB 50,150,250)
-  Green (Hex #32b45f / RGB 50,180,95)
-  Cyan (Hex #19e1C8 / RGB 25,225,200)
-  Red (Hex #e64655 / RGB 230,70,85)
-  Magenta (Hex #c873dc / RGB 200,115,220)
-  Yellow (Hex #ebc88c / RGB 235,200,140)
-  White (Hex #f8f8f8 / RGB 248,248,248)
-````
-
-#### Window Opacity
-
-````plaintext
-  Window Opacity = 95%
-````
-
 #### Window Title
 
-The window title contains the following information: The name of the program, whether the application is running as an administrator or not and the date of the current day.
+```plaintext
+  PowerShell - Admin: true|false
+```
 
 #### Promt
 
-Changes Promt to "UserName@HostName - CurrentLocation>".
+```plaintext
+  UserName@HostName - CurrentLocation>
+```
 
 
 ---
@@ -222,15 +199,11 @@ List of all contained aliases.
 
 #### Visual Studio Code
 
-[Visual Studio Code](https://code.visualstudio.com/) must be installed!
-
 - `CN` = `VSCode_New`
 - `CR` = `VSCode_Reuse`
 - `CC` = `VSCode_Compare`
 
 #### Git
-
-[Git](https://git-scm.com) must be installed!
 
 - `GAC` = `Git_AddAndCommit`
 - `GACA` = `Git_AddAndCommit_Amend`
@@ -241,8 +214,6 @@ List of all contained aliases.
 
 #### Node Package Manager (NPM)
 
-[NodeJS/NPM](https://nodejs.org) must be installed!
-
 - `ND` = `NPM_Install_Dependencies`
 - `NDD` = `NPM_Install_DevDependencies`
 - `NO` = `NPM_Outdated`
@@ -251,14 +222,10 @@ List of all contained aliases.
 
 #### Webpack
 
-[Webpack](https://webpack.js.org) configuration must be provided!
-
 - `WD` = `Webpack_Development`
 - `WP` = `Webpack_Production`
 
 #### SSH
-
-[OpenSSH](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview) must be installed!
 
 - `SSHG` = `SSH_GenerateKey`
 - `SSHA` = `SSH_AddKey`
