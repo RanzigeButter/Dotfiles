@@ -190,6 +190,13 @@ Function NPM_Install_DevDependencies([String]$Package) {
   npm install --save-dev $Package
 }
 
+# Delete "node_modules" folder, package-lock.json and reinstall all packages
+Function NPM_Reset {
+  Remove-Item -Recurse -Force node_modules/
+  Remove-Item -Force package-lock.json
+  npm install
+}
+
 # Outdated packages
 Function NPM_Outdated {
   npm outdated
@@ -205,16 +212,13 @@ Function NPM_Audit {
   npm audit fix
 }
 
-<#  Webpack
-    ========================================================================  #>
-
-# Run Webpack in development mode
-Function Webpack_Development {
+# Run development script
+Function NPM_Development {
   npm run dev
 }
 
-# Run Webpack in production mode
-Function Webpack_Production {
+# Run production script
+Function NPM_Production {
   npm run prod
 }
 
@@ -289,17 +293,14 @@ Set-Alias "GLOG" "Git_Log"
 <#  Node Package Manager (NPM)
     ========================================================================  #>
 
-Set-Alias "ND" "NPM_Install_Dependencies"
-Set-Alias "NDD" "NPM_Install_DevDependencies"
+Set-Alias "NID" "NPM_Install_Dependencies"
+Set-Alias "NIDD" "NPM_Install_DevDependencies"
+Set-Alias "NRESET" "NPM_Reset"
 Set-Alias "NO" "NPM_Outdated"
 Set-Alias "NU" "NPM_Update"
 Set-Alias "NA" "NPM_Audit"
-
-<#  Webpack
-    ========================================================================  #>
-
-Set-Alias "WD" "Webpack_Development"
-Set-Alias "WP" "Webpack_Production"
+Set-Alias "ND" "NPM_Development"
+Set-Alias "NP" "NPM_Production"
 
 <#  SSH
     ========================================================================  #>
