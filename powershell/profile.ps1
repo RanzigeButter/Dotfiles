@@ -5,311 +5,283 @@
 # |_|   \___/ \_/\_/ \___|_|  |____/|_| |_|\___|_|_| |_|   |_|  \___/|_| |_|_|\___|
 
 <#  ========================================================================
-    # General
+    # Generic
     ========================================================================  #>
 
 <#  Title
     ========================================================================  #>
 
 # Check Administrator
-Function CheckAdministrator {
-  $User = [Security.Principal.WindowsIdentity]::GetCurrent();
-  (New-Object Security.Principal.WindowsPrincipal $User).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
+function checkAdmin {
+  $user = [Security.Principal.WindowsIdentity]::GetCurrent();
+  (New-Object Security.Principal.WindowsPrincipal $user).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
 }
 
 # Set Title
-$Host.UI.RawUI.WindowTitle = "PowerShell - Admin: $((CheckAdministrator))"
+$Host.UI.RawUI.WindowTitle = "PowerShell - Admin: $((checkAdmin))"
 
 <#  Promt
     ========================================================================  #>
 
-Function Prompt {
-  $UserComputer = Write-Host "${env:UserName}@$(HostName)" -NoNewline -ForegroundColor Green
-  $Separator = Write-Host " - " -NoNewline
-  $CurrentLocation = Write-Host "$(Get-Location)" -NoNewline -ForegroundColor Blue
-  $Ending = Write-Host ">" -NoNewline
+function prompt {
+  $computer = Write-Host "${env:UserName}@$(HostName)" -NoNewline -ForegroundColor Green
+  $separator = Write-Host ":" -NoNewline
+  $location = Write-Host "$(Get-Location)" -NoNewline -ForegroundColor Blue
+  $ending = Write-Host ">" -NoNewline
 
-  "$($UserComputer)$($Separator)$($CurrentLocation)$($Ending) "
+  "$($computer)$($separator)$($location)$($ending) "
 }
 
 <#  ========================================================================
-    # Functions
+    # Commands
     ========================================================================  #>
 
 <#  General
     ========================================================================  #>
 
 # Clear PowerShell
-Function C {
+function c {
   Clear-Host
 }
 
 # Close PowerShell
-Function X {
+function x {
   exit
 }
 
 # Open new PowerShell window
-Function Open_PowerShell {
+function openPowerShell {
   Start-Process PowerShell
 }
+Set-Alias "op" "openPowerShell"
 
 # Open new PowerShell window as admin
-Function Open_PowerShell_Admin {
+function openPowerShellAdmin {
   Start-Process PowerShell -verb RunAs
 }
+Set-Alias "opa" "openPowerShellAdmin"
 
 # Shutdown with timer
-Function Shutdown_Timer([Int]$TimeInMinutes) {
-  $TimeInSeconds = $TimeInMinutes * 60
-  shutdown -s -t $TimeInSeconds
-  Write-Host "The Computer will shut down in $TimeInMinutes minutes."
+function shutdownTimer([Int]$timeInMinutes) {
+  $timeInSeconds = $timeInMinutes * 60
+  shutdown -s -t $timeInSeconds
+  Write-Host "The Computer will shut down in $timeInMinutes minutes."
 }
+Set-Alias "st" "shutdownTimer"
 
 # Abort Shutdown
-Function Shutdown_Abort {
+function shutdownAbort {
   shutdown -a
 }
+Set-Alias "sa" "shutdownAbort"
 
 <#  File System
     ========================================================================  #>
 
-# Create new empty file
-Function Touch([String]$File) {
-  New-Item -ItemType file $File
+# Create new file
+function touch([String]$file) {
+  New-Item -ItemType file $file
 }
+Set-Alias "t" "touch"
 
 # One folder up
-Function .. {
+function .. {
   Set-Location ".."
 }
 
 # Two folders up
-Function ... {
+function ... {
   Set-Location "..\.."
 }
 
 # Three folders up
-Function .... {
+function .... {
   Set-Location "..\..\.."
 }
 
 # Change directory to Home
-Function Dir_Home {
+function dirHome {
   Set-Location "$HOME"
 }
+Set-Alias "dh" "dirHome"
 
 # Change directory to Desktop
-Function Dir_Desktop {
+function dirDesktop {
   Set-Location "$HOME\Desktop"
 }
+Set-Alias "dd" "dirDesktop"
 
 # Change directory to Downloads
-Function Dir_Downloads {
+function dirDownloads {
   Set-Location "$HOME\Downloads"
 }
+Set-Alias "ddl" "dirDownloads"
 
 # Change directory to Dropbox
-Function Dir_Dropbox {
+function dirDropbox {
   Set-Location "$HOME\Dropbox"
 }
+Set-Alias "ddb" "dirDropbox"
 
 # Change directory to Projects
-Function Dir_Projects {
+function dirProjects {
   Set-Location "$HOME\Documents\Projects"
 }
+Set-Alias "dp" "dirProjects"
 
 # Prints the directory contents
-Function Dir_Print {
+function dirPrint {
   Get-ChildItem -force -name -exclude "dir_content.csv" | Out-File "dir_content.csv"
 }
+Set-Alias "dprint" "dirPrint"
 
 <#  Visual Studio Code
     ========================================================================  #>
 
 # Open current folder in a new VS Code window
-Function VSCode_New {
+function vscodeNew {
   code -n .
 }
+Set-Alias "cn" "vscodeNew"
 
 # Open current folder in an already opened VS Code window
-Function VSCode_Reuse {
+function vscodeReuse {
   code -r .
 }
+Set-Alias "cr" "vscodeReuse"
 
 # Compare two files with each other in a new VS Code window
-Function VSCode_Compare([String]$FileOne, [String]$FileTwo) {
-  code -n -d $FileOne $FileTwo
+function vscodeCompare([String]$fileOne, [String]$fileTwo) {
+  code -n -d $fileOne $fileTwo
 }
+Set-Alias "cc" "vscodeCompare"
 
 <#  Git
     ========================================================================  #>
 
 # Add and commit files with message
-Function Git_AddAndCommit([String]$Message) {
+function gitAddCommit([String]$message) {
   git add .
-  git commit -m $Message
+  git commit -m $message
 }
+Set-Alias "gac" "gitAddCommit"
 
 # Amend to the last commit without editing the message
-Function Git_AddAndCommit_Amend {
+function gitAddCommitAmend {
   git add .
   git commit --amend --no-edit
 }
+Set-Alias "gaca" "gitAddCommitAmend"
 
 # Push files to remote repository
-Function Git_Push([String]$Branch) {
-  git push origin $Branch
+function gitPush([String]$branch) {
+  git push origin $branch
 }
+Set-Alias "gsh" "gitPush"
 
 # Pull files from remote repository
-Function Git_Pull([String]$Branch) {
-  git pull --rebase origin $Branch
+function gitPull([String]$branch) {
+  git pull --rebase origin $branch
 }
+Set-Alias "gll" "gitPull"
 
 # Clone repository into directory
-Function Git_Clone([String]$Repository) {
-  git clone $Repository
+function gitClone([String]$repository) {
+  git clone $repository
 }
+Set-Alias "gcl" "gitClone"
 
 # Shows the commit history
-Function Git_Log {
+function gitLog {
   git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 }
+Set-Alias "glog" "gitLog"
 
 <#  Node Package Manager (NPM)
     ========================================================================  #>
 
 # Install package in dependencies
-Function NPM_Install_Dependencies([String]$Package) {
-  npm install --save-prod $Package
+function npmInstallDependencies([String]$package) {
+  npm install --save-prod $package
 }
+Set-Alias "nid" "npmInstallDependencies"
 
 # Install package in devDependencies
-Function NPM_Install_DevDependencies([String]$Package) {
-  npm install --save-dev $Package
+function npmInstallDevDependencies([String]$package) {
+  npm install --save-dev $package
 }
+Set-Alias "nidd" "npmInstallDevDependencies"
 
-# Delete "node_modules" folder, package-lock.json and reinstall all packages
-Function NPM_Reset {
+# Delete "node_modules", "package-lock.json" and reinstall all packages
+function npmReset {
   Remove-Item -Recurse -Force node_modules/
   Remove-Item -Force package-lock.json
   npm install
 }
+Set-Alias "nreset" "npmReset"
 
 # Outdated packages
-Function NPM_Outdated {
+function npmOutdated {
   npm outdated
 }
+Set-Alias "no" "npmOutdated"
 
 # Update packages
-Function NPM_Update {
+function npmUpdate {
   npm update
 }
+Set-Alias "nu" "npmUpdate"
 
 # Audit packages
-Function NPM_Audit {
+function npmAudit {
   npm audit fix
 }
+Set-Alias "na" "npmAudit"
 
 # Run development script
-Function NPM_Development {
+function npmDevelopment {
   npm run dev
 }
+Set-Alias "nd" "npmDevelopment"
 
 # Run production script
-Function NPM_Production {
+function npmProduction {
   npm run prod
 }
+Set-Alias "np" "npmProduction"
 
 <#  SSH
     ========================================================================  #>
 
 # Generate SSH key
-Function SSH_GenerateKey([String]$EMail, [String]$Name) {
-  ssh-keygen -t rsa -b 4096 -C $EMail -f $HOME\.ssh\$Name
+function sshGenerateKey([String]$email, [String]$name) {
+  ssh-keygen -t rsa -b 4096 -C $email -f $HOME\.ssh\$name
 }
+Set-Alias "sshg" "sshGenerateKey"
 
 # Add SSH key
-Function SSH_AddKey([String]$Name) {
-  ssh-add $HOME\.ssh\$Name
+function sshAddKey([String]$name) {
+  ssh-add $HOME\.ssh\$name
 }
+Set-Alias "ssha" "sshAddKey"
 
 # List all SSH keys
-Function SSH_ListKeys {
+function sshListKeys {
   ssh-add -l
 }
+Set-Alias "sshl" "sshListKeys"
 
 # Delete all SSH keys
-Function SSH_DeleteKeys {
+function sshDeleteKeys {
   ssh-add -D
 }
+Set-Alias "sshd" "sshDeleteKeys"
 
 # SSH to RanzigeButter
-Function SSH_RanzigeButter {
+function sshRanzigeButter {
   ssh ranzigebutter
 }
-
-<#  ========================================================================
-    # Aliases
-    ========================================================================  #>
-
-<#  General
-    ========================================================================  #>
-
-Set-Alias "OP" "Open_PowerShell"
-Set-Alias "OPA" "Open_PowerShell_Admin"
-Set-Alias "ST" "Shutdown_Timer"
-Set-Alias "SA" "Shutdown_Abort"
-
-<#  File System
-    ========================================================================  #>
-
-Set-Alias "T" "Touch"
-Set-Alias "DH" "Dir_Home"
-Set-Alias "DD" "Dir_Desktop"
-Set-Alias "DDL" "Dir_Downloads"
-Set-Alias "DDB" "Dir_Dropbox"
-Set-Alias "DP" "Dir_Projects"
-Set-Alias "DPRINT" "Dir_Print"
-
-<#  Visual Studio Code
-    ========================================================================  #>
-
-Set-Alias "CN" "VSCode_New"
-Set-Alias "CR" "VSCode_Reuse"
-Set-Alias "CC" "VSCode_Compare"
-
-<#  Git
-    ========================================================================  #>
-
-Set-Alias "GAC" "Git_AddAndCommit"
-Set-Alias "GACA" "Git_AddAndCommit_Amend"
-Set-Alias "GSH" "Git_Push"
-Set-Alias "GLL" "Git_Pull"
-Set-Alias "GCL" "Git_Clone"
-Set-Alias "GLOG" "Git_Log"
-
-<#  Node Package Manager (NPM)
-    ========================================================================  #>
-
-Set-Alias "NID" "NPM_Install_Dependencies"
-Set-Alias "NIDD" "NPM_Install_DevDependencies"
-Set-Alias "NRESET" "NPM_Reset"
-Set-Alias "NO" "NPM_Outdated"
-Set-Alias "NU" "NPM_Update"
-Set-Alias "NA" "NPM_Audit"
-Set-Alias "ND" "NPM_Development"
-Set-Alias "NP" "NPM_Production"
-
-<#  SSH
-    ========================================================================  #>
-
-Set-Alias "SSHG" "SSH_GenerateKey"
-Set-Alias "SSHA" "SSH_AddKey"
-Set-Alias "SSHL" "SSH_ListKeys"
-Set-Alias "SSHD" "SSH_DeleteKeys"
-Set-Alias "RB" "SSH_RanzigeButter"
+Set-Alias "rb" "sshRanzigeButter"
 
 <#  ========================================================================
     # Clear Host
