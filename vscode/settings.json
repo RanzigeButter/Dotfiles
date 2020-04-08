@@ -1,7 +1,7 @@
 {
-  // ======================================================================== //
+  // ===========================================================================
   // # General
-  // ======================================================================== //
+  // ===========================================================================
   "window.title": "${rootName}${separator}${activeEditorShort}${dirty}",
   "window.newWindowDimensions": "maximized",
   "workbench.startupEditor": "newUntitledFile",
@@ -18,9 +18,9 @@
   "extensions.showRecommendationsOnlyOnDemand": true,
   "workbench.enableExperiments": false,
   "workbench.settings.enableNaturalLanguageSearch": false,
-  // ======================================================================== //
+  // ===========================================================================
   // # Appearance
-  // ======================================================================== //
+  // ===========================================================================
   "workbench.colorTheme": "Horizon",
   "workbench.iconTheme": "vscode-icons",
   "editor.fontFamily": "Fira Code",
@@ -43,9 +43,9 @@
       "format": "svg"
     }
   ],
-  // ======================================================================== //
+  // ===========================================================================
   // # Editor
-  // ======================================================================== //
+  // ===========================================================================
   "workbench.editor.openPositioning": "last",
   "workbench.editor.highlightModifiedTabs": true,
   "breadcrumbs.enabled": false,
@@ -64,9 +64,9 @@
   "editor.renderWhitespace": "boundary",
   "editor.rulers": [80],
   "files.trimFinalNewlines": true,
-  // ======================================================================== //
+  // ===========================================================================
   // # Formatting
-  // ======================================================================== //
+  // ===========================================================================
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": true
@@ -81,9 +81,9 @@
     "typescript",
     "typescriptreact"
   ],
-  // ======================================================================== //
+  // ===========================================================================
   // # Languages
-  // ======================================================================== //
+  // ===========================================================================
   // Markdown
   "markdown.preview.scrollEditorWithPreview": false,
   "markdown.preview.scrollPreviewWithEditor": false,
@@ -99,38 +99,6 @@
     },
     "MD033": false
   },
-  // LaTeX
-  "latex-workshop.message.update.show": false,
-  "latex-workshop.view.pdf.viewer": "tab",
-  "latex-workshop.latex.autoClean.run": "onBuilt",
-  "latex-workshop.latex.clean.subfolder.enabled": true,
-  "latex-workshop.latex.tools": [
-    {
-      "name": "pdflatex",
-      "command": "pdflatex",
-      "args": [
-        "-synctex=1",
-        "-interaction=nonstopmode",
-        "-file-line-error",
-        "%DOC%"
-      ]
-    },
-    {
-      "name": "biber",
-      "command": "biber",
-      "args": ["%DOCFILE%"]
-    }
-  ],
-  "latex-workshop.latex.recipes": [
-    {
-      "name": "pdflatex -> biber -> pdflatex*2",
-      "tools": ["pdflatex", "biber", "pdflatex", "pdflatex"]
-    },
-    {
-      "name": "pdflatex",
-      "tools": ["pdflatex"]
-    }
-  ],
   // PHP
   "php.validate.executablePath": "C:\\Program Files\\PHP-7.4.0\\php.exe",
   "php.suggest.basic": false,
@@ -142,10 +110,10 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
   // TypeScript
   "typescript.updateImportsOnFileMove.enabled": "always",
-  // ======================================================================== //
+  // ===========================================================================
   // # Miscellaneous
-  // ======================================================================== //
-  // Hide folders/files from the tree view.
+  // ===========================================================================
+  // Hide folders/files
   "files.exclude": {
     "**/.git": true,
     "**/node_modules": true

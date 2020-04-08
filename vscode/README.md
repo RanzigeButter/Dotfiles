@@ -1,12 +1,14 @@
 # VS Code
 
-VS Code settings, script for installing extensions and custom icons.
+VS Code settings, extensions and custom icons.
 
-## Installation
+## Script
 
-Download and install the font [Fira Code](https://github.com/tonsky/FiraCode).
+The script performs the following tasks:
 
-Execute the PowerShell script to install the following extensions:
+- Copies the `settings.json` file to `C:\Users\USERNAME\AppData\Roaming\Code\User`.
+
+- Installs these extensions:
 
 ```plaintext
   # Appearance
@@ -28,27 +30,13 @@ Execute the PowerShell script to install the following extensions:
   "shinnn.stylelint"
   "dbaeumer.vscode-eslint"
   # Miscellaneous
+  "liximomo.sftp"
   "mkxml.vscode-filesize"
   "cssho.vscode-svgviewer"
   "bierner.emojisense"
   "pnp.polacode"
-  "liximomo.sftp"
 ```
 
-Copy the vsicons-custom-icons folder into the following directory:
+- Copies the `vsicons-custom-icons` folder to `C:\Users\USERNAME\AppData\Roaming\Code\User`.
 
-```plaintext
-  C:\Users\USERNAME\AppData\Roaming\Code\User\vsicons-custom-icons
-```
-
-Then in VS Code press `F1`, type `icons` and select `Apply Icons Customization`.
-
-Copy the settings.json file into the following directory:
-
-```plaintext
-  C:\Users\USERNAME\AppData\Roaming\Code\User
-```
-
-## Extras
-
-Additional sample configuration files, such as for plugins, are located in the .vscode folder.
+**Note:** If the custom icons are not appearing in VS Code, then press `F1`, type `icons` and select `Apply Icons Customization`.

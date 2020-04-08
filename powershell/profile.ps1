@@ -8,8 +8,8 @@
     # Generic
     ========================================================================  #>
 
-<#  Title
-    ========================================================================  #>
+# Title
+# ==============================================================================
 
 # Check Administrator
 function checkAdmin {
@@ -20,63 +20,45 @@ function checkAdmin {
 # Set Title
 $Host.UI.RawUI.WindowTitle = "PowerShell - Admin: $((checkAdmin))"
 
-<#  Promt
-    ========================================================================  #>
+# Promt
+# ==============================================================================
 
-function prompt {
-  $computer = Write-Host "${env:UserName}@$(HostName)" -NoNewline -ForegroundColor Green
-  $separator = Write-Host ":" -NoNewline
-  $location = Write-Host "$(Get-Location)" -NoNewline -ForegroundColor Blue
-  $ending = Write-Host ">" -NoNewline
+function global:prompt {
+  $location = Write-Host "$(Get-Location)" -ForegroundColor Blue -NoNewline
+  $ending = [char]0x276F
 
-  "$($computer)$($separator)$($location)$($ending) "
+  "$($location) $($ending) "
 }
 
 <#  ========================================================================
     # Commands
     ========================================================================  #>
 
-<#  General
-    ========================================================================  #>
+# General
+# ==============================================================================
 
 # Clear PowerShell
-function c {
-  Clear-Host
-}
+Set-Alias "c" "Clear-Host"
 
 # Close PowerShell
 function x {
   exit
 }
 
-# Open new PowerShell window
+# Open new PowerShell
 function openPowerShell {
   Start-Process PowerShell
 }
 Set-Alias "op" "openPowerShell"
 
-# Open new PowerShell window as admin
+# Open new PowerShell as admin
 function openPowerShellAdmin {
   Start-Process PowerShell -verb RunAs
 }
 Set-Alias "opa" "openPowerShellAdmin"
 
-# Shutdown with timer
-function shutdownTimer([Int]$timeInMinutes) {
-  $timeInSeconds = $timeInMinutes * 60
-  shutdown -s -t $timeInSeconds
-  Write-Host "The Computer will shut down in $timeInMinutes minutes."
-}
-Set-Alias "st" "shutdownTimer"
-
-# Abort Shutdown
-function shutdownAbort {
-  shutdown -a
-}
-Set-Alias "sa" "shutdownAbort"
-
-<#  File System
-    ========================================================================  #>
+# File System
+# ==============================================================================
 
 # Create new file
 function touch([String]$file) {
@@ -103,7 +85,7 @@ function .... {
 function dirHome {
   Set-Location "$HOME"
 }
-Set-Alias "dh" "dirHome"
+Set-Alias "~" "dirHome"
 
 # Change directory to Desktop
 function dirDesktop {
@@ -123,20 +105,14 @@ function dirDropbox {
 }
 Set-Alias "ddb" "dirDropbox"
 
-# Change directory to Projects
-function dirProjects {
-  Set-Location "$HOME\Documents\Projects"
-}
-Set-Alias "dp" "dirProjects"
-
 # Prints the directory contents
 function dirPrint {
   Get-ChildItem -force -name -exclude "dir_content.csv" | Out-File "dir_content.csv"
 }
 Set-Alias "dprint" "dirPrint"
 
-<#  Visual Studio Code
-    ========================================================================  #>
+# Visual Studio Code
+# ==============================================================================
 
 # Open current folder in a new VS Code window
 function vscodeNew {
@@ -156,8 +132,8 @@ function vscodeCompare([String]$fileOne, [String]$fileTwo) {
 }
 Set-Alias "cc" "vscodeCompare"
 
-<#  Git
-    ========================================================================  #>
+# Git
+# ==============================================================================
 
 # Add and commit files with message
 function gitAddCommit([String]$message) {
@@ -197,8 +173,8 @@ function gitLog {
 }
 Set-Alias "glog" "gitLog"
 
-<#  Node Package Manager (NPM)
-    ========================================================================  #>
+# Node Package Manager (NPM)
+# ==============================================================================
 
 # Install package in dependencies
 function npmInstallDependencies([String]$package) {
@@ -250,8 +226,8 @@ function npmProduction {
 }
 Set-Alias "np" "npmProduction"
 
-<#  SSH
-    ========================================================================  #>
+# SSH
+# ==============================================================================
 
 # Generate SSH key
 function sshGenerateKey([String]$email, [String]$name) {
@@ -282,6 +258,31 @@ function sshRanzigeButter {
   ssh ranzigebutter
 }
 Set-Alias "rb" "sshRanzigeButter"
+
+# Miscellaneous
+# ==============================================================================
+
+# Shutdown timer
+function shutdownTimer([Int]$timeInMinutes) {
+  $timeInSeconds = $timeInMinutes * 60
+  shutdown -s -t $timeInSeconds
+  Write-Host "The Computer will shut down in $timeInMinutes minutes."
+}
+Set-Alias "st" "shutdownTimer"
+
+# Shutdown abort
+function shutdownAbort {
+  shutdown -a
+}
+Set-Alias "sa" "shutdownAbort"
+
+# Print unicode
+function printUnicode([String]$unicode) {
+  $unicodeStripped = $unicode -replace 'U\+', ''
+  $unicodeInt = [System.Convert]::toInt32($unicodeStripped, 16)
+  [System.Char]::ConvertFromUtf32($unicodeInt)
+}
+Set-Alias "pu" "printUnicode"
 
 <#  ========================================================================
     # Clear Host

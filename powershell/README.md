@@ -51,7 +51,7 @@ There are four ways to install the profile:
   C:\Windows\System32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1
 ````
 
-### For all Users and Hosts
+### For all Users and Shells
 
 ````plaintext
   C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1
@@ -93,10 +93,8 @@ List of all contained commands.
 
 - `c` = Clear PowerShell
 - `x` = Close PowerShell
-- `openPowerShell` / `op` = Open new PowerShell window
-- `openPowerShellAdmin` / `opa` = Open new PowerShell window as admin
-- `shutdownTimer` / `st` = Shutdown with timer (insert the time in minutes after the command)
-- `shutdownAbort` / `sa` = Abort Shutdown
+- `openPowerShell` / `op` = Open new PowerShell
+- `openPowerShellAdmin` / `opa` = Open new PowerShell as admin
 
 #### File System
 
@@ -104,11 +102,10 @@ List of all contained commands.
 - `..` = One folder up
 - `...` = Two folders up
 - `....` = Three folders up
-- `dirHome` / `dh` = Change directory to Home
+- `dirHome` / `~` = Change directory to Home
 - `dirDesktop` / `dd` = Change directory to Desktop
 - `dirDownloads` / `ddl` = Change directory to Downloads
 - `dirDropbox` / `ddb` = Change directory to Dropbox
-- `dirProjects` / `dp` = Change directory to Projects
 - `dirPrint` / `dprint` = Prints the directory contents into a .csv file (file will be located in the corresponding directory)
 
 #### Visual Studio Code
@@ -153,6 +150,11 @@ List of all contained commands.
 - `sshDeleteKeys` / `sshd` = Delete all added SSH keys
 - `sshRanzigeButter` / `rb` = SSH to RanzigeButter
 
+#### Miscellaneous
+
+- `shutdownTimer` / `st` = Shutdown with timer (insert the time in minutes after the command)
+- `shutdownAbort` / `sa` = Abort Shutdown
+- `printUnicode` / `pu` = Print unicode (insert unicode after the command)
 
 ---
 
