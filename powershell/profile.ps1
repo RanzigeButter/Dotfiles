@@ -53,7 +53,7 @@ Set-Alias "op" "openPowerShell"
 
 # Open new PowerShell as admin
 function openPowerShellAdmin {
-  Start-Process PowerShell -verb RunAs
+  Start-Process PowerShell -Verb RunAs
 }
 Set-Alias "opa" "openPowerShellAdmin"
 
@@ -61,8 +61,13 @@ Set-Alias "opa" "openPowerShellAdmin"
 # ==============================================================================
 
 # Create new file
-function touch([String]$file) {
-  New-Item -ItemType file $file
+function touch {
+  param (
+    [Parameter(Mandatory)]
+    [string] $file
+  )
+
+  New-Item $file -ItemType File | Out-Null
 }
 Set-Alias "t" "touch"
 
@@ -107,7 +112,7 @@ Set-Alias "ddb" "dirDropbox"
 
 # Prints the directory contents
 function dirPrint {
-  Get-ChildItem -force -name -exclude "dir_content.csv" | Out-File "dir_content.csv"
+  Get-ChildItem -Force -Name -Exclude "dir_content.csv" | Out-File "dir_content.csv"
 }
 Set-Alias "dprint" "dirPrint"
 
@@ -125,12 +130,6 @@ function vscodeReuse {
   code -r .
 }
 Set-Alias "cr" "vscodeReuse"
-
-# Compare two files with each other in a new VS Code window
-function vscodeCompare([String]$fileOne, [String]$fileTwo) {
-  code -n -d $fileOne $fileTwo
-}
-Set-Alias "cc" "vscodeCompare"
 
 # Git
 # ==============================================================================
@@ -190,8 +189,8 @@ Set-Alias "nidd" "npmInstallDevDependencies"
 
 # Delete "node_modules", "package-lock.json" and reinstall all packages
 function npmReset {
-  Remove-Item -Recurse -Force node_modules/
-  Remove-Item -Force package-lock.json
+  Remove-Item node_modules/ -Recurse -Force
+  Remove-Item package-lock.json -Force
   npm install
 }
 Set-Alias "nreset" "npmReset"
@@ -263,7 +262,12 @@ Set-Alias "rb" "sshRanzigeButter"
 # ==============================================================================
 
 # Shutdown timer
-function shutdownTimer([Int]$timeInMinutes) {
+function shutdownTimer {
+  param (
+    [Parameter(Mandatory)]
+    [Int] $timeInMinutes
+  )
+
   $timeInSeconds = $timeInMinutes * 60
   shutdown -s -t $timeInSeconds
   Write-Host "The Computer will shut down in $timeInMinutes minutes."
@@ -277,7 +281,12 @@ function shutdownAbort {
 Set-Alias "sa" "shutdownAbort"
 
 # Print unicode
-function printUnicode([String]$unicode) {
+function printUnicode {
+  param (
+    [Parameter(Mandatory)]
+    [String] $unicode
+  )
+
   $unicodeStripped = $unicode -replace 'U\+', ''
   $unicodeInt = [System.Convert]::toInt32($unicodeStripped, 16)
   [System.Char]::ConvertFromUtf32($unicodeInt)

@@ -9,7 +9,7 @@
   "workbench.settings.useSplitJSON": true,
   "terminal.integrated.shell.windows": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
   "terminal.integrated.rendererType": "canvas",
-  // Microsoft Online Services
+  // Online Services
   "telemetry.enableTelemetry": false,
   "telemetry.enableCrashReporter": false,
   "update.enableWindowsBackgroundUpdates": false,
