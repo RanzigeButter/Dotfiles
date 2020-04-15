@@ -41,7 +41,7 @@ Expand-Archive $output "$HOME\Downloads"
 Remove-Item $output
 
 # Set path
-$dotfiles = "C:\Users\Tim\Dropbox\Privat\Dotfiles"
+$dotfiles = "$HOME\Downloads\dotfiles-master"
 
 # Scripts
 # ==============================================================================

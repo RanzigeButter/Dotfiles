@@ -1,26 +1,6 @@
 # PowerShell Profile <!-- omit in toc -->
 
-My custom PowerShell Profile.
-
-## Table of Contents <!-- omit in toc -->
-
-- [Installation](#installation)
-  - [For current User and Shell](#for-current-user-and-shell)
-  - [For current User and all Shells](#for-current-user-and-all-shells)
-  - [For all Users and current Shell](#for-all-users-and-current-shell)
-  - [For all Users and Hosts](#for-all-users-and-hosts)
-- [Content](#content)
-  - [Generic](#generic)
-    - [Window Title](#window-title)
-    - [Promt](#promt)
-  - [Commands](#commands)
-    - [General](#general)
-    - [File System](#file-system)
-    - [Visual Studio Code](#visual-studio-code)
-    - [Git](#git)
-    - [Node Package Manager (NPM)](#node-package-manager-npm)
-    - [SSH](#ssh)
-  - [Clear-Host](#clear-host)
+My PowerShell Profile.
 
 ## Installation
 
@@ -59,7 +39,7 @@ There are four ways to install the profile:
 
 ## Content
 
-Summary of all the things this profile contains.
+Summary of the contents of this profile.
 
 **Note:** Commands are not case-sensitive.
 
@@ -78,7 +58,7 @@ Summary of all the things this profile contains.
 #### Promt
 
 ```plaintext
-  UserName@HostName - CurrentLocation>
+  CurrentLocation ❯
 ```
 
 
@@ -87,7 +67,7 @@ Summary of all the things this profile contains.
 
 ### Commands
 
-List of all contained commands.
+List of all commands.
 
 #### General
 

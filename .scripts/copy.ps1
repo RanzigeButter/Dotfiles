@@ -66,21 +66,20 @@ if (Get-Command code -ea 0) {
   Write-Host " Done"
 
   # Extensions
-  Write-Host "Installing VS Code extensions..." -NoNewline
+  Write-Host "Installing VS Code extensions..."
   foreach ($extension in @(
       Get-Content "$dotfiles\vscode\extensions.md" | Where-Object { $_ -notmatch "^#" } | Where-Object { $_.trim() -ne "" }
     )) {
     Write-Host ">>> $extension"
     code --install-extension $extension | Out-Null
   }
-  Write-Host " Done"
 
   # Custom icons
   Write-Host "Installing VS Code custom icons..." -NoNewline
   if (Test-Path "$HOME\AppData\Roaming\Code\User\vsicons-custom-icons") {
     Remove-Item "$HOME\AppData\Roaming\Code\User\vsicons-custom-icons" -Recurse -Force
   }
-  Copy-Item "$dotfiles\vscode\vsicons-custom-icons" "$HOME\AppData\Roaming\Code\User"
+  Copy-Item "$dotfiles\vscode\vsicons-custom-icons" "$HOME\AppData\Roaming\Code\User" -Recurse
   Write-Host " Done"
 
 }
