@@ -7,9 +7,6 @@
 
 function setupGeneral {
 
-  # Disable fast startup
-  Set-ItemProperty "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power" -Name HiberbootEnabled -Value 0
-
   # Disabel lock screen
   $pathLockScreen = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Personalization"
   if (!(Test-Path $pathLockScreen)) {
@@ -19,9 +16,6 @@ function setupGeneral {
 
   # Dark Mode
   Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" -Name AppsUseLightTheme -Value 0
-
-  # Disable Edge shortcut creation after update
-  New-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name DisableEdgeDesktopShortcutCreation -Value 1 -ea 0 | Out-Null
 
 }
 
@@ -56,7 +50,7 @@ function setupExplorer {
       "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}"
       "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}"
     )) {
-    Remove-Item $path -Recurse -ea 0 | Out-Null
+    Remove-Item $path -Recurse -ea 0
   }
 }
 
@@ -74,40 +68,40 @@ function setupContextMenu {
       "HKCR:\AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\Shell\ShellCreateVideo"
       "HKCR:\AppXk0g4vb8gvt7b93tg50ybcy892pge6jmt\Shell\ShellCreateVideo"
     )) {
-    Remove-Item $path -Recurse -ea 0 | Out-Null
+    Remove-Item $path -Recurse -ea 0
   }
 
   # Remove 'Edit with Paint 3D'
-  $pathFileAssociations = "HKLM:\SOFTWARE\Classes\SystemFileAssociations"
+  $pathFA = "HKLM:\SOFTWARE\Classes\SystemFileAssociations"
   foreach ($path in @(
-      "$pathFileAssociations\.3mf\Shell\3D Edit"
-      "$pathFileAssociations\.bmp\Shell\3D Edit"
-      "$pathFileAssociations\.gif\Shell\3D Edit"
-      "$pathFileAssociations\.glb\Shell\3D Edit"
-      "$pathFileAssociations\.fbx\Shell\3D Edit"
-      "$pathFileAssociations\.jfif\Shell\3D Edit"
-      "$pathFileAssociations\.jpe\Shell\3D Edit"
-      "$pathFileAssociations\.jpeg\Shell\3D Edit"
-      "$pathFileAssociations\.jpg\Shell\3D Edit"
-      "$pathFileAssociations\.obj\Shell\3D Edit"
-      "$pathFileAssociations\.ply\Shell\3D Edit"
-      "$pathFileAssociations\.png\Shell\3D Edit"
-      "$pathFileAssociations\.stl\Shell\3D Edit"
-      "$pathFileAssociations\.tif\Shell\3D Edit"
-      "$pathFileAssociations\.tiff\Shell\3D Edit"
+      "$pathFA\.3mf\Shell\3D Edit"
+      "$pathFA\.bmp\Shell\3D Edit"
+      "$pathFA\.gif\Shell\3D Edit"
+      "$pathFA\.glb\Shell\3D Edit"
+      "$pathFA\.fbx\Shell\3D Edit"
+      "$pathFA\.jfif\Shell\3D Edit"
+      "$pathFA\.jpe\Shell\3D Edit"
+      "$pathFA\.jpeg\Shell\3D Edit"
+      "$pathFA\.jpg\Shell\3D Edit"
+      "$pathFA\.obj\Shell\3D Edit"
+      "$pathFA\.ply\Shell\3D Edit"
+      "$pathFA\.png\Shell\3D Edit"
+      "$pathFA\.stl\Shell\3D Edit"
+      "$pathFA\.tif\Shell\3D Edit"
+      "$pathFA\.tiff\Shell\3D Edit"
     )) {
-    Remove-Item $path -Recurse -ea 0 | Out-Null
+    Remove-Item $path -Recurse -ea 0
   }
 
   # Remove 'Share'
-  Remove-Item "HKCR:\*\shellex\ContextMenuHandlers\ModernSharing" -Recurse -ea 0 | Out-Null
+  Remove-Item "HKCR:\*\shellex\ContextMenuHandlers\ModernSharing" -Recurse -ea 0
 
   # Remove 'Include in Library'
   foreach ($path in @(
       "HKCR:\Folder\ShellEx\ContextMenuHandlers\Library Location"
       "HKLM:\SOFTWARE\Classes\Folder\ShellEx\ContextMenuHandlers\Library Location"
     )) {
-    Remove-Item $path -Recurse -ea 0 | Out-Null
+    Remove-Item $path -Recurse -ea 0
   }
 
   # Remove 'Restore to previous Versions'
@@ -117,7 +111,7 @@ function setupContextMenu {
       "HKCR:\Directory\shellex\ContextMenuHandlers\{596AB062-B4D2-4215-9F74-E9109B0A8153}"
       "HKCR:\Drive\shellex\ContextMenuHandlers\{596AB062-B4D2-4215-9F74-E9109B0A8153}"
     )) {
-    Remove-Item $path -Recurse -ea 0 | Out-Null
+    Remove-Item $path -Recurse -ea 0
   }
 
   Remove-PSDrive HKCR | Out-Null
@@ -128,4 +122,88 @@ function setupContextMenu {
 
 function setupSystem {
 
+  # Remove AppxPackages
+  Get-AppxPackage -AllUsers |
+  Where-Object { $_.name -notlike "*Microsoft.WindowsStore*" } |
+  Where-Object { $_.name -notlike "*Microsoft.Windows.Photos*" } |
+  Where-Object { $_.name -notlike "*Microsoft.WindowsCalculator*" } |
+  Where-Object { $_.name -notlike "*Microsoft.ScreenSketch*" } |
+  Remove-AppxPackage -ea 0 | Out-Null
+
+  # Remove AppxProvisionedPackages
+  Get-AppxProvisionedPackage -online |
+  Where-Object { $_.packagename -notlike "*Microsoft.WindowsStore*" } |
+  Where-Object { $_.packagename -notlike "*Microsoft.Windows.Photos*" } |
+  Where-Object { $_.packagename -notlike "*Microsoft.WindowsCalculator*" } |
+  Where-Object { $_.packagename -notlike "*Microsoft.ScreenSketch*" } |
+  Remove-AppxProvisionedPackage -online -ea 0 | Out-Null
+
+  # Disable app suggestions and consumer features
+  $pathOne = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
+
+  Set-ItemProperty $pathOne -Name ContentDeliveryAllowed -Value 0
+  Set-ItemProperty $pathOne -Name OemPreInstalledAppsEnabled -Value 0
+  Set-ItemProperty $pathOne -Name PreInstalledAppsEnabled -Value 0
+  Set-ItemProperty $pathOne -Name SilentInstalledAppsEnabled -Value 0
+  Set-ItemProperty $pathOne -Name SoftLandingEnabled -Value 0
+  Set-ItemProperty $pathOne -Name SubscribedContentEnabled -Value 0
+  Set-ItemProperty $pathOne -Name SystemPaneSuggestionsEnabled -Value 0
+
+  $pathTwo = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent"
+
+  if (!(Test-Path $pathTwo)) {
+    New-Item $pathTwo -ItemType Directory -Force -ea 0 | Out-Null
+  }
+
+  New-ItemProperty $pathTwo -Name DisableWindowsConsumerFeatures -Value 1 -ea 0 | Out-Null
+
+  # Disable tasks
+  foreach ($task in @(
+      "*Consolidator*"
+      "*UsbCeip*"
+      "*XblGameSaveTask*"
+      "*XblGameSaveTaskLogon*"
+    )) {
+    Get-ScheduledTask -TaskName $task | Disable-ScheduledTask -ea 0 | Out-Null
+  }
+
+  # Disable services
+  foreach ($service in @(
+      "*diagnosticshub.standardcollector.service*"
+      "*DiagTrack*"
+      "*dmwappushsvc*"
+      "*lfsvc*"
+      "*RetailDemo*"
+      "*WbioSrvc*"
+      "*xbgm*"
+      "*XblAuthManager*"
+      "*XblGameSave*"
+      "*XboxNetApiSvc*"
+    )) {
+    Get-Service -Name $service | Set-Service -StartupType Disabled -ea 0 | Out-Null
+  }
+
+  # Disable feedback experience and telemetry
+  $path = "HKCU:\Software\Microsoft\Siuf\Rules"
+
+  if (!(Test-Path $path)) {
+    New-Item $path -ItemType Directory -Force -ea 0 | Out-Null
+  }
+
+  New-ItemProperty $path -Name NumberOfSIUFInPeriod -Value 0 -ea 0 | Out-Null
+
+  Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Name Enabled -Value 0
+  Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" -Name AllowTelemetry -Value 0
+
+  # Disable defender cloud
+  $path = "HKLM:\SOFTWARE\Microsoft\Windows Defender\Spynet"
+
+  Set-ItemProperty $path -Name SpynetReporting -Value 0
+  Set-ItemProperty $path -Name SubmitSamplesConsent -Value 0
+
+  # Disable fast startup
+  Set-ItemProperty "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power" -Name HiberbootEnabled -Value 0
+
+  # Disable Edge shortcut creation
+  New-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name DisableEdgeDesktopShortcutCreation -Value 1 -ea 0 | Out-Null
 }

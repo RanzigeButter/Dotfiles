@@ -189,8 +189,8 @@ Set-Alias "nidd" "npmInstallDevDependencies"
 
 # Delete "node_modules", "package-lock.json" and reinstall all packages
 function npmReset {
-  Remove-Item node_modules/ -Recurse -Force
-  Remove-Item package-lock.json -Force
+  Remove-Item node_modules/ -Recurse -Force -ea 0
+  Remove-Item package-lock.json -Force -ea 0
   npm install
 }
 Set-Alias "nreset" "npmReset"

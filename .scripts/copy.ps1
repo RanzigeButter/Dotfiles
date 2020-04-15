@@ -51,9 +51,11 @@ Write-Host " Done"
 # Windows Terminal
 # ==============================================================================
 
-Write-Host "Installing Windows Terminal settings..." -NoNewline
-# Copy-Item "$dotfiles\terminal\profiles.json" "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_*\LocalState"
-Write-Host " Done"
+if (Test-Path "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_*") {
+  Write-Host "Installing Windows Terminal settings..." -NoNewline
+  Copy-Item "$dotfiles\terminal\profiles.json" "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_*\LocalState"
+  Write-Host " Done"
+}
 
 # VS Code
 # ==============================================================================

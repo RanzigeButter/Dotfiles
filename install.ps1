@@ -23,31 +23,35 @@ Write-Host -ForegroundColor Red @"
 
 
 "@
-Read-Host "Press ENTER to start setting up your computer."
+Read-Host "Press ENTER to start"
 
-# Start
+# Preparations
 # ==============================================================================
+
+Write-Host "Preparing setup..." -NoNewline
 
 # Set execution policy
 Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force
 
 # Download repository
 $url = "https://github.com/RanzigeButter/dotfiles/archive/master.zip"
-$output = "$HOME\Downloads\dotfiles.zip"
-(New-Object System.Net.WebClient).DownloadFile($url, $output)
+$dotfilesZip = "$HOME\Downloads\dotfiles.zip"
+(New-Object System.Net.WebClient).DownloadFile($url, $dotfilesZip)
 
 # Unpack & delete zip file
-Expand-Archive $output "$HOME\Downloads"
-Remove-Item $output
+Expand-Archive $dotfilesZip "$HOME\Downloads"
+Remove-Item $dotfilesZip
 
 # Set path
 $dotfiles = "$HOME\Downloads\dotfiles-master"
 
+Write-Host " Done"
+
 # Scripts
 # ==============================================================================
 
-# . "$dotfiles\.scripts\win10.ps1"
-# . "$dotfiles\.scripts\apps.ps1"
+. "$dotfiles\.scripts\win10.ps1"
+. "$dotfiles\.scripts\apps.ps1"
 . "$dotfiles\.scripts\copy.ps1"
 
 # Finalize
@@ -56,26 +60,49 @@ $dotfiles = "$HOME\Downloads\dotfiles-master"
 Remove-Item $dotfiles -Recurse -Force
 Write-Host -ForegroundColor Red @"
 
+
           -------------------------------------------------------------
 
           Congrats!
 
           Provided there were no hidden errors, the script completed
-          successfully and all the programs and configuration files
-          should be in place.
+          successfully and everything should be in place.
 
           -------------------------------------------------------------
 
 
 "@
-switch (Read-Host "Would you like to restart your system? ( Yes / No )") {
+
+function askYesNo {
+  param (
+    [Parameter(Mandatory)]
+    [String] $question
+  )
+
+  do { $response = Read-Host "$question ( Yes / No )" }
+  until(
+    ($response -eq "Yes") -or
+    ($response -eq "y") -or
+    ($response -eq "No") -or
+    ($response -eq "n")
+  )
+
+  if (($response -eq "Yes") -or ($response -eq "y")) {
+    return "Yes"
+  }
+  elseif (($response -eq "No") -or ($response -eq "n")) {
+    return "No"
+  }
+}
+
+switch (askYesNo "Restart the system now?") {
   Yes {
     Write-Host "Restarting system..."
     Start-Sleep 1
     Restart-Computer
   }
   No {
-    Write-Host "Exiting now..."
+    Write-Host "Exiting script..."
     Start-Sleep 1
     Clear-Host
   }
