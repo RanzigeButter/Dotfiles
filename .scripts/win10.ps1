@@ -2,22 +2,105 @@
     # Scripts - Windows 10
     ========================================================================  #>
 
-# General
+# System
 # ==============================================================================
 
-function setupGeneral {
+function setupSystem {
+  # Remove AppxPackages
+  Get-AppxPackage -AllUsers |
+  Where-Object { $_.name -notlike "*Microsoft.WindowsStore*" } |
+  Where-Object { $_.name -notlike "*Microsoft.Windows.Photos*" } |
+  Where-Object { $_.name -notlike "*Microsoft.WindowsCalculator*" } |
+  Where-Object { $_.name -notlike "*Microsoft.ScreenSketch*" } |
+  Remove-AppxPackage -ea 0 | Out-Null
 
-  # Disabel lock screen
+  # Remove AppxProvisionedPackages
+  Get-AppxProvisionedPackage -online |
+  Where-Object { $_.packagename -notlike "*Microsoft.WindowsStore*" } |
+  Where-Object { $_.packagename -notlike "*Microsoft.Windows.Photos*" } |
+  Where-Object { $_.packagename -notlike "*Microsoft.WindowsCalculator*" } |
+  Where-Object { $_.packagename -notlike "*Microsoft.ScreenSketch*" } |
+  Remove-AppxProvisionedPackage -online -ea 0 | Out-Null
+
+  # Disable app suggestions
+  $pathAppSuggestions = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
+  Set-ItemProperty $pathAppSuggestions -Name ContentDeliveryAllowed -Value 0
+  Set-ItemProperty $pathAppSuggestions -Name OemPreInstalledAppsEnabled -Value 0
+  Set-ItemProperty $pathAppSuggestions -Name PreInstalledAppsEnabled -Value 0
+  Set-ItemProperty $pathAppSuggestions -Name SilentInstalledAppsEnabled -Value 0
+  Set-ItemProperty $pathAppSuggestions -Name SoftLandingEnabled -Value 0
+  Set-ItemProperty $pathAppSuggestions -Name SubscribedContentEnabled -Value 0
+  Set-ItemProperty $pathAppSuggestions -Name SystemPaneSuggestionsEnabled -Value 0
+
+  # Disable consumer features
+  $pathConsumerFeatures = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent"
+  if (!(Test-Path $pathConsumerFeatures)) {
+    New-Item $pathConsumerFeatures -ItemType Directory -Force -ea 0 | Out-Null
+  }
+  New-ItemProperty $pathConsumerFeatures -Name DisableWindowsConsumerFeatures -Value 1 -ea 0 | Out-Null
+
+  # Disable tasks
+  foreach ($task in @(
+      "*Consolidator*"
+      "*UsbCeip*"
+      "*XblGameSaveTask*"
+      "*XblGameSaveTaskLogon*"
+    )) {
+    Get-ScheduledTask -TaskName $task | Disable-ScheduledTask -ea 0 | Out-Null
+  }
+
+  # Disable services
+  foreach ($service in @(
+      "*diagnosticshub.standardcollector.service*"
+      "*DiagTrack*"
+      "*dmwappushsvc*"
+      "*lfsvc*"
+      "*RetailDemo*"
+      "*WbioSrvc*"
+      "*xbgm*"
+      "*XblAuthManager*"
+      "*XblGameSave*"
+      "*XboxNetApiSvc*"
+    )) {
+    Get-Service -Name $service | Set-Service -StartupType Disabled -ea 0 | Out-Null
+  }
+
+  # Disable feedback experience
+  $pathFeedbackExperience = "HKCU:\Software\Microsoft\Siuf\Rules"
+  if (!(Test-Path $pathFeedbackExperience)) {
+    New-Item $pathFeedbackExperience -ItemType Directory -Force -ea 0 | Out-Null
+  }
+  New-ItemProperty $pathFeedbackExperience -Name NumberOfSIUFInPeriod -Value 0 -ea 0 | Out-Null
+
+  # Disable telemetry
+  Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Name Enabled -Value 0
+  Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" -Name AllowTelemetry -Value 0
+
+  # Disable defender cloud
+  $pathDefenderCloud = "HKLM:\SOFTWARE\Microsoft\Windows Defender\Spynet"
+  Set-ItemProperty $pathDefenderCloud -Name SpynetReporting -Value 0
+  Set-ItemProperty $pathDefenderCloud -Name SubmitSamplesConsent -Value 0
+
+  # Disable fast startup
+  Set-ItemProperty "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power" -Name HiberbootEnabled -Value 0
+
+  # Disable lock screen
   $pathLockScreen = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Personalization"
   if (!(Test-Path $pathLockScreen)) {
     New-Item $pathLockScreen -ItemType Directory -Force -ea 0 | Out-Null
   }
   New-ItemProperty $pathLockScreen -Name NoLockScreen -Value 1 -ea 0 | Out-Null
 
-  # Dark Mode
+  # Enable dark mode
   Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" -Name AppsUseLightTheme -Value 0
 
+  # Disable Edge shortcut creation
+  New-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name DisableEdgeDesktopShortcutCreation -Value 1 -ea 0 | Out-Null
 }
+
+Write-Host "Setting up the general system..." -NoNewline
+setupSystem
+Write-Host " Done"
 
 # Taskbar
 # ==============================================================================
@@ -33,6 +116,10 @@ function setupTaskbar {
   Set-ItemProperty "$path\Explorer\Advanced\People" -Name PeopleBand -Value 0
   Set-ItemProperty "$path\Search" -Name SearchboxTaskbarMode -Value 0
 }
+
+Write-Host "Setting up the taskbar..." -NoNewline
+setupTaskbar
+Write-Host " Done"
 
 # Explorer
 # ==============================================================================
@@ -53,6 +140,10 @@ function setupExplorer {
     Remove-Item $path -Recurse -ea 0
   }
 }
+
+Write-Host "Setting up the explorer..." -NoNewline
+setupExplorer
+Write-Host " Done"
 
 # Context Menu
 # ==============================================================================
@@ -117,93 +208,6 @@ function setupContextMenu {
   Remove-PSDrive HKCR | Out-Null
 }
 
-# System
-# ==============================================================================
-
-function setupSystem {
-
-  # Remove AppxPackages
-  Get-AppxPackage -AllUsers |
-  Where-Object { $_.name -notlike "*Microsoft.WindowsStore*" } |
-  Where-Object { $_.name -notlike "*Microsoft.Windows.Photos*" } |
-  Where-Object { $_.name -notlike "*Microsoft.WindowsCalculator*" } |
-  Where-Object { $_.name -notlike "*Microsoft.ScreenSketch*" } |
-  Remove-AppxPackage -ea 0 | Out-Null
-
-  # Remove AppxProvisionedPackages
-  Get-AppxProvisionedPackage -online |
-  Where-Object { $_.packagename -notlike "*Microsoft.WindowsStore*" } |
-  Where-Object { $_.packagename -notlike "*Microsoft.Windows.Photos*" } |
-  Where-Object { $_.packagename -notlike "*Microsoft.WindowsCalculator*" } |
-  Where-Object { $_.packagename -notlike "*Microsoft.ScreenSketch*" } |
-  Remove-AppxProvisionedPackage -online -ea 0 | Out-Null
-
-  # Disable app suggestions and consumer features
-  $pathOne = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
-
-  Set-ItemProperty $pathOne -Name ContentDeliveryAllowed -Value 0
-  Set-ItemProperty $pathOne -Name OemPreInstalledAppsEnabled -Value 0
-  Set-ItemProperty $pathOne -Name PreInstalledAppsEnabled -Value 0
-  Set-ItemProperty $pathOne -Name SilentInstalledAppsEnabled -Value 0
-  Set-ItemProperty $pathOne -Name SoftLandingEnabled -Value 0
-  Set-ItemProperty $pathOne -Name SubscribedContentEnabled -Value 0
-  Set-ItemProperty $pathOne -Name SystemPaneSuggestionsEnabled -Value 0
-
-  $pathTwo = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent"
-
-  if (!(Test-Path $pathTwo)) {
-    New-Item $pathTwo -ItemType Directory -Force -ea 0 | Out-Null
-  }
-
-  New-ItemProperty $pathTwo -Name DisableWindowsConsumerFeatures -Value 1 -ea 0 | Out-Null
-
-  # Disable tasks
-  foreach ($task in @(
-      "*Consolidator*"
-      "*UsbCeip*"
-      "*XblGameSaveTask*"
-      "*XblGameSaveTaskLogon*"
-    )) {
-    Get-ScheduledTask -TaskName $task | Disable-ScheduledTask -ea 0 | Out-Null
-  }
-
-  # Disable services
-  foreach ($service in @(
-      "*diagnosticshub.standardcollector.service*"
-      "*DiagTrack*"
-      "*dmwappushsvc*"
-      "*lfsvc*"
-      "*RetailDemo*"
-      "*WbioSrvc*"
-      "*xbgm*"
-      "*XblAuthManager*"
-      "*XblGameSave*"
-      "*XboxNetApiSvc*"
-    )) {
-    Get-Service -Name $service | Set-Service -StartupType Disabled -ea 0 | Out-Null
-  }
-
-  # Disable feedback experience and telemetry
-  $path = "HKCU:\Software\Microsoft\Siuf\Rules"
-
-  if (!(Test-Path $path)) {
-    New-Item $path -ItemType Directory -Force -ea 0 | Out-Null
-  }
-
-  New-ItemProperty $path -Name NumberOfSIUFInPeriod -Value 0 -ea 0 | Out-Null
-
-  Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Name Enabled -Value 0
-  Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" -Name AllowTelemetry -Value 0
-
-  # Disable defender cloud
-  $path = "HKLM:\SOFTWARE\Microsoft\Windows Defender\Spynet"
-
-  Set-ItemProperty $path -Name SpynetReporting -Value 0
-  Set-ItemProperty $path -Name SubmitSamplesConsent -Value 0
-
-  # Disable fast startup
-  Set-ItemProperty "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power" -Name HiberbootEnabled -Value 0
-
-  # Disable Edge shortcut creation
-  New-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name DisableEdgeDesktopShortcutCreation -Value 1 -ea 0 | Out-Null
-}
+Write-Host "Setting up the context menu..." -NoNewline
+setupContextMenu
+Write-Host " Done"

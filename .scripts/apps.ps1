@@ -28,4 +28,4 @@ Start-Process "https://www.battle.net/"
 Start-Process "https://customer.focusrite.com/en/support/downloads?brand=Focusrite&product_by_range=1361&download_type=software"
 
 Write-Host " Done"
-Read-Host "Press ENTER to continue when you are finished with the installations..."
+Read-Host "Press ENTER to continue after you have finished the installations"
