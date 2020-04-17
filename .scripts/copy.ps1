@@ -70,7 +70,10 @@ if (Get-Command code -ea 0) {
   # Extensions
   Write-Host "Installing VS Code extensions..."
   foreach ($extension in @(
-      Get-Content "$dotfiles\vscode\extensions.md" | Where-Object { $_ -notmatch "^#" } | Where-Object { $_.trim() -ne "" }
+      Get-Content "$dotfiles\vscode\extensions.md" |
+      Where-Object { $_ -notmatch "^#" } |
+      Where-Object { $_.trim() -ne "" } |
+      ForEach-Object { $_.trimStart("- ") }
     )) {
     Write-Host ">>> $extension"
     code --install-extension $extension | Out-Null
