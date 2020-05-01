@@ -51,9 +51,10 @@ Write-Host " Done"
 # Windows Terminal
 # ==============================================================================
 
-if (Test-Path "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_*") {
+$folderWT = Get-ChildItem "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_*" | Select-Object -First 1 -Expand FullName
+if ($folderWT) {
   Write-Host "Installing Windows Terminal settings..." -NoNewline
-  Copy-Item "$dotfiles\terminal\settings.json" "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_*\LocalState"
+  Copy-Item "$dotfiles\terminal\settings.json" "$folderWT\LocalState"
   Write-Host " Done"
 }
 

@@ -38,7 +38,7 @@
     },
     {
       "icon": "webpack",
-      "extensions": ["webpack.config.settings.js"],
+      "extensions": ["webpack.settings.js"],
       "filename": true,
       "format": "svg"
     }

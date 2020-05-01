@@ -40,9 +40,10 @@ Copy-Item "$dotfiles\powershell\profile.ps1" "$HOME\Documents\WindowsPowerShell"
 Write-Host " Done"
 
 # Windows Terminal
-if (Test-Path "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_*") {
+$folderWT = Get-ChildItem "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_*" | Select-Object -First 1 -Expand FullName
+if ($folderWT) {
   Write-Host "Updating Windows Terminal settings..." -NoNewline
-  Copy-Item "$dotfiles\terminal\settings.json" "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_*\LocalState"
+  Copy-Item "$dotfiles\terminal\settings.json" "$folderWT\LocalState"
   Write-Host " Done"
 }
 
@@ -69,9 +70,8 @@ Write-Host -ForegroundColor Yellow @"
 
           -------------------------------------------------------------
 
-          Congrats! You are now up to date.
+          Congrats, you are now up to date!
 
           -------------------------------------------------------------
-
 
 "@

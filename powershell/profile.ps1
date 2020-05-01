@@ -293,7 +293,7 @@ function printUnicode {
     [String] $unicode
   )
 
-  $unicodeStripped = $unicode -replace 'U\+', ''
+  $unicodeStripped = $unicode -replace "U\+", ""
   $unicodeInt = [System.Convert]::toInt32($unicodeStripped, 16)
   [System.Char]::ConvertFromUtf32($unicodeInt)
 }
