@@ -18,7 +18,7 @@ function installFont {
 
   # Download, unpack & delete zip file
   (New-Object System.Net.WebClient).DownloadFile($url, $folderZip)
-  Expand-Archive $folderZip "$HOME\Downloads"
+  Expand-Archive $folderZip "$HOME\Downloads" -Force
   Remove-Item $folderZip
 
   $folder = $folderZip.TrimEnd(".zip")

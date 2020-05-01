@@ -11,7 +11,7 @@ Write-Host -ForegroundColor Cyan @"
           Y8P  "Y88888  "Y88P"   "Y888 888    888 888  "Y8888   88888P'
 
 "@
-Write-Host -ForegroundColor Red @"
+Write-Host -ForegroundColor Yellow @"
 
           -------------------------------------------------------------
 
@@ -39,7 +39,7 @@ $dotfilesZip = "$HOME\Downloads\dotfiles.zip"
 (New-Object System.Net.WebClient).DownloadFile($url, $dotfilesZip)
 
 # Unpack & delete zip file
-Expand-Archive $dotfilesZip "$HOME\Downloads"
+Expand-Archive $dotfilesZip "$HOME\Downloads" -Force
 Remove-Item $dotfilesZip
 
 # Set path
@@ -58,7 +58,7 @@ Write-Host " Done"
 # ==============================================================================
 
 Remove-Item $dotfiles -Recurse -Force
-Write-Host -ForegroundColor Red @"
+Write-Host -ForegroundColor Yellow @"
 
 
           -------------------------------------------------------------

@@ -129,6 +129,7 @@ function setupExplorer {
 
   Set-ItemProperty "$path\Advanced" -Name LaunchTo -Value 1
   Set-ItemProperty "$path\Advanced" -Name Hidden -Value 1
+  Set-ItemProperty "$path\CabinetState" -Name FullPath -Value 1
   Set-ItemProperty $path -Name ShowRecent -Value 0
   Set-ItemProperty $path -Name ShowFrequent -Value 0
 
@@ -163,23 +164,23 @@ function setupContextMenu {
   }
 
   # Remove 'Edit with Paint 3D'
-  $pathFA = "HKLM:\SOFTWARE\Classes\SystemFileAssociations"
+  $pathSFA = "HKLM:\SOFTWARE\Classes\SystemFileAssociations"
   foreach ($path in @(
-      "$pathFA\.3mf\Shell\3D Edit"
-      "$pathFA\.bmp\Shell\3D Edit"
-      "$pathFA\.gif\Shell\3D Edit"
-      "$pathFA\.glb\Shell\3D Edit"
-      "$pathFA\.fbx\Shell\3D Edit"
-      "$pathFA\.jfif\Shell\3D Edit"
-      "$pathFA\.jpe\Shell\3D Edit"
-      "$pathFA\.jpeg\Shell\3D Edit"
-      "$pathFA\.jpg\Shell\3D Edit"
-      "$pathFA\.obj\Shell\3D Edit"
-      "$pathFA\.ply\Shell\3D Edit"
-      "$pathFA\.png\Shell\3D Edit"
-      "$pathFA\.stl\Shell\3D Edit"
-      "$pathFA\.tif\Shell\3D Edit"
-      "$pathFA\.tiff\Shell\3D Edit"
+      "$pathSFA\.3mf\Shell\3D Edit"
+      "$pathSFA\.bmp\Shell\3D Edit"
+      "$pathSFA\.gif\Shell\3D Edit"
+      "$pathSFA\.glb\Shell\3D Edit"
+      "$pathSFA\.fbx\Shell\3D Edit"
+      "$pathSFA\.jfif\Shell\3D Edit"
+      "$pathSFA\.jpe\Shell\3D Edit"
+      "$pathSFA\.jpeg\Shell\3D Edit"
+      "$pathSFA\.jpg\Shell\3D Edit"
+      "$pathSFA\.obj\Shell\3D Edit"
+      "$pathSFA\.ply\Shell\3D Edit"
+      "$pathSFA\.png\Shell\3D Edit"
+      "$pathSFA\.stl\Shell\3D Edit"
+      "$pathSFA\.tif\Shell\3D Edit"
+      "$pathSFA\.tiff\Shell\3D Edit"
     )) {
     Remove-Item $path -Recurse -ea 0
   }

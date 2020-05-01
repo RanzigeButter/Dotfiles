@@ -132,6 +132,7 @@ List of all commands.
 
 #### Miscellaneous
 
+- `updateDotfiles` / `udotfiles` = Update dotfiles
 - `shutdownTimer` / `st` = Shutdown with timer (insert the time in minutes after the command)
 - `shutdownAbort` / `sa` = Abort Shutdown
 - `printUnicode` / `pu` = Print unicode (insert unicode after the command)

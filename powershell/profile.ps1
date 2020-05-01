@@ -261,6 +261,12 @@ Set-Alias "rb" "sshRanzigeButter"
 # Miscellaneous
 # ==============================================================================
 
+# Update dotfiles
+function updateDotfiles {
+  Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/RanzigeButter/dotfiles/master/update.ps1'))
+}
+Set-Alias "udotfiles" "updateDotfiles"
+
 # Shutdown timer
 function shutdownTimer {
   param (

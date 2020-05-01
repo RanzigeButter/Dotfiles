@@ -12,7 +12,15 @@ Repository that contains my personal dotfiles and configs to make life easier wh
 2. Open PowerShell as administrator and enter this command:
 
 ```PowerShell
-  Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/RanzigeButter/dotfiles/master/install.ps1'))
+  iwr 'https://raw.githubusercontent.com/RanzigeButter/dotfiles/master/install.ps1' | iex
+```
+
+## Update
+
+Run this command to update:
+
+```PowerShell
+  iwr 'https://raw.githubusercontent.com/RanzigeButter/dotfiles/master/update.ps1' | iex
 ```
 
 ## License
