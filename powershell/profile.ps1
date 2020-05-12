@@ -187,14 +187,6 @@ function npmInstallDevDependencies([String]$package) {
 }
 Set-Alias "nidd" "npmInstallDevDependencies"
 
-# Delete "node_modules", "package-lock.json" and reinstall all packages
-function npmReset {
-  Remove-Item node_modules/ -Recurse -Force -ea 0
-  Remove-Item package-lock.json -Force -ea 0
-  npm install
-}
-Set-Alias "nreset" "npmReset"
-
 # Outdated packages
 function npmOutdated {
   npm outdated
@@ -240,18 +232,6 @@ function sshAddKey([String]$name) {
 }
 Set-Alias "ssha" "sshAddKey"
 
-# List all SSH keys
-function sshListKeys {
-  ssh-add -l
-}
-Set-Alias "sshl" "sshListKeys"
-
-# Delete all SSH keys
-function sshDeleteKeys {
-  ssh-add -D
-}
-Set-Alias "sshd" "sshDeleteKeys"
-
 # SSH to RanzigeButter
 function sshRanzigeButter {
   ssh ranzigebutter
@@ -260,12 +240,6 @@ Set-Alias "rb" "sshRanzigeButter"
 
 # Miscellaneous
 # ==============================================================================
-
-# Update dotfiles
-function updateDotfiles {
-  Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/RanzigeButter/dotfiles/master/update.ps1'))
-}
-Set-Alias "udotfiles" "updateDotfiles"
 
 # Shutdown timer
 function shutdownTimer {
@@ -286,18 +260,11 @@ function shutdownAbort {
 }
 Set-Alias "sa" "shutdownAbort"
 
-# Print unicode
-function printUnicode {
-  param (
-    [Parameter(Mandatory)]
-    [String] $unicode
-  )
-
-  $unicodeStripped = $unicode -replace "U\+", ""
-  $unicodeInt = [System.Convert]::toInt32($unicodeStripped, 16)
-  [System.Char]::ConvertFromUtf32($unicodeInt)
+# Update dotfiles
+function updateDotfiles {
+  Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/RanzigeButter/dotfiles/master/update.ps1'))
 }
-Set-Alias "pu" "printUnicode"
+Set-Alias "udotfiles" "updateDotfiles"
 
 <#  ========================================================================
     # Clear Host

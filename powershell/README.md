@@ -7,35 +7,35 @@ My PowerShell Profile.
 Before installation, we have to set our PowerShell execution policy to allow the use of scripts.
 To do this, open your PowerShell as an administrator and enter the following command:
 
-````PowerShell
+```PowerShell
   Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force
-````
+```
 
 There are four ways to install the profile:
 
 ### For current User and Shell
 
-````plaintext
+```plaintext
   C:\User\USERNAME\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
-````
+```
 
 ### For current User and all Shells
 
-````plaintext
+```plaintext
   C:\User\USERNAME\Documents\WindowsPowerShell\profile.ps1
-````
+```
 
 ### For all Users and current Shell
 
-````plaintext
+```plaintext
   C:\Windows\System32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1
-````
+```
 
 ### For all Users and Shells
 
-````plaintext
+```plaintext
   C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1
-````
+```
 
 ## Content
 
@@ -113,7 +113,6 @@ List of all commands.
 
 - `npmInstallDependencies` / `nid` = Install package in dependencies (insert package after the command)
 - `npmInstallDevDependencies` / `nidd` = Install package in devDependencies (insert package after the command)
-- `npmReset` / `nreset` = Delete "node_modules", "package-lock.json" and reinstall all packages
 - `npmOutdated` / `no` = Outdated packages
 - `npmUpdate` / `nu` = Update packages
 - `npmAudit` / `na` = Audit packages
@@ -126,16 +125,14 @@ List of all commands.
 
 - `sshGenerateKey` / `sshg` = Generate SSH key (insert the E-Mail and then the name after the command)
 - `sshAddKey` / `ssha` = Add SSH key (insert the SSH key name after the command)
-- `sshListKeys` / `sshl` = List all added SSH keys
-- `sshDeleteKeys` / `sshd` = Delete all added SSH keys
 - `sshRanzigeButter` / `rb` = SSH to RanzigeButter
 
 #### Miscellaneous
 
-- `updateDotfiles` / `udotfiles` = Update dotfiles
 - `shutdownTimer` / `st` = Shutdown with timer (insert the time in minutes after the command)
 - `shutdownAbort` / `sa` = Abort Shutdown
-- `printUnicode` / `pu` = Print unicode (insert unicode after the command)
+- `updateDotfiles` / `udotfiles` = Update dotfiles
+
 
 ---
 
