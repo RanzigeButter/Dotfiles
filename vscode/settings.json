@@ -3,6 +3,7 @@
   // # General
   // ===========================================================================
   "window.title": "${rootName}${separator}${activeEditorShort}${dirty}",
+  "window.titleSeparator": " ➜ ",
   "window.newWindowDimensions": "maximized",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.settings.editor": "json",
@@ -13,11 +14,11 @@
   "telemetry.enableTelemetry": false,
   "telemetry.enableCrashReporter": false,
   "update.enableWindowsBackgroundUpdates": false,
+  "workbench.enableExperiments": false,
+  "workbench.settings.enableNaturalLanguageSearch": false,
   "extensions.autoUpdate": false,
   "extensions.ignoreRecommendations": true,
   "extensions.showRecommendationsOnlyOnDemand": true,
-  "workbench.enableExperiments": false,
-  "workbench.settings.enableNaturalLanguageSearch": false,
   // ===========================================================================
   // # Appearance
   // ===========================================================================
