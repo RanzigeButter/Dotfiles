@@ -12,6 +12,7 @@ function setupSystem {
   Where-Object { $_.name -notlike "*Microsoft.Windows.Photos*" } |
   Where-Object { $_.name -notlike "*Microsoft.WindowsCalculator*" } |
   Where-Object { $_.name -notlike "*Microsoft.ScreenSketch*" } |
+  Where-Object { $_.name -notlike "*Microsoft.WindowsTerminal*" } |
   Remove-AppxPackage -ea 0 | Out-Null
 
   # Remove AppxProvisionedPackages
@@ -20,6 +21,7 @@ function setupSystem {
   Where-Object { $_.packagename -notlike "*Microsoft.Windows.Photos*" } |
   Where-Object { $_.packagename -notlike "*Microsoft.WindowsCalculator*" } |
   Where-Object { $_.packagename -notlike "*Microsoft.ScreenSketch*" } |
+  Where-Object { $_.packagename -notlike "*Microsoft.WindowsTerminal*" } |
   Remove-AppxProvisionedPackage -online -ea 0 | Out-Null
 
   # Disable app suggestions

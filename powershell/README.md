@@ -73,8 +73,10 @@ List of all commands.
 
 - `c` = Clear PowerShell
 - `x` = Close PowerShell
-- `openPowerShell` / `op` = Open new PowerShell
-- `openPowerShellAdmin` / `opa` = Open new PowerShell as admin
+- `openPowerShellAdmin` / `opa` = Open PowerShell as admin
+- `shutdownTimer` / `st` = Shutdown with timer (insert the time in minutes after the command)
+- `shutdownAbort` / `sa` = Abort Shutdown
+- `updateDotfiles` / `udotfiles` = Update dotfiles
 
 #### File System
 
@@ -126,12 +128,6 @@ List of all commands.
 - `sshGenerateKey` / `sshg` = Generate SSH key (insert the E-Mail and then the name after the command)
 - `sshAddKey` / `ssha` = Add SSH key (insert the SSH key name after the command)
 - `sshRanzigeButter` / `rb` = SSH to RanzigeButter
-
-#### Miscellaneous
-
-- `shutdownTimer` / `st` = Shutdown with timer (insert the time in minutes after the command)
-- `shutdownAbort` / `sa` = Abort Shutdown
-- `updateDotfiles` / `udotfiles` = Update dotfiles
 
 
 ---

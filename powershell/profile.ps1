@@ -45,17 +45,36 @@ function x {
   exit
 }
 
-# Open new PowerShell
-function openPowerShell {
-  Start-Process PowerShell
-}
-Set-Alias "op" "openPowerShell"
-
-# Open new PowerShell as admin
+# Open PowerShell as admin
 function openPowerShellAdmin {
   Start-Process PowerShell -Verb RunAs
 }
 Set-Alias "opa" "openPowerShellAdmin"
+
+# Shutdown timer
+function shutdownTimer {
+  param (
+    [Parameter(Mandatory)]
+    [Int] $timeInMinutes
+  )
+
+  $timeInSeconds = $timeInMinutes * 60
+  shutdown -s -t $timeInSeconds
+  Write-Host "The Computer will shut down in $timeInMinutes minutes."
+}
+Set-Alias "st" "shutdownTimer"
+
+# Shutdown abort
+function shutdownAbort {
+  shutdown -a
+}
+Set-Alias "sa" "shutdownAbort"
+
+# Update dotfiles
+function updateDotfiles {
+  Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/RanzigeButter/dotfiles/master/update.ps1'))
+}
+Set-Alias "udotfiles" "updateDotfiles"
 
 # File System
 # ==============================================================================
@@ -237,34 +256,6 @@ function sshRanzigeButter {
   ssh ranzigebutter
 }
 Set-Alias "rb" "sshRanzigeButter"
-
-# Miscellaneous
-# ==============================================================================
-
-# Shutdown timer
-function shutdownTimer {
-  param (
-    [Parameter(Mandatory)]
-    [Int] $timeInMinutes
-  )
-
-  $timeInSeconds = $timeInMinutes * 60
-  shutdown -s -t $timeInSeconds
-  Write-Host "The Computer will shut down in $timeInMinutes minutes."
-}
-Set-Alias "st" "shutdownTimer"
-
-# Shutdown abort
-function shutdownAbort {
-  shutdown -a
-}
-Set-Alias "sa" "shutdownAbort"
-
-# Update dotfiles
-function updateDotfiles {
-  Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/RanzigeButter/dotfiles/master/update.ps1'))
-}
-Set-Alias "udotfiles" "updateDotfiles"
 
 <#  ========================================================================
     # Clear Host

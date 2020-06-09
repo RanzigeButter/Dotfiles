@@ -88,7 +88,6 @@
   // Markdown
   "markdown.preview.scrollEditorWithPreview": false,
   "markdown.preview.scrollPreviewWithEditor": false,
-  "markdown.extension.toc.githubCompatibility": true,
   "markdown.extension.italic.indicator": "_",
   "markdownlint.config": {
     "MD012": {
