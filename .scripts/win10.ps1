@@ -6,6 +6,84 @@
 # ==============================================================================
 
 function setupSystem {
+  # Disable Telemetry
+  Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Name Enabled -Value 0
+  Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" -Name AllowTelemetry -Value 0
+
+  # Disable Feedback Experience
+  $pathFeedbackExperience = "HKCU:\SOFTWARE\Microsoft\Siuf\Rules"
+  if (!(Test-Path $pathFeedbackExperience)) {
+    New-Item $pathFeedbackExperience -ItemType Directory -Force -ea 0 | Out-Null
+  }
+  New-ItemProperty $pathFeedbackExperience -Name NumberOfSIUFInPeriod -Value 0 -ea 0 | Out-Null
+
+  # Disable Defender Telemetry
+  Set-MpPreference -MAPSReporting Disabled
+  Set-MpPreference -SubmitSamplesConsent NeverSend
+
+  # Disable Services
+  foreach ($service in @(
+      "*diagnosticshub.standardcollector.service*"
+      "*DiagTrack*"
+      "*dmwappushsvc*"
+      "*lfsvc*"
+      "*RetailDemo*"
+      "*WbioSrvc*"
+      "*xbgm*"
+      "*XblAuthManager*"
+      "*XblGameSave*"
+      "*XboxNetApiSvc*"
+    )) {
+    Get-Service -Name $service | Set-Service -StartupType Disabled -ea 0 | Out-Null
+  }
+
+  # Disable Tasks
+  foreach ($task in @(
+      "*Consolidator*"
+      "*UsbCeip*"
+      "*XblGameSaveTask*"
+      "*XblGameSaveTaskLogon*"
+    )) {
+    Get-ScheduledTask -TaskName $task | Disable-ScheduledTask -ea 0 | Out-Null
+  }
+
+  # Disable Lock Screen
+  $pathLockScreen = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Personalization"
+  if (!(Test-Path $pathLockScreen)) {
+    New-Item $pathLockScreen -ItemType Directory -Force -ea 0 | Out-Null
+  }
+  New-ItemProperty $pathLockScreen -Name NoLockScreen -Value 1 -ea 0 | Out-Null
+
+  # Enable Dark Mode
+  Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" -Name AppsUseLightTheme -Value 0
+
+  # Remove '3D Objects' folder
+  foreach ($path3DObjects in @(
+      "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}"
+      "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}"
+    )) {
+    Remove-Item $path3DObjects -Recurse -ea 0
+  }
+
+  # Disable Edge shortcut creation
+  New-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name DisableEdgeDesktopShortcutCreation -Value 1 -ea 0 | Out-Null
+
+  # Disable fast startup
+  Set-ItemProperty "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power" -Name HiberbootEnabled -Value 0
+
+  # Mouse settings
+  Set-ItemProperty "HKCU:\Control Panel\Mouse" -Name MouseSpeed -Value 0
+  Set-ItemProperty "HKCU:\Control Panel\Mouse" -Name MouseSensitivity -Value 12
+}
+
+Write-Host "Setting up system..." -NoNewline
+setupSystem
+Write-Host " Done"
+
+# Apps
+# ==============================================================================
+
+function setupApps {
   # Remove AppxPackages
   Get-AppxPackage -AllUsers |
   Where-Object { $_.name -notlike "*Microsoft.WindowsStore*" } |
@@ -24,15 +102,29 @@ function setupSystem {
   Where-Object { $_.packagename -notlike "*Microsoft.WindowsTerminal*" } |
   Remove-AppxProvisionedPackage -online -ea 0 | Out-Null
 
-  # Disable app suggestions
-  $pathAppSuggestions = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
-  Set-ItemProperty $pathAppSuggestions -Name ContentDeliveryAllowed -Value 0
-  Set-ItemProperty $pathAppSuggestions -Name OemPreInstalledAppsEnabled -Value 0
-  Set-ItemProperty $pathAppSuggestions -Name PreInstalledAppsEnabled -Value 0
-  Set-ItemProperty $pathAppSuggestions -Name SilentInstalledAppsEnabled -Value 0
-  Set-ItemProperty $pathAppSuggestions -Name SoftLandingEnabled -Value 0
-  Set-ItemProperty $pathAppSuggestions -Name SubscribedContentEnabled -Value 0
-  Set-ItemProperty $pathAppSuggestions -Name SystemPaneSuggestionsEnabled -Value 0
+  # Remove WindowsCapabilities
+  foreach ($capability in @(
+      "App.StepsRecorder~~~~0.0.1.0"
+      "Browser.InternetExplorer~~~~0.0.11.0"
+      "Media.WindowsMediaPlayer~~~~0.0.12.0"
+      "Microsoft.Windows.WordPad~~~~0.0.1.0"
+      "Microsoft.Windows.PowerShell.ISE~~~~0.0.1.0"
+    )) {
+    Remove-WindowsCapability -Online –Name $capability -NoRestart
+  }
+
+  # App settings
+  foreach ($key in @(
+      "ContentDeliveryAllowed"
+      "OemPreInstalledAppsEnabled"
+      "PreInstalledAppsEnabled"
+      "SilentInstalledAppsEnabled"
+      "SoftLandingEnabled"
+      "SubscribedContentEnabled"
+      "SystemPaneSuggestionsEnabled"
+    )) {
+    Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name $key -Value 0
+  }
 
   # Disable consumer features
   $pathConsumerFeatures = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent"
@@ -40,75 +132,34 @@ function setupSystem {
     New-Item $pathConsumerFeatures -ItemType Directory -Force -ea 0 | Out-Null
   }
   New-ItemProperty $pathConsumerFeatures -Name DisableWindowsConsumerFeatures -Value 1 -ea 0 | Out-Null
-
-  # Disable tasks
-  foreach ($task in @(
-      "*Consolidator*"
-      "*UsbCeip*"
-      "*XblGameSaveTask*"
-      "*XblGameSaveTaskLogon*"
-    )) {
-    Get-ScheduledTask -TaskName $task | Disable-ScheduledTask -ea 0 | Out-Null
-  }
-
-  # Disable services
-  foreach ($service in @(
-      "*diagnosticshub.standardcollector.service*"
-      "*DiagTrack*"
-      "*dmwappushsvc*"
-      "*lfsvc*"
-      "*RetailDemo*"
-      "*WbioSrvc*"
-      "*xbgm*"
-      "*XblAuthManager*"
-      "*XblGameSave*"
-      "*XboxNetApiSvc*"
-    )) {
-    Get-Service -Name $service | Set-Service -StartupType Disabled -ea 0 | Out-Null
-  }
-
-  # Disable feedback experience
-  $pathFeedbackExperience = "HKCU:\Software\Microsoft\Siuf\Rules"
-  if (!(Test-Path $pathFeedbackExperience)) {
-    New-Item $pathFeedbackExperience -ItemType Directory -Force -ea 0 | Out-Null
-  }
-  New-ItemProperty $pathFeedbackExperience -Name NumberOfSIUFInPeriod -Value 0 -ea 0 | Out-Null
-
-  # Disable telemetry
-  Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Name Enabled -Value 0
-  Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" -Name AllowTelemetry -Value 0
-
-  # Disable defender cloud
-  $pathDefenderCloud = "HKLM:\SOFTWARE\Microsoft\Windows Defender\Spynet"
-  Set-ItemProperty $pathDefenderCloud -Name SpynetReporting -Value 0
-  Set-ItemProperty $pathDefenderCloud -Name SubmitSamplesConsent -Value 0
-
-  # Disable fast startup
-  Set-ItemProperty "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power" -Name HiberbootEnabled -Value 0
-
-  # Disable lock screen
-  $pathLockScreen = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Personalization"
-  if (!(Test-Path $pathLockScreen)) {
-    New-Item $pathLockScreen -ItemType Directory -Force -ea 0 | Out-Null
-  }
-  New-ItemProperty $pathLockScreen -Name NoLockScreen -Value 1 -ea 0 | Out-Null
-
-  # Enable dark mode
-  Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" -Name AppsUseLightTheme -Value 0
-
-  # Disable Edge shortcut creation
-  New-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name DisableEdgeDesktopShortcutCreation -Value 1 -ea 0 | Out-Null
 }
 
-Write-Host "Setting up the general system..." -NoNewline
-setupSystem
+Write-Host "Setting up apps..." -NoNewline
+setupApps
+Write-Host " Done"
+
+# Explorer
+# ==============================================================================
+
+function setupExplorer {
+  $path = "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer"
+
+  Set-ItemProperty "$path\Advanced" -Name LaunchTo -Value 1
+  Set-ItemProperty "$path\Advanced" -Name Hidden -Value 1
+  Set-ItemProperty "$path\CabinetState" -Name FullPath -Value 1
+  Set-ItemProperty $path -Name ShowRecent -Value 0
+  Set-ItemProperty $path -Name ShowFrequent -Value 0
+}
+
+Write-Host "Setting up explorer..." -NoNewline
+setupExplorer
 Write-Host " Done"
 
 # Taskbar
 # ==============================================================================
 
 function setupTaskbar {
-  $path = "HKCU:\Software\Microsoft\Windows\CurrentVersion"
+  $path = "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion"
 
   Set-ItemProperty "$path\Explorer\StuckRects3" -Name Settings -Value ([byte[]](0x30, 0x00, 0x00, 0x00, 0xfe, 0xff, 0xff, 0xff, 0x02, 0x50, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x5d, 0x00, 0x00, 0x00, 0x1e, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x07, 0x00, 0x00, 0x1e, 0x00, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00))
   Set-ItemProperty "$path\Explorer\Advanced" -Name TaskbarSizeMove -Value 0
@@ -119,33 +170,8 @@ function setupTaskbar {
   Set-ItemProperty "$path\Search" -Name SearchboxTaskbarMode -Value 0
 }
 
-Write-Host "Setting up the taskbar..." -NoNewline
+Write-Host "Setting up taskbar..." -NoNewline
 setupTaskbar
-Write-Host " Done"
-
-# Explorer
-# ==============================================================================
-
-function setupExplorer {
-  $path = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer"
-
-  Set-ItemProperty "$path\Advanced" -Name LaunchTo -Value 1
-  Set-ItemProperty "$path\Advanced" -Name Hidden -Value 1
-  Set-ItemProperty "$path\CabinetState" -Name FullPath -Value 1
-  Set-ItemProperty $path -Name ShowRecent -Value 0
-  Set-ItemProperty $path -Name ShowFrequent -Value 0
-
-  # Remove '3D Objects' folder
-  foreach ($path in @(
-      "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}"
-      "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}"
-    )) {
-    Remove-Item $path -Recurse -ea 0
-  }
-}
-
-Write-Host "Setting up the explorer..." -NoNewline
-setupExplorer
 Write-Host " Done"
 
 # Context Menu
@@ -211,6 +237,22 @@ function setupContextMenu {
   Remove-PSDrive HKCR | Out-Null
 }
 
-Write-Host "Setting up the context menu..." -NoNewline
+Write-Host "Setting up context menu..." -NoNewline
 setupContextMenu
+Write-Host " Done"
+
+# Optional Features
+# ==============================================================================
+
+function setupOptionalFeatures {
+  foreach ($feature in @(
+      "VirtualMachinePlatform"
+      "Microsoft-Windows-Subsystem-Linux"
+    )) {
+    Enable-WindowsOptionalFeature -Online -FeatureName $feature -All -NoRestart
+  }
+}
+
+Write-Host "Setting up optional features..." -NoNewline
+setupOptionalFeatures
 Write-Host " Done"
