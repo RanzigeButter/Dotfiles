@@ -67,8 +67,6 @@ Summary of the contents of this profile.
 
 ### Commands
 
-List of all commands.
-
 #### General
 
 - `c` = Clear PowerShell
@@ -90,17 +88,13 @@ List of all commands.
 - `dirDropbox` / `ddb` = Change directory to Dropbox
 - `dirPrint` / `dprint` = Prints the directory contents into a .csv file (file will be located in the corresponding directory)
 
-#### Visual Studio Code
-
-[Visual Studio Code](https://code.visualstudio.com/) must be installed!
+#### [Visual Studio Code](https://code.visualstudio.com/)
 
 - `vscodeNew` / `cn` = Open current folder in a new VS Code window
 - `vscodeReuse` / `cr` = Open current folder in an already opened VS Code window
 - `vscodeCompare` / `cc` = Compare two files with each other in a new VS Code window (insert the files after the command)
 
-#### Git
-
-[Git](https://git-scm.com) must be installed!
+#### [Git](https://git-scm.com)
 
 - `gitAddCommit` / `gac` = Add and commit files with message (insert the message after the command)
 - `gitAddCommitAmend` / `gaca` = Amend to the last commit without editing the message
@@ -109,9 +103,7 @@ List of all commands.
 - `gitClone` / `gcl` = Clone repository into directory (insert the repository after the command)
 - `gitLog` / `glog` = Shows the commit history
 
-#### Node Package Manager (NPM)
-
-[NodeJS/NPM](https://nodejs.org) must be installed!
+#### [NodeJS/NPM](https://nodejs.org)
 
 - `npmInstallDependencies` / `nid` = Install package in dependencies (insert package after the command)
 - `npmInstallDevDependencies` / `nidd` = Install package in devDependencies (insert package after the command)
@@ -121,18 +113,8 @@ List of all commands.
 - `npmDevelopment` / `nd` = Run development script (configuration must be provided in package.json)
 - `npmProduction` / `np` = Run production script (configuration must be provided in package.json)
 
-#### SSH
-
-[OpenSSH](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview) must be installed!
+#### OpenSSH
 
 - `sshGenerateKey` / `sshg` = Generate SSH key (insert the E-Mail and then the name after the command)
 - `sshAddKey` / `ssha` = Add SSH key (insert the SSH key name after the command)
 - `sshRanzigeButter` / `rb` = SSH to RanzigeButter
-
-
----
-
-
-### Clear-Host
-
-Clear PowerShell after the profile has been loaded.
