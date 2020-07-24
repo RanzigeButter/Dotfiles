@@ -92,7 +92,6 @@ Summary of the contents of this profile.
 
 - `vscodeNew` / `cn` = Open current folder in a new VS Code window
 - `vscodeReuse` / `cr` = Open current folder in an already opened VS Code window
-- `vscodeCompare` / `cc` = Compare two files with each other in a new VS Code window (insert the files after the command)
 
 #### [Git](https://git-scm.com)
 

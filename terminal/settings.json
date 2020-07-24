@@ -71,7 +71,17 @@
   // # Keybindings
   // ===========================================================================
   "keybindings": [
-    { "keys": "ctrl+c", "command": { "action": "copy" } },
-    { "keys": "ctrl+v", "command": { "action": "paste" } }
+    {
+      "keys": "ctrl+c",
+      "command": {
+        "action": "copy"
+      }
+    },
+    {
+      "keys": "ctrl+v",
+      "command": {
+        "action": "paste"
+      }
+    }
   ]
 }
