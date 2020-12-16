@@ -18,7 +18,6 @@
   "workbench.settings.enableNaturalLanguageSearch": false,
   "extensions.autoUpdate": false,
   "extensions.ignoreRecommendations": true,
-  "extensions.showRecommendationsOnlyOnDemand": true,
   // ===========================================================================
   // # Appearance
   // ===========================================================================
