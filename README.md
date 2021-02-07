@@ -22,7 +22,3 @@ Run this command to update:
 ```PowerShell
   iwr "https://raw.githubusercontent.com/RanzigeButter/dotfiles/master/update.ps1" -UseBasicParsing | iex
 ```
-
-## License
-
-[UNLICENSE](LICENSE)

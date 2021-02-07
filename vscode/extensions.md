@@ -5,24 +5,23 @@
 - jolaleye.horizon-theme-vscode
 - vscode-icons-team.vscode-icons
 
-## Formatting
-
-- editorconfig.editorconfig
-- esbenp.prettier-vscode
-
 ## Languages
 
 - yzhang.markdown-all-in-one
 - ms-vscode.powershell
 - mikestead.dotenv
-- ecmel.vscode-html-css
 - bmewburn.vscode-intelephense-client
 - mblode.twig-language-2
+
+## Formatting
+
+- editorconfig.editorconfig
+- esbenp.prettier-vscode
 
 ## Linter
 
 - davidanson.vscode-markdownlint
-- shinnn.stylelint
+- stylelint.vscode-stylelint
 - dbaeumer.vscode-eslint
 
 ## Miscellaneous

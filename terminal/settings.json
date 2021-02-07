@@ -46,10 +46,10 @@
     {
       "name": "Butter",
       "foreground": "#f0f0f0",
-      "background": "#101016",
+      "background": "#0a0a0c",
       "selectionBackground": "#ffa07d",
       "cursorColor": "#ffa07d",
-      "black": "#0c0c10",
+      "black": "#0a0a0c",
       "white": "#f0f0f0",
       "red": "#ee2a4e",
       "green": "#bae67e",
