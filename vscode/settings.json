@@ -2,6 +2,7 @@
   // ===========================================================================
   // General
   // ===========================================================================
+
   "window.title": "${rootName}${separator}${activeEditorShort}${dirty}",
   "window.titleSeparator": " ➜ ",
   "window.newWindowDimensions": "maximized",
@@ -22,6 +23,7 @@
   // ===========================================================================
   // Appearance
   // ===========================================================================
+
   "workbench.colorTheme": "Horizon",
   "workbench.iconTheme": "vscode-icons",
   "editor.fontFamily": "Fira Code",
@@ -48,6 +50,7 @@
   // ===========================================================================
   // Editor
   // ===========================================================================
+
   "workbench.editor.openPositioning": "last",
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.tree.indent": 14,
@@ -71,6 +74,7 @@
   // ===========================================================================
   // Languages
   // ===========================================================================
+
   // Markdown
   "markdown.preview.scrollEditorWithPreview": false,
   "markdown.preview.scrollPreviewWithEditor": false,
@@ -100,6 +104,7 @@
   // ===========================================================================
   // Formatting
   // ===========================================================================
+
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": true
@@ -124,10 +129,12 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
+  "prettier.disableLanguages": ["css", "scss"],
 
   // ===========================================================================
   // Miscellaneous
   // ===========================================================================
+
   // Hide folders/files
   "files.exclude": {
     "**/.git": true,
