@@ -2,7 +2,7 @@
 
 ## Appearance
 
-- jolaleye.horizon-theme-vscode
+- zhuangtongfa.material-theme
 - vscode-icons-team.vscode-icons
 
 ## Languages

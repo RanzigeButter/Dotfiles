@@ -24,7 +24,9 @@
   // Appearance
   // ===========================================================================
 
-  "workbench.colorTheme": "Horizon",
+  "workbench.colorTheme": "One Dark Pro",
+  "oneDarkPro.editorTheme": "ayu",
+  "oneDarkPro.vivid": true,
   "workbench.iconTheme": "vscode-icons",
   "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": true,
@@ -90,12 +92,12 @@
     "MD033": false
   },
   // PHP
-  "php.validate.executablePath": "C:\\Program Files\\PHP-7.4.0\\php.exe",
+  "php.validate.executablePath": "C:\\Program Files\\PHP-8.0.2\\php.exe",
   "php.suggest.basic": false,
   // Stylesheets
   "css.validate": false,
-  "less.validate": false,
   "scss.validate": false,
+  "less.validate": false,
   // JavaScript
   "javascript.updateImportsOnFileMove.enabled": "always",
   // TypeScript
@@ -109,8 +111,8 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "json.format.enable": false,
   "twig-language-2.formatting": false,
+  "prettier.disableLanguages": ["css", "scss", "less"],
   "[markdown]": {
     "editor.defaultFormatter": "yzhang.markdown-all-in-one"
   },
@@ -129,7 +131,12 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
-  "prettier.disableLanguages": ["css", "scss"],
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
 
   // ===========================================================================
   // Miscellaneous
