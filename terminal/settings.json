@@ -1,19 +1,22 @@
 {
   // ===========================================================================
-  // # General
+  // General
   // ===========================================================================
+
   "$schema": "https://aka.ms/terminal-profiles-schema",
   "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
   "launchMode": "maximized",
+
   // ===========================================================================
-  // # Profiles
+  // Profiles
   // ===========================================================================
+
   "profiles": {
     "defaults": {
       "colorScheme": "Butter",
       "fontFace": "Fira Code",
       "fontSize": 14,
-      "padding": "12"
+      "padding": 14
     },
     "list": [
       {
@@ -31,6 +34,13 @@
         "hidden": false
       },
       {
+        // WSL
+        "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
+        "name": "Bash",
+        "source": "Windows.Terminal.Wsl",
+        "hidden": false
+      },
+      {
         // Azure Cloud Shell
         "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
         "name": "Azure Cloud Shell",
@@ -39,37 +49,41 @@
       }
     ]
   },
+
   // ===========================================================================
-  // # Color Schemes
+  // Color Schemes
   // ===========================================================================
+
   "schemes": [
     {
       "name": "Butter",
       "foreground": "#f0f0f0",
-      "background": "#0a0a0c",
+      "background": "#0c0c10",
       "selectionBackground": "#ffa07d",
       "cursorColor": "#ffa07d",
-      "black": "#0a0a0c",
+      "black": "#000000",
       "white": "#f0f0f0",
       "red": "#ee2a4e",
-      "green": "#bae67e",
-      "blue": "#5ccfe6",
-      "yellow": "#fca07d",
-      "purple": "#791e94",
-      "cyan": "#2de2e6",
+      "green": "#89ca78",
+      "blue": "#61afef",
+      "yellow": "#ffcc66",
+      "purple": "#d55fde",
+      "cyan": "#2bbac5",
       "brightBlack": "#8e9ba8",
       "brightWhite": "#f0f0f0",
       "brightRed": "#ee2a4e",
-      "brightGreen": "#bae67e",
-      "brightBlue": "#5ccfe6",
-      "brightYellow": "#fca07d",
-      "brightPurple": "#c3a6ff",
-      "brightCyan": "#2de2e6"
+      "brightGreen": "#89ca78",
+      "brightBlue": "#61afef",
+      "brightYellow": "#ffcc66",
+      "brightPurple": "#d55fde",
+      "brightCyan": "#2bbac5"
     }
   ],
+
   // ===========================================================================
-  // # Keybindings
+  // Keybindings
   // ===========================================================================
+
   "keybindings": [
     {
       "keys": "ctrl+c",
