@@ -16,7 +16,8 @@
       "colorScheme": "Butter",
       "fontFace": "Fira Code",
       "fontSize": 14,
-      "padding": 14
+      "padding": 14,
+      "bellStyle": "none"
     },
     "list": [
       {

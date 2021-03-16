@@ -92,7 +92,7 @@
     "MD033": false
   },
   // PHP
-  "php.validate.executablePath": "C:\\Program Files\\PHP-8.0.2\\php.exe",
+  "php.validate.executablePath": "C:\\Program Files\\PHP-8.0.3\\php.exe",
   "php.suggest.basic": false,
   // Stylesheets
   "css.validate": false,
@@ -112,12 +112,17 @@
     "source.fixAll": true
   },
   "twig-language-2.formatting": false,
-  "prettier.disableLanguages": ["css", "scss", "less"],
   "[markdown]": {
     "editor.defaultFormatter": "yzhang.markdown-all-in-one"
   },
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "[scss]": {
+    "editor.formatOnSave": false
   },
   "[javascript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"

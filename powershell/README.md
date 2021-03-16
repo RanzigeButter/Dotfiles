@@ -8,7 +8,7 @@ Before installation, we have to set our PowerShell execution policy to allow the
 To do this, open your PowerShell as an administrator and enter the following command:
 
 ```PowerShell
-  Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force
+Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force
 ```
 
 There are four ways to install the profile:
@@ -16,25 +16,25 @@ There are four ways to install the profile:
 ### For current User and Shell
 
 ```plaintext
-  C:\User\USERNAME\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+C:\User\USERNAME\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
 ```
 
 ### For current User and all Shells
 
 ```plaintext
-  C:\User\USERNAME\Documents\WindowsPowerShell\profile.ps1
+C:\User\USERNAME\Documents\WindowsPowerShell\profile.ps1
 ```
 
 ### For all Users and current Shell
 
 ```plaintext
-  C:\Windows\System32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1
+C:\Windows\System32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1
 ```
 
 ### For all Users and Shells
 
 ```plaintext
-  C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1
+C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1
 ```
 
 ## Content
@@ -52,13 +52,13 @@ Summary of the contents of this profile.
 #### Window Title
 
 ```plaintext
-  PowerShell - Admin: true|false
+PowerShell - Admin: true|false
 ```
 
 #### Promt
 
 ```plaintext
-  CurrentLocation ❯
+CurrentLocation ❯
 ```
 
 
