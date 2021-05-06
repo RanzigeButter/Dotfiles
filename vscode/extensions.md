@@ -5,6 +5,11 @@
 - zhuangtongfa.material-theme
 - vscode-icons-team.vscode-icons
 
+## Tools
+
+- rangav.vscode-thunder-client
+- liximomo.sftp
+
 ## Languages
 
 - yzhang.markdown-all-in-one
@@ -26,7 +31,6 @@
 
 ## Miscellaneous
 
-- liximomo.sftp
 - mkxml.vscode-filesize
 - cssho.vscode-svgviewer
 - bierner.emojisense

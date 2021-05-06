@@ -9,8 +9,7 @@
   "workbench.startupEditor": "newUntitledFile",
   "workbench.settings.editor": "json",
   "workbench.settings.useSplitJSON": true,
-  "terminal.integrated.shell.windows": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-  "terminal.integrated.rendererType": "canvas",
+  "terminal.integrated.defaultProfile.windows": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
   // Online Services
   "telemetry.enableTelemetry": false,
   "telemetry.enableCrashReporter": false,
@@ -55,6 +54,8 @@
 
   "workbench.editor.openPositioning": "last",
   "workbench.editor.highlightModifiedTabs": true,
+  "workbench.editor.decorations.colors": false,
+  "workbench.editor.decorations.badges": false,
   "workbench.tree.indent": 14,
   "breadcrumbs.enabled": false,
   "editor.smoothScrolling": true,
@@ -80,7 +81,6 @@
   // Markdown
   "markdown.preview.scrollEditorWithPreview": false,
   "markdown.preview.scrollPreviewWithEditor": false,
-  "markdown.extension.italic.indicator": "_",
   "markdownlint.config": {
     "MD012": {
       "maximum": 2
