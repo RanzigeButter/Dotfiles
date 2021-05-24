@@ -1,4 +1,4 @@
-# PowerShell Profile <!-- omit in toc -->
+# PowerShell Profile
 
 My PowerShell Profile.
 
@@ -13,82 +13,59 @@ Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force
 
 There are four ways to install the profile:
 
-### For current User and Shell
-
 ```plaintext
+For current User and Shell:
 C:\User\USERNAME\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
-```
 
-### For current User and all Shells
-
-```plaintext
+For current User and all Shells:
 C:\User\USERNAME\Documents\WindowsPowerShell\profile.ps1
-```
 
-### For all Users and current Shell
-
-```plaintext
+For all Users and current Shell:
 C:\Windows\System32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1
-```
 
-### For all Users and Shells
-
-```plaintext
+For all Users and Shells:
 C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1
 ```
 
 ## Content
 
-Summary of the contents of this profile.
-
-**Note:** Commands are not case-sensitive.
-
-
----
-
-
 ### Generic
 
-#### Window Title
+Window Title:
 
 ```plaintext
 PowerShell - Admin: true|false
 ```
 
-#### Promt
+Promt:
 
 ```plaintext
 CurrentLocation ❯
 ```
 
-
----
-
-
 ### Commands
+
+**Note:** Commands are not case-sensitive.
 
 #### General
 
 - `c` = Clear PowerShell
 - `x` = Close PowerShell
 - `openPowerShellAdmin` / `opa` = Open PowerShell as admin
-- `shutdownTimer` / `st` = Shutdown with timer (insert the time in minutes after the command)
-- `shutdownAbort` / `sa` = Abort Shutdown
+- `shutdownTimer` / `sdt` = Shutdown with timer (insert the time in minutes after the command)
+- `shutdownAbort` / `sda` = Abort Shutdown
+- `dns` = Get DNS infos
 - `updateDotfiles` / `udotfiles` = Update dotfiles
 
 #### File System
 
 - `touch` / `t` = Create new empty file
-- `..` = One folder up
-- `...` = Two folders up
-- `....` = Three folders up
-- `dirHome` / `~` = Change directory to Home
-- `dirDesktop` / `dd` = Change directory to Desktop
-- `dirDownloads` / `ddl` = Change directory to Downloads
-- `dirDropbox` / `ddb` = Change directory to Dropbox
+- `..`, `...`, `....`, `.....`, `......` = Folder(s) up
+- `dirDownloads` / `dl` = Change directory to Downloads
+- `dirDropbox` / `box` = Change directory to Dropbox
 - `dirPrint` / `dprint` = Prints the directory contents into a .csv file (file will be located in the corresponding directory)
 
-#### [Visual Studio Code](https://code.visualstudio.com/)
+#### [Visual Studio Code](https://code.visualstudio.com)
 
 - `vscodeNew` / `cn` = Open current folder in a new VS Code window
 - `vscodeReuse` / `cr` = Open current folder in an already opened VS Code window
@@ -102,7 +79,7 @@ CurrentLocation ❯
 - `gitClone` / `gcl` = Clone repository into directory (insert the repository after the command)
 - `gitLog` / `glog` = Shows the commit history
 
-#### [NodeJS/NPM](https://nodejs.org)
+#### [npm](https://www.npmjs.com)
 
 - `npmInstallDependencies` / `nid` = Install package in dependencies (insert package after the command)
 - `npmInstallDevDependencies` / `nidd` = Install package in devDependencies (insert package after the command)
@@ -112,7 +89,7 @@ CurrentLocation ❯
 - `npmDevelopment` / `nd` = Run development script (configuration must be provided in package.json)
 - `npmProduction` / `np` = Run production script (configuration must be provided in package.json)
 
-#### OpenSSH
+#### SSH
 
 - `sshGenerateKey` / `sshg` = Generate SSH key (insert the E-Mail and then the name after the command)
 - `sshAddKey` / `ssha` = Add SSH key (insert the SSH key name after the command)

@@ -76,7 +76,7 @@ Write-Host -ForegroundColor Yellow @"
 function askYesNo {
   param (
     [Parameter(Mandatory)]
-    [String] $question
+    [String]$question
   )
 
   do { $response = Read-Host "$question ( Yes / No )" }

@@ -4,73 +4,48 @@
 # |  __/ (_) \ V  V /  __/ |   ___) | | | |  __/ | | |  __/| | | (_) |  _| | |  __/
 # |_|   \___/ \_/\_/ \___|_|  |____/|_| |_|\___|_|_| |_|   |_|  \___/|_| |_|_|\___|
 
-<#  ========================================================================
-    # Generic
-    ========================================================================  #>
 
 # Title
-# ==============================================================================
-
-# Check Administrator
 function checkAdmin {
   $user = [Security.Principal.WindowsIdentity]::GetCurrent();
   (New-Object Security.Principal.WindowsPrincipal $user).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
 }
-
-# Set Title
-$Host.UI.RawUI.WindowTitle = "PowerShell - Admin: $((checkAdmin))"
+$Host.UI.RawUI.WindowTitle = "PowerShell - Admin: $(checkAdmin)"
 
 # Promt
-# ==============================================================================
-
 function global:prompt {
-  $location = Write-Host "$(Get-Location)" -ForegroundColor Blue -NoNewline
-  $ending = [char]0x276F
-
-  "$($location) $($ending) "
+  "$(Write-Host "$(Split-Path -leaf -path (Get-Location))" -ForegroundColor Blue -NoNewline) $([char]0x276F) "
 }
 
-<#  ========================================================================
-    # Commands
-    ========================================================================  #>
-
-# General
+# ==============================================================================
+# Commands
 # ==============================================================================
 
-# Clear PowerShell
 Set-Alias "c" "Clear-Host"
 
-# Close PowerShell
 function x {
   exit
 }
 
-# Open PowerShell as admin
 function openPowerShellAdmin {
   Start-Process PowerShell -Verb RunAs
 }
 Set-Alias "opa" "openPowerShellAdmin"
 
-# Shutdown timer
-function shutdownTimer {
-  param (
-    [Parameter(Mandatory)]
-    [Int] $timeInMinutes
-  )
-
+function shutdownTimer([int]$timeInMinutes) {
   $timeInSeconds = $timeInMinutes * 60
   shutdown -s -t $timeInSeconds
   Write-Host "The Computer will shut down in $timeInMinutes minutes."
 }
-Set-Alias "st" "shutdownTimer"
+Set-Alias "sdt" "shutdownTimer"
 
-# Shutdown abort
 function shutdownAbort {
   shutdown -a
 }
-Set-Alias "sa" "shutdownAbort"
+Set-Alias "sda" "shutdownAbort"
 
-# Update dotfiles
+Set-Alias "dns" "Resolve-DnsName"
+
 function updateDotfiles {
   Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/RanzigeButter/dotfiles/master/update.ps1'))
 }
@@ -79,57 +54,37 @@ Set-Alias "udotfiles" "updateDotfiles"
 # File System
 # ==============================================================================
 
-# Create new file
-function touch {
-  param (
-    [Parameter(Mandatory)]
-    [string] $file
-  )
-
+function touch([string]$file) {
   New-Item $file -ItemType File | Out-Null
 }
 Set-Alias "t" "touch"
 
-# One folder up
 function .. {
   Set-Location ".."
 }
-
-# Two folders up
 function ... {
   Set-Location "..\.."
 }
-
-# Three folders up
 function .... {
   Set-Location "..\..\.."
 }
-
-# Change directory to Home
-function dirHome {
-  Set-Location "$HOME"
+function ..... {
+  Set-Location "..\..\..\.."
 }
-Set-Alias "~" "dirHome"
-
-# Change directory to Desktop
-function dirDesktop {
-  Set-Location "$HOME\Desktop"
+function ...... {
+  Set-Location "..\..\..\..\.."
 }
-Set-Alias "dd" "dirDesktop"
 
-# Change directory to Downloads
 function dirDownloads {
   Set-Location "$HOME\Downloads"
 }
-Set-Alias "ddl" "dirDownloads"
+Set-Alias "dl" "dirDownloads"
 
-# Change directory to Dropbox
 function dirDropbox {
   Set-Location "$HOME\Dropbox"
 }
-Set-Alias "ddb" "dirDropbox"
+Set-Alias "box" "dirDropbox"
 
-# Prints the directory contents
 function dirPrint {
   Get-ChildItem -Force -Name -Exclude "dir_content.csv" | Out-File "dir_content.csv"
 }
@@ -138,13 +93,11 @@ Set-Alias "dprint" "dirPrint"
 # Visual Studio Code
 # ==============================================================================
 
-# Open current folder in a new VS Code window
 function vscodeNew {
   code -n .
 }
 Set-Alias "cn" "vscodeNew"
 
-# Open current folder in an already opened VS Code window
 function vscodeReuse {
   code -r .
 }
@@ -153,84 +106,71 @@ Set-Alias "cr" "vscodeReuse"
 # Git
 # ==============================================================================
 
-# Add and commit files with message
-function gitAddCommit([String]$message) {
+function gitAddCommit([string]$message) {
   git add .
   git commit -m $message
 }
 Set-Alias "gac" "gitAddCommit"
 
-# Amend to the last commit without editing the message
 function gitAddCommitAmend {
   git add .
   git commit --amend --no-edit
 }
 Set-Alias "gaca" "gitAddCommitAmend"
 
-# Push files to remote repository
-function gitPush([String]$branch) {
+function gitPush([string]$branch) {
   git push origin $branch
 }
 Set-Alias "gsh" "gitPush"
 
-# Pull files from remote repository
-function gitPull([String]$branch) {
+function gitPull([string]$branch) {
   git pull --rebase origin $branch
 }
 Set-Alias "gll" "gitPull"
 
-# Clone repository into directory
-function gitClone([String]$repository) {
+function gitClone([string]$repository) {
   git clone $repository
 }
 Set-Alias "gcl" "gitClone"
 
-# Shows the commit history
 function gitLog {
   git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 }
 Set-Alias "glog" "gitLog"
 
-# Node Package Manager (NPM)
+# Node Package Manager
 # ==============================================================================
 
-# Install package in dependencies
-function npmInstallDependencies([String]$package) {
+function npmInstallDependencies([string[]]$package) {
   npm install --save-prod $package
 }
 Set-Alias "nid" "npmInstallDependencies"
 
-# Install package in devDependencies
-function npmInstallDevDependencies([String]$package) {
+function npmInstallDevDependencies([string[]]$package) {
   npm install --save-dev $package
 }
 Set-Alias "nidd" "npmInstallDevDependencies"
 
-# Outdated packages
 function npmOutdated {
   npm outdated
 }
 Set-Alias "no" "npmOutdated"
 
-# Update packages
 function npmUpdate {
   npm update
 }
 Set-Alias "nu" "npmUpdate"
 
-# Audit packages
 function npmAudit {
   npm audit fix
 }
 Set-Alias "na" "npmAudit"
 
-# Run development script
 function npmDevelopment {
   npm run dev
 }
 Set-Alias "nd" "npmDevelopment"
 
-# Run production script
 function npmProduction {
   npm run prod
 }
@@ -239,26 +179,21 @@ Set-Alias "np" "npmProduction"
 # SSH
 # ==============================================================================
 
-# Generate SSH key
-function sshGenerateKey([String]$email, [String]$name) {
+function sshGenerateKey([string]$email, [string]$name) {
   ssh-keygen -t rsa -b 4096 -C $email -f $HOME\.ssh\$name
 }
 Set-Alias "sshg" "sshGenerateKey"
 
-# Add SSH key
-function sshAddKey([String]$name) {
+function sshAddKey([string]$name) {
   ssh-add $HOME\.ssh\$name
 }
 Set-Alias "ssha" "sshAddKey"
 
-# SSH to RanzigeButter
 function sshRanzigeButter {
   ssh ranzigebutter
 }
 Set-Alias "rb" "sshRanzigeButter"
 
-<#  ========================================================================
-    # Clear Host
-    ========================================================================  #>
-
+# ==============================================================================
 Clear-Host
+# ==============================================================================

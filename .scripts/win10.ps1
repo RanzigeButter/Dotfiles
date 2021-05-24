@@ -240,19 +240,3 @@ function setupContextMenu {
 Write-Host "Setting up context menu..." -NoNewline
 setupContextMenu
 Write-Host " Done"
-
-# Optional Features
-# ==============================================================================
-
-function setupOptionalFeatures {
-  foreach ($feature in @(
-      "VirtualMachinePlatform"
-      "Microsoft-Windows-Subsystem-Linux"
-    )) {
-    Enable-WindowsOptionalFeature -Online -FeatureName $feature -All -NoRestart
-  }
-}
-
-Write-Host "Setting up optional features..." -NoNewline
-setupOptionalFeatures
-Write-Host " Done"

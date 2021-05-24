@@ -3,7 +3,7 @@
 ## Appearance
 
 - zhuangtongfa.material-theme
-- vscode-icons-team.vscode-icons
+- pkief.material-icon-theme
 
 ## Tools
 

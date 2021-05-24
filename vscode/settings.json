@@ -26,27 +26,11 @@
   "workbench.colorTheme": "One Dark Pro",
   "oneDarkPro.editorTheme": "ayu",
   "oneDarkPro.vivid": true,
-  "workbench.iconTheme": "vscode-icons",
+  "workbench.iconTheme": "material-icon-theme",
+  "material-icon-theme.folders.theme": "classic",
+  "material-icon-theme.activeIconPack": "react",
   "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": true,
-  // VS Icons
-  "vsicons.dontShowNewVersionMessage": true,
-  "vsicons.presets.foldersAllDefaultIcon": true,
-  "vsicons.presets.jsOfficial": true,
-  "vsicons.presets.tsOfficial": true,
-  "vsicons.associations.files": [
-    {
-      "icon": "nginx",
-      "extensions": ["conf"],
-      "format": "svg"
-    },
-    {
-      "icon": "webpack",
-      "extensions": ["webpack.settings.js"],
-      "filename": true,
-      "format": "svg"
-    }
-  ],
 
   // ===========================================================================
   // Editor

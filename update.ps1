@@ -52,13 +52,6 @@ if (Get-Command code -ea 0) {
   Write-Host "Updating VS Code settings..." -NoNewline
   Copy-Item "$dotfiles\vscode\settings.json" "$HOME\AppData\Roaming\Code\User"
   Write-Host " Done"
-
-  Write-Host "Updating VS Code custom icons..." -NoNewline
-  if (Test-Path "$HOME\AppData\Roaming\Code\User\vsicons-custom-icons") {
-    Remove-Item "$HOME\AppData\Roaming\Code\User\vsicons-custom-icons" -Recurse -Force
-  }
-  Copy-Item "$dotfiles\vscode\vsicons-custom-icons" "$HOME\AppData\Roaming\Code\User" -Recurse
-  Write-Host " Done"
 }
 
 # Finalize

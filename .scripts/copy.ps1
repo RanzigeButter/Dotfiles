@@ -8,10 +8,9 @@
 function installFont {
   param (
     [Parameter(Mandatory)]
-    [string] $url,
-
+    [string]$url,
     [Parameter(Mandatory)]
-    [string] $filename
+    [string]$filename
   )
 
   $folderZip = "$HOME\Downloads\$filename"
@@ -62,7 +61,6 @@ if ($folderWT) {
 # ==============================================================================
 
 if (Get-Command code -ea 0) {
-
   # Settings
   Write-Host "Installing VS Code settings..." -NoNewline
   Copy-Item "$dotfiles\vscode\settings.json" "$HOME\AppData\Roaming\Code\User"
@@ -79,13 +77,4 @@ if (Get-Command code -ea 0) {
     Write-Host ">>> $extension"
     code --install-extension $extension | Out-Null
   }
-
-  # Custom icons
-  Write-Host "Installing VS Code custom icons..." -NoNewline
-  if (Test-Path "$HOME\AppData\Roaming\Code\User\vsicons-custom-icons") {
-    Remove-Item "$HOME\AppData\Roaming\Code\User\vsicons-custom-icons" -Recurse -Force
-  }
-  Copy-Item "$dotfiles\vscode\vsicons-custom-icons" "$HOME\AppData\Roaming\Code\User" -Recurse
-  Write-Host " Done"
-
 }
