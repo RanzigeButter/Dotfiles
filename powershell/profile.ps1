@@ -46,10 +46,9 @@ Set-Alias "sda" "shutdownAbort"
 
 Set-Alias "dns" "Resolve-DnsName"
 
-function updateDotfiles {
+function update {
   Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/RanzigeButter/dotfiles/master/update.ps1'))
 }
-Set-Alias "udotfiles" "updateDotfiles"
 
 # File System
 # ==============================================================================
@@ -96,12 +95,12 @@ Set-Alias "dprint" "dirPrint"
 function vscodeNew {
   code -n .
 }
-Set-Alias "cn" "vscodeNew"
+Set-Alias "coden" "vscodeNew"
 
 function vscodeReuse {
   code -r .
 }
-Set-Alias "cr" "vscodeReuse"
+Set-Alias "coder" "vscodeReuse"
 
 # Git
 # ==============================================================================

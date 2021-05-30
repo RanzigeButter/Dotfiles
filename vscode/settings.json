@@ -9,7 +9,6 @@
   "workbench.startupEditor": "newUntitledFile",
   "workbench.settings.editor": "json",
   "workbench.settings.useSplitJSON": true,
-  "terminal.integrated.defaultProfile.windows": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
   // Online Services
   "telemetry.enableTelemetry": false,
   "telemetry.enableCrashReporter": false,

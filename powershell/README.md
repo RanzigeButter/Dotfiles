@@ -55,7 +55,7 @@ CurrentLocation ❯
 - `shutdownTimer` / `sdt` = Shutdown with timer (insert the time in minutes after the command)
 - `shutdownAbort` / `sda` = Abort Shutdown
 - `dns` = Get DNS infos
-- `updateDotfiles` / `udotfiles` = Update dotfiles
+- `update` = Update dotfiles
 
 #### File System
 
@@ -67,8 +67,8 @@ CurrentLocation ❯
 
 #### [Visual Studio Code](https://code.visualstudio.com)
 
-- `vscodeNew` / `cn` = Open current folder in a new VS Code window
-- `vscodeReuse` / `cr` = Open current folder in an already opened VS Code window
+- `vscodeNew` / `coden` = Open current folder in a new VS Code window
+- `vscodeReuse` / `coder` = Open current folder in an already opened VS Code window
 
 #### [Git](https://git-scm.com)
 
