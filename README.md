@@ -1,10 +1,6 @@
-<p align="center">
-  <img src="dotfiles.png">
-</p>
+# dotfiles
 
-# dotfiles & configs
-
-Repository that contains my personal dotfiles and configs to make life easier when setting up a new computer.
+Repository that contains my dotfiles/configs.
 
 ## Installation
 

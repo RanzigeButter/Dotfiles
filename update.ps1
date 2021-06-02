@@ -16,15 +16,15 @@ Write-Host "Preparing setup..." -NoNewline
 
 # Download repository
 $url = "https://github.com/RanzigeButter/dotfiles/archive/master.zip"
-$dotfilesZip = "$HOME\Downloads\dotfiles.zip"
+$dotfilesZip = "$env:USERPROFILE\Downloads\dotfiles.zip"
 (New-Object System.Net.WebClient).DownloadFile($url, $dotfilesZip)
 
 # Unpack & delete zip file
-Expand-Archive $dotfilesZip "$HOME\Downloads" -Force
+Expand-Archive $dotfilesZip "$env:USERPROFILE\Downloads" -Force
 Remove-Item $dotfilesZip
 
 # Set path
-$dotfiles = "$HOME\Downloads\dotfiles-master"
+$dotfiles = "$env:USERPROFILE\Downloads\dotfiles-master"
 
 Write-Host " Done"
 
@@ -33,14 +33,14 @@ Write-Host " Done"
 
 # PowerShell Profile
 Write-Host "Updating PowerShell profile..." -NoNewline
-if (!(Test-Path "$HOME\Documents\WindowsPowerShell")) {
-  New-Item "$HOME\Documents\WindowsPowerShell" -ItemType Directory -ea 0 | Out-Null
+if (!(Test-Path "$env:USERPROFILE\Documents\WindowsPowerShell")) {
+  New-Item "$env:USERPROFILE\Documents\WindowsPowerShell" -ItemType Directory -ea 0 | Out-Null
 }
-Copy-Item "$dotfiles\powershell\profile.ps1" "$HOME\Documents\WindowsPowerShell"
+Copy-Item "$dotfiles\powershell\profile.ps1" "$env:USERPROFILE\Documents\WindowsPowerShell"
 Write-Host " Done"
 
 # Windows Terminal
-$folderWT = Get-ChildItem "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_*" | Select-Object -First 1 -Expand FullName
+$folderWT = Get-ChildItem "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*" | Select-Object -First 1 -Expand FullName
 if ($folderWT) {
   Write-Host "Updating Windows Terminal settings..." -NoNewline
   Copy-Item "$dotfiles\terminal\settings.json" "$folderWT\LocalState"
@@ -50,7 +50,7 @@ if ($folderWT) {
 # VS Code
 if (Get-Command code -ea 0) {
   Write-Host "Updating VS Code settings..." -NoNewline
-  Copy-Item "$dotfiles\vscode\settings.json" "$HOME\AppData\Roaming\Code\User"
+  Copy-Item "$dotfiles\vscode\settings.json" "$env:APPDATA\Code\User"
   Write-Host " Done"
 }
 

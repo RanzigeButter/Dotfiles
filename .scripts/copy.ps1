@@ -13,11 +13,11 @@ function installFont {
     [string]$filename
   )
 
-  $folderZip = "$HOME\Downloads\$filename"
+  $folderZip = "$env:USERPROFILE\Downloads\$filename"
 
   # Download, unpack & delete zip file
   (New-Object System.Net.WebClient).DownloadFile($url, $folderZip)
-  Expand-Archive $folderZip "$HOME\Downloads" -Force
+  Expand-Archive $folderZip "$env:USERPROFILE\Downloads" -Force
   Remove-Item $folderZip
 
   $folder = $folderZip.TrimEnd(".zip")
@@ -41,16 +41,16 @@ Write-Host " Done"
 # ==============================================================================
 
 Write-Host "Installing PowerShell profile..." -NoNewline
-if (!(Test-Path "$HOME\Documents\WindowsPowerShell")) {
-  New-Item "$HOME\Documents\WindowsPowerShell" -ItemType Directory -ea 0 | Out-Null
+if (!(Test-Path "$env:USERPROFILE\Documents\WindowsPowerShell")) {
+  New-Item "$env:USERPROFILE\Documents\WindowsPowerShell" -ItemType Directory -ea 0 | Out-Null
 }
-Copy-Item "$dotfiles\powershell\profile.ps1" "$HOME\Documents\WindowsPowerShell"
+Copy-Item "$dotfiles\powershell\profile.ps1" "$env:USERPROFILE\Documents\WindowsPowerShell"
 Write-Host " Done"
 
 # Windows Terminal
 # ==============================================================================
 
-$folderWT = Get-ChildItem "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_*" | Select-Object -First 1 -Expand FullName
+$folderWT = Get-ChildItem "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*" | Select-Object -First 1 -Expand FullName
 if ($folderWT) {
   Write-Host "Installing Windows Terminal settings..." -NoNewline
   Copy-Item "$dotfiles\terminal\settings.json" "$folderWT\LocalState"
@@ -63,7 +63,7 @@ if ($folderWT) {
 if (Get-Command code -ea 0) {
   # Settings
   Write-Host "Installing VS Code settings..." -NoNewline
-  Copy-Item "$dotfiles\vscode\settings.json" "$HOME\AppData\Roaming\Code\User"
+  Copy-Item "$dotfiles\vscode\settings.json" "$env:APPDATA\Code\User"
   Write-Host " Done"
 
   # Extensions

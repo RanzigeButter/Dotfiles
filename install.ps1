@@ -35,15 +35,15 @@ Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force
 
 # Download repository
 $url = "https://github.com/RanzigeButter/dotfiles/archive/master.zip"
-$dotfilesZip = "$HOME\Downloads\dotfiles.zip"
+$dotfilesZip = "$env:USERPROFILE\Downloads\dotfiles.zip"
 (New-Object System.Net.WebClient).DownloadFile($url, $dotfilesZip)
 
 # Unpack & delete zip file
-Expand-Archive $dotfilesZip "$HOME\Downloads" -Force
+Expand-Archive $dotfilesZip "$env:USERPROFILE\Downloads" -Force
 Remove-Item $dotfilesZip
 
 # Set path
-$dotfiles = "$HOME\Downloads\dotfiles-master"
+$dotfiles = "$env:USERPROFILE\Downloads\dotfiles-master"
 
 Write-Host " Done"
 

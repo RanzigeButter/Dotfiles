@@ -5,23 +5,21 @@
 # |_|   \___/ \_/\_/ \___|_|  |____/|_| |_|\___|_|_| |_|   |_|  \___/|_| |_|_|\___|
 
 
-# Title
-function checkAdmin {
-  $user = [Security.Principal.WindowsIdentity]::GetCurrent();
-  (New-Object Security.Principal.WindowsPrincipal $user).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
-}
-$Host.UI.RawUI.WindowTitle = "PowerShell - Admin: $(checkAdmin)"
-
 # Promt
 function global:prompt {
-  "$(Write-Host "$(Split-Path -leaf -path (Get-Location))" -ForegroundColor Blue -NoNewline) $([char]0x276F) "
+  $startbracket = Write-Host "[" -ForegroundColor Red -NoNewline
+  $username = Write-Host $env:USERNAME -ForegroundColor Yellow -NoNewline
+  $separator = Write-Host "@" -ForegroundColor Green -NoNewline
+  $computername = Write-Host $env:COMPUTERNAME -ForegroundColor Blue -NoNewline
+  $location = Write-Host " $(Split-Path -leaf -path (Get-Location))" -ForegroundColor Magenta -NoNewline
+  $endbracket = Write-Host "]" -ForegroundColor Red -NoNewline
+
+  "$startbracket$username$separator$computername$location$endbracket$([char]0x276F) "
 }
 
 # ==============================================================================
 # Commands
 # ==============================================================================
-
-Set-Alias "c" "Clear-Host"
 
 function x {
   exit
@@ -50,13 +48,21 @@ function update {
   Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/RanzigeButter/dotfiles/master/update.ps1'))
 }
 
-# File System
+# Directories/Files
 # ==============================================================================
 
 function touch([string]$file) {
   New-Item $file -ItemType File | Out-Null
 }
 Set-Alias "t" "touch"
+
+function mkd([string]$directory) {
+  New-Item $directory -ItemType Directory | Out-Null
+}
+
+function dircontent {
+  Get-ChildItem -Force -Name -Exclude "dir-content.csv" | Out-File "dir-content.csv"
+}
 
 function .. {
   Set-Location ".."
@@ -73,21 +79,33 @@ function ..... {
 function ...... {
   Set-Location "..\..\..\..\.."
 }
-
-function dirDownloads {
-  Set-Location "$HOME\Downloads"
+function dl {
+  Set-Location "$env:USERPROFILE\Downloads"
 }
-Set-Alias "dl" "dirDownloads"
-
-function dirDropbox {
-  Set-Location "$HOME\Dropbox"
+function box {
+  Set-Location "$env:USERPROFILE\Dropbox"
 }
-Set-Alias "box" "dirDropbox"
-
-function dirPrint {
-  Get-ChildItem -Force -Name -Exclude "dir_content.csv" | Out-File "dir_content.csv"
+function p {
+  Set-Location "$env:USERPROFILE\Projects"
 }
-Set-Alias "dprint" "dirPrint"
+
+# SSH
+# ==============================================================================
+
+function sshGenerateKey([string]$email, [string]$name) {
+  ssh-keygen -t rsa -b 4096 -C $email -f $env:USERPROFILE\.ssh\$name
+}
+Set-Alias "sshg" "sshGenerateKey"
+
+function sshAddKey([string]$name) {
+  ssh-add $env:USERPROFILE\.ssh\$name
+}
+Set-Alias "ssha" "sshAddKey"
+
+function sshRanzigeButter {
+  ssh ranzigebutter
+}
+Set-Alias "rb" "sshRanzigeButter"
 
 # Visual Studio Code
 # ==============================================================================
@@ -174,24 +192,6 @@ function npmProduction {
   npm run prod
 }
 Set-Alias "np" "npmProduction"
-
-# SSH
-# ==============================================================================
-
-function sshGenerateKey([string]$email, [string]$name) {
-  ssh-keygen -t rsa -b 4096 -C $email -f $HOME\.ssh\$name
-}
-Set-Alias "sshg" "sshGenerateKey"
-
-function sshAddKey([string]$name) {
-  ssh-add $HOME\.ssh\$name
-}
-Set-Alias "ssha" "sshAddKey"
-
-function sshRanzigeButter {
-  ssh ranzigebutter
-}
-Set-Alias "rb" "sshRanzigeButter"
 
 # ==============================================================================
 Clear-Host
