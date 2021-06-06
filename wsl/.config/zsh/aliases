@@ -6,10 +6,12 @@
 #  \__,_|_|_|\__,_|___/\___||___/
 
 
-# System
-alias update="sudo -- sh -c 'apt update && apt upgrade -y && apt autoremove -y && apt autoclean -y'"
+# System & Programs
+alias \
+  update="sudo -- sh -c 'apt update && apt upgrade -y && apt autoremove -y && apt autoclean -y'" \
+  e="$EDITOR"
 
-# General
+# Common
 alias \
   mv="mv -vi" \
   cp="cp -vi" \
@@ -28,33 +30,31 @@ alias \
   .....="cd ../../../.." \
   ......="cd ../../../../.." \
   dl="cd /mnt/c/Users/Tim/Downloads" \
-  box="cd /mnt/c/Users/Tim/Dropbox"
+  db="cd /mnt/c/Users/Tim/Dropbox" \
+  p="cd /mnt/c/Users/Tim/Projects"
 
-# Visual Studio Code
-alias \
-  coden="code -n ." \
-  coder="code -r ."
+# SSH
+sshn() {ssh-keygen -t rsa -b 4096 -C $1 -f ~/.ssh/$2}
+ssha() {ssh-add ~/.ssh/$1}
 
 # Git
 alias \
   gac="git add . && git commit -m" \
   gaca="git add . && git commit --amend --no-edit" \
   gsh="git push origin" \
-  gll="git pull --rebase origin" \
-  gcl="git clone" \
-  glog="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+  gll="git pull origin" \
+  glog="git log --graph --pretty=format:'%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%cr) %C(blue)<%an>%C(reset)'"
 
 # Composer
 alias \
   fuckphp="rm -rf vendor composer.lock && composer clear-cache && composer update"
 
-# Node Package Manager
+# npm
 alias \
   fuckjs="rm -rf node_modules package-lock.json && npm install" \
   nid="npm install --save-prod" \
   nidd="npm install --save-dev" \
   no="npm outdated" \
   nu="npm update" \
-  na="npm audit fix" \
   nd="npm run dev" \
   np="npm run prod"

@@ -5,6 +5,9 @@
 # |_|   \___/ \_/\_/ \___|_|  |____/|_| |_|\___|_|_| |_|   |_|  \___/|_| |_|_|\___|
 
 
+# Environment
+$env:EDITOR = "code"
+
 # Promt
 function global:prompt {
   $startbracket = Write-Host "[" -ForegroundColor Red -NoNewline
@@ -17,181 +20,79 @@ function global:prompt {
   "$startbracket$username$separator$computername$location$endbracket$([char]0x276F) "
 }
 
+# System & Programs
 # ==============================================================================
-# Commands
-# ==============================================================================
 
-function x {
-  exit
-}
+function x { exit }
+function sudo { Start-Process PowerShell -Verb RunAs }
+function update { Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/RanzigeButter/dotfiles/master/update.ps1')) }
+Set-Alias "e" "$env:EDITOR"
+Set-Alias "dns" "Resolve-DnsName"
 
-function openPowerShellAdmin {
-  Start-Process PowerShell -Verb RunAs
-}
-Set-Alias "opa" "openPowerShellAdmin"
-
-function shutdownTimer([int]$timeInMinutes) {
+function Set-ShutdownTimer([int]$timeInMinutes) {
   $timeInSeconds = $timeInMinutes * 60
   shutdown -s -t $timeInSeconds
   Write-Host "The Computer will shut down in $timeInMinutes minutes."
 }
-Set-Alias "sdt" "shutdownTimer"
-
-function shutdownAbort {
-  shutdown -a
-}
-Set-Alias "sda" "shutdownAbort"
-
-Set-Alias "dns" "Resolve-DnsName"
-
-function update {
-  Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/RanzigeButter/dotfiles/master/update.ps1'))
-}
+Set-Alias "sst" "Set-ShutdownTimer"
+function ast { shutdown -a }
 
 # Directories/Files
 # ==============================================================================
 
-function touch([string]$file) {
-  New-Item $file -ItemType File | Out-Null
-}
-Set-Alias "t" "touch"
+function touch([string[]]$file) { New-Item $file -ItemType File | Out-Null }
+function mkd([string[]]$directory) { New-Item $directory -ItemType Directory | Out-Null }
+function rmrf([string[]]$path) { Remove-Item -Recurse -Force $path }
 
-function mkd([string]$directory) {
-  New-Item $directory -ItemType Directory | Out-Null
-}
+# Navigation
+# ==============================================================================
 
-function dircontent {
-  Get-ChildItem -Force -Name -Exclude "dir-content.csv" | Out-File "dir-content.csv"
-}
-
-function .. {
-  Set-Location ".."
-}
-function ... {
-  Set-Location "..\.."
-}
-function .... {
-  Set-Location "..\..\.."
-}
-function ..... {
-  Set-Location "..\..\..\.."
-}
-function ...... {
-  Set-Location "..\..\..\..\.."
-}
-function dl {
-  Set-Location "$env:USERPROFILE\Downloads"
-}
-function box {
-  Set-Location "$env:USERPROFILE\Dropbox"
-}
-function p {
-  Set-Location "$env:USERPROFILE\Projects"
-}
+function .. { Set-Location ".." }
+function ... { Set-Location "..\.." }
+function .... { Set-Location "..\..\.." }
+function ..... { Set-Location "..\..\..\.." }
+function ...... { Set-Location "..\..\..\..\.." }
+function dl { Set-Location "$env:USERPROFILE\Downloads" }
+function db { Set-Location "$env:USERPROFILE\Dropbox" }
+function p { Set-Location "$env:USERPROFILE\Projects" }
 
 # SSH
 # ==============================================================================
 
-function sshGenerateKey([string]$email, [string]$name) {
+function New-SshKey([string]$email, [string]$name) {
   ssh-keygen -t rsa -b 4096 -C $email -f $env:USERPROFILE\.ssh\$name
 }
-Set-Alias "sshg" "sshGenerateKey"
+Set-Alias "sshn" "New-SshKey"
 
-function sshAddKey([string]$name) {
+function Add-SshKey([string]$name) {
   ssh-add $env:USERPROFILE\.ssh\$name
 }
-Set-Alias "ssha" "sshAddKey"
-
-function sshRanzigeButter {
-  ssh ranzigebutter
-}
-Set-Alias "rb" "sshRanzigeButter"
-
-# Visual Studio Code
-# ==============================================================================
-
-function vscodeNew {
-  code -n .
-}
-Set-Alias "coden" "vscodeNew"
-
-function vscodeReuse {
-  code -r .
-}
-Set-Alias "coder" "vscodeReuse"
+Set-Alias "ssha" "Add-SshKey"
 
 # Git
 # ==============================================================================
 
-function gitAddCommit([string]$message) {
-  git add .
-  git commit -m $message
-}
-Set-Alias "gac" "gitAddCommit"
+function gac([string]$message) { git add .; git commit -m $message }
+function gaca { git add .; git commit --amend --no-edit }
+function gsh([string]$branch) { git push origin $branch }
+function gll([string]$branch) { git pull origin $branch }
+function glog { git log --graph --pretty=format:'%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%cr) %C(blue)<%an>%C(reset)' }
 
-function gitAddCommitAmend {
-  git add .
-  git commit --amend --no-edit
-}
-Set-Alias "gaca" "gitAddCommitAmend"
-
-function gitPush([string]$branch) {
-  git push origin $branch
-}
-Set-Alias "gsh" "gitPush"
-
-function gitPull([string]$branch) {
-  git pull --rebase origin $branch
-}
-Set-Alias "gll" "gitPull"
-
-function gitClone([string]$repository) {
-  git clone $repository
-}
-Set-Alias "gcl" "gitClone"
-
-function gitLog {
-  git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-}
-Set-Alias "glog" "gitLog"
-
-# Node Package Manager
+# Composer
 # ==============================================================================
 
-function npmInstallDependencies([string[]]$package) {
-  npm install --save-prod $package
-}
-Set-Alias "nid" "npmInstallDependencies"
+function fuckphp { Remove-Item -Recurse -Force vendor, composer.lock; composer clear-cache; composer update }
 
-function npmInstallDevDependencies([string[]]$package) {
-  npm install --save-dev $package
-}
-Set-Alias "nidd" "npmInstallDevDependencies"
+# npm
+# ==============================================================================
 
-function npmOutdated {
-  npm outdated
-}
-Set-Alias "no" "npmOutdated"
-
-function npmUpdate {
-  npm update
-}
-Set-Alias "nu" "npmUpdate"
-
-function npmAudit {
-  npm audit fix
-}
-Set-Alias "na" "npmAudit"
-
-function npmDevelopment {
-  npm run dev
-}
-Set-Alias "nd" "npmDevelopment"
-
-function npmProduction {
-  npm run prod
-}
-Set-Alias "np" "npmProduction"
+function fuckjs { Remove-Item -Recurse -Force node_modules, package-lock.json; npm install }
+function nid([string[]]$package) { npm install --save-prod $package }
+function nidd([string[]]$package) { npm install --save-dev $package }
+function no { npm outdated }
+function nu { npm update }
+function nd { npm run dev }
+function np { npm run prod }
 
 # ==============================================================================
 Clear-Host

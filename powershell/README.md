@@ -1,7 +1,5 @@
 # PowerShell Profile
 
-My PowerShell Profile.
-
 ## Installation
 
 Before installation, we have to set our PowerShell execution policy to allow the use of scripts.
@@ -39,51 +37,52 @@ C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1
 
 > Commands are not case-sensitive.
 
-General:
+System & Programs:
 
 - `x` = Close PowerShell
-- `openPowerShellAdmin` / `opa` = Open PowerShell as admin
-- `shutdownTimer` / `sdt` = Shutdown with timer (insert the time in minutes after the command)
-- `shutdownAbort` / `sda` = Abort Shutdown
-- `dns` = Get DNS infos
+- `sudo` = Open PowerShell as admin
 - `update` = Update dotfiles
+- `e` = Shortcut for the default Editor
+- `dns` = Get DNS infos
+- `Set-ShutdownTimer` / `sst` = Set a shutdown timer
+- `ast` = Abort the shutdown timer
 
 Directories/Files:
 
-- `touch` / `t` = Create new empty file
-- `mkd` = Create new empty directory
-- `dircontent` = Writes the directory contents to a .csv file
+- `touch` = Create new file
+- `mkd` = Create new directory
+- `rmrf` = Deletes directories/files with the params "recurse" and "force"
+
+Navigation:
+
 - `..`, `...`, `....`, `.....`, `......` = Folder(s) up
 - `dl` = Change directory to Downloads
-- `box` = Change directory to Dropbox
+- `db` = Change directory to Dropbox
 - `p` = Change directory to Projects
 
 SSH:
 
-- `sshGenerateKey` / `sshg` = Generate SSH key (insert the E-Mail and then the name after the command)
-- `sshAddKey` / `ssha` = Add SSH key (insert the SSH key name after the command)
-- `sshRanzigeButter` / `rb` = SSH to RanzigeButter
-
-[Visual Studio Code](https://code.visualstudio.com):
-
-- `vscodeNew` / `coden` = Open current folder in a new VS Code window
-- `vscodeReuse` / `coder` = Open current folder in an already opened VS Code window
+- `New-SshKey` / `sshn` = Generate new SSH key
+- `Add-SshKey` / `ssha` = Add SSH key
 
 [Git](https://git-scm.com):
 
-- `gitAddCommit` / `gac` = Add and commit files with message (insert the message after the command)
-- `gitAddCommitAmend` / `gaca` = Amend to the last commit without editing the message
-- `gitPush` / `gsh` = Push files to remote repository (insert the branch after the command)
-- `gitPull` / `gll` = Pull files from remote repository (insert the branch after the command)
-- `gitClone` / `gcl` = Clone repository into directory (insert the repository after the command)
-- `gitLog` / `glog` = Shows the commit history
+- `gac` = Add and commit files with message
+- `gaca` = Amend to the last commit without editing the message
+- `gsh` = Push files to remote repository
+- `gll` = Pull files from remote repository
+- `glog` = Shows the commit history
+
+[Composer](https://getcomposer.org/):
+
+- `fuckphp` = Delete vendor and composer.lock, then clear the cache and reinstall everything
 
 [npm](https://www.npmjs.com):
 
-- `npmInstallDependencies` / `nid` = Install package in dependencies (insert package after the command)
-- `npmInstallDevDependencies` / `nidd` = Install package in devDependencies (insert package after the command)
-- `npmOutdated` / `no` = Outdated packages
-- `npmUpdate` / `nu` = Update packages
-- `npmAudit` / `na` = Audit packages
-- `npmDevelopment` / `nd` = Run development script (configuration must be provided in package.json)
-- `npmProduction` / `np` = Run production script (configuration must be provided in package.json)
+- `fuckjs` = Delete node_modules and package-lock.json, then reinstall everything
+- `nid` = Install package in dependencies
+- `nidd` = Install package in devDependencies
+- `no` = List outdated packages
+- `nu` = Update packages
+- `nd` = Run development script
+- `np` = Run production script

@@ -34,7 +34,7 @@ Write-Host " Done"
 # PowerShell Profile
 Write-Host "Updating PowerShell profile..." -NoNewline
 if (!(Test-Path "$env:USERPROFILE\Documents\WindowsPowerShell")) {
-  New-Item "$env:USERPROFILE\Documents\WindowsPowerShell" -ItemType Directory -ea 0 | Out-Null
+  New-Item "$env:USERPROFILE\Documents\WindowsPowerShell" -ItemType Directory | Out-Null
 }
 Copy-Item "$dotfiles\powershell\profile.ps1" "$env:USERPROFILE\Documents\WindowsPowerShell"
 Write-Host " Done"

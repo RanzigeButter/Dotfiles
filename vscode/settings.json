@@ -65,10 +65,6 @@
   "markdown.preview.scrollEditorWithPreview": false,
   "markdown.preview.scrollPreviewWithEditor": false,
   "markdownlint.config": {
-    "MD012": {
-      "maximum": 2
-    },
-    "MD013": false,
     "MD024": {
       "siblings_only": true
     },
