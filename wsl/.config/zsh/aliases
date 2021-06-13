@@ -9,7 +9,8 @@
 # System & Programs
 alias \
   update="sudo -- sh -c 'apt update && apt upgrade -y && apt autoremove -y && apt autoclean -y'" \
-  e="$EDITOR"
+  e="$EDITOR" \
+  g="git"
 
 # Common
 alias \
@@ -36,14 +37,6 @@ alias \
 # SSH
 sshn() {ssh-keygen -t rsa -b 4096 -C $1 -f ~/.ssh/$2}
 ssha() {ssh-add ~/.ssh/$1}
-
-# Git
-alias \
-  gac="git add . && git commit -m" \
-  gaca="git add . && git commit --amend --no-edit" \
-  gsh="git push origin" \
-  gll="git pull origin" \
-  glog="git log --graph --pretty=format:'%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%cr) %C(blue)<%an>%C(reset)'"
 
 # Composer
 alias \

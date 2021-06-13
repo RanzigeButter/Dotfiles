@@ -70,6 +70,8 @@
     },
     "MD033": false
   },
+  // PowerShell
+  "powershell.integratedConsole.showOnStartup": false,
   // PHP
   "php.validate.executablePath": "C:\\Program Files\\PHP-8.0.3\\php.exe",
   "php.suggest.basic": false,

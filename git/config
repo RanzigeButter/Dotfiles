@@ -1,0 +1,14 @@
+[user]
+  name = Tim Schneider
+  email = 38572632+RanzigeButter@users.noreply.github.com
+[core]
+  editor = $EDITOR --wait
+[alias]
+  ac = !git add . && git commit -m
+  aca = !git add . && git commit --amend --no-edit
+  sh = push origin
+  ll = pull --rebase origin
+  co = checkout
+  cob = checkout -b
+  ls = log --oneline --graph --stat
+  l = log --graph --pretty=format:'%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%cr) %C(blue)<%an>%C(reset)'

@@ -1,0 +1,21 @@
+Host ranzigebutter
+  HostName 167.71.34.72
+  Port 42
+  User tim
+  IdentityFile ~/.ssh/digitalocean
+
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/github
+
+Host ssh.dev.azure.com
+  HostName ssh.dev.azure.com
+  User git
+  IdentityFile ~/.ssh/azure
+
+Host *
+  IgnoreUnknown UseKeychain
+  UseKeychain yes
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/id_rsa

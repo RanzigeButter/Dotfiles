@@ -20,6 +20,17 @@ function global:prompt {
   "$startbracket$username$separator$computername$location$endbracket$([char]0x276F) "
 }
 
+# WinGet Completion
+Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
+  param($wordToComplete, $commandAst, $cursorPosition)
+  [Console]::InputEncoding = [Console]::OutputEncoding = $OutputEncoding = [System.Text.Utf8Encoding]::new()
+  $Local:word = $wordToComplete.Replace('"', '""')
+  $Local:ast = $commandAst.ToString().Replace('"', '""')
+  winget complete --word="$Local:word" --commandline "$Local:ast" --position $cursorPosition | ForEach-Object {
+    [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
+  }
+}
+
 # System & Programs
 # ==============================================================================
 
@@ -27,6 +38,7 @@ function x { exit }
 function sudo { Start-Process PowerShell -Verb RunAs }
 function update { Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/RanzigeButter/dotfiles/master/update.ps1')) }
 Set-Alias "e" "$env:EDITOR"
+Set-Alias "g" "git"
 Set-Alias "dns" "Resolve-DnsName"
 
 function Set-ShutdownTimer([int]$timeInMinutes) {
@@ -69,15 +81,6 @@ function Add-SshKey([string]$name) {
 }
 Set-Alias "ssha" "Add-SshKey"
 
-# Git
-# ==============================================================================
-
-function gac([string]$message) { git add .; git commit -m $message }
-function gaca { git add .; git commit --amend --no-edit }
-function gsh([string]$branch) { git push origin $branch }
-function gll([string]$branch) { git pull origin $branch }
-function glog { git log --graph --pretty=format:'%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%cr) %C(blue)<%an>%C(reset)' }
-
 # Composer
 # ==============================================================================
 
@@ -93,7 +96,3 @@ function no { npm outdated }
 function nu { npm update }
 function nd { npm run dev }
 function np { npm run prod }
-
-# ==============================================================================
-Clear-Host
-# ==============================================================================

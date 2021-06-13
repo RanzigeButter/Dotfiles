@@ -23,7 +23,7 @@ Write-Host -ForegroundColor Yellow @"
 
 
 "@
-Read-Host "Press ENTER to start"
+Read-Host "Press ENTER to start."
 
 # Preparations
 # ==============================================================================
@@ -47,12 +47,12 @@ $dotfiles = "$env:USERPROFILE\Downloads\dotfiles-master"
 
 Write-Host " Done"
 
-# Scripts
+# Setup
 # ==============================================================================
 
-. "$dotfiles\.scripts\win10.ps1"
-. "$dotfiles\.scripts\apps.ps1"
-. "$dotfiles\.scripts\copy.ps1"
+. "$dotfiles\.setup\windows.ps1"
+. "$dotfiles\.setup\apps.ps1"
+. "$dotfiles\.setup\copy.ps1"
 
 # Finalize
 # ==============================================================================

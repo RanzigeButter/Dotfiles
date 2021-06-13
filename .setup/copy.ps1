@@ -1,11 +1,11 @@
 <#  ========================================================================
-    # Scripts - Copy
+    # Setup - Copy
     ========================================================================  #>
 
 # Fonts
 # ==============================================================================
 
-function installFont {
+function Install-Font {
   param (
     [Parameter(Mandatory)]
     [string]$url,
@@ -34,7 +34,7 @@ function installFont {
 
 # Fira Code
 Write-Host "Installing 'Fira Code' font..." -NoNewline
-installFont "https://github.com/tonsky/FiraCode/archive/master.zip" "FiraCode-master.zip"
+Install-Font "https://github.com/tonsky/FiraCode/archive/master.zip" "FiraCode-master.zip"
 Write-Host " Done"
 
 # PowerShell Profile
@@ -42,7 +42,7 @@ Write-Host " Done"
 
 Write-Host "Installing PowerShell profile..." -NoNewline
 if (!(Test-Path "$env:USERPROFILE\Documents\WindowsPowerShell")) {
-  New-Item "$env:USERPROFILE\Documents\WindowsPowerShell" -ItemType Directory -ea 0 | Out-Null
+  New-Item "$env:USERPROFILE\Documents\WindowsPowerShell" -ItemType Directory | Out-Null
 }
 Copy-Item "$dotfiles\powershell\profile.ps1" "$env:USERPROFILE\Documents\WindowsPowerShell"
 Write-Host " Done"
@@ -70,11 +70,30 @@ if (Get-Command code -ea 0) {
   Write-Host "Installing VS Code extensions..."
   foreach ($extension in @(
       Get-Content "$dotfiles\vscode\extensions.md" |
-      Where-Object { $_ -notmatch "^#" } |
-      Where-Object { $_.trim() -ne "" } |
+      Where-Object { $_ -match "- " } |
       ForEach-Object { $_.trimStart("- ") }
     )) {
     Write-Host ">>> $extension"
     code --install-extension $extension | Out-Null
   }
 }
+
+# SSH
+# ==============================================================================
+
+Write-Host "Installing SSH config..." -NoNewline
+if (!(Test-Path "$env:USERPROFILE\.ssh")) {
+  New-Item "$env:USERPROFILE\.ssh" -ItemType Directory | Out-Null
+}
+Copy-Item "$dotfiles\ssh\config" "$env:USERPROFILE\.ssh"
+Write-Host " Done"
+
+# Git
+# ==============================================================================
+
+Write-Host "Installing Git config..." -NoNewline
+if (!(Test-Path "$env:USERPROFILE\.config\git")) {
+  New-Item "$env:USERPROFILE\.config\git" -ItemType Directory | Out-Null
+}
+Copy-Item "$dotfiles\git\config" "$env:USERPROFILE\.config\git"
+Write-Host " Done"

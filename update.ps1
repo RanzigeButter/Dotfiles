@@ -54,6 +54,22 @@ if (Get-Command code -ea 0) {
   Write-Host " Done"
 }
 
+# SSH
+Write-Host "Updating SSH config..." -NoNewline
+if (!(Test-Path "$env:USERPROFILE\.ssh")) {
+  New-Item "$env:USERPROFILE\.ssh" -ItemType Directory | Out-Null
+}
+Copy-Item "$dotfiles\ssh\config" "$env:USERPROFILE\.ssh"
+Write-Host " Done"
+
+# Git
+Write-Host "Updating Git config..." -NoNewline
+if (!(Test-Path "$env:USERPROFILE\.config\git")) {
+  New-Item "$env:USERPROFILE\.config\git" -ItemType Directory | Out-Null
+}
+Copy-Item "$dotfiles\git\config" "$env:USERPROFILE\.config\git"
+Write-Host " Done"
+
 # Finalize
 # ==============================================================================
 
