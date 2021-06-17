@@ -65,14 +65,6 @@ SSH:
 - `New-SshKey` / `sshn` = Generate new SSH key
 - `Add-SshKey` / `ssha` = Add SSH key
 
-[Git](https://git-scm.com):
-
-- `gac` = Add and commit files with message
-- `gaca` = Amend to the last commit without editing the message
-- `gsh` = Push files to remote repository
-- `gll` = Pull files from remote repository
-- `glog` = Shows the commit history
-
 [Composer](https://getcomposer.org/):
 
 - `fuckphp` = Delete vendor and composer.lock, then clear the cache and reinstall everything
@@ -82,7 +74,7 @@ SSH:
 - `fuckjs` = Delete node_modules and package-lock.json, then reinstall everything
 - `nid` = Install package in dependencies
 - `nidd` = Install package in devDependencies
-- `no` = List outdated packages
-- `nu` = Update packages
+- `no` = List all outdated packages
+- `nu` = Update all packages
 - `nd` = Run development script
 - `np` = Run production script
