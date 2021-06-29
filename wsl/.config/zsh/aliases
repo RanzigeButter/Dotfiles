@@ -29,10 +29,7 @@ alias \
   ...="cd ../.." \
   ....="cd ../../.." \
   .....="cd ../../../.." \
-  ......="cd ../../../../.." \
-  dl="cd /mnt/c/Users/Tim/Downloads" \
-  db="cd /mnt/c/Users/Tim/Dropbox" \
-  p="cd /mnt/c/Users/Tim/Projects"
+  ......="cd ../../../../.."
 
 # SSH
 sshn() {ssh-keygen -t rsa -b 4096 -C $1 -f ~/.ssh/$2}
@@ -45,9 +42,3 @@ alias \
 # npm
 alias \
   fuckjs="rm -rf node_modules package-lock.json && npm install" \
-  nid="npm install --save-prod" \
-  nidd="npm install --save-dev" \
-  no="npm outdated" \
-  nu="npm update" \
-  nd="npm run dev" \
-  np="npm run prod"

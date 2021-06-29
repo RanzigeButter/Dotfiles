@@ -18,3 +18,11 @@ Run this command to update:
 ```PowerShell
 iwr "https://raw.githubusercontent.com/RanzigeButter/dotfiles/master/update.ps1" -UseBasicParsing | iex
 ```
+
+## WSL
+
+Install some basic programs, set zsh as the default shell and copy dotfiles:
+
+```sh
+curl -o- https://raw.githubusercontent.com/RanzigeButter/dotfiles/master/wsl/install.sh | sh
+```
